@@ -1,0 +1,301 @@
+* {
+	margin: 0;
+	text-decoration: none;
+	font-family: "Fredoka", sans-serif;
+	text-decoration: none;
+}
+a {
+	color: white;
+}
+html {
+	scroll-behavior: smooth;
+	background-color: #f3f3f3;
+
+	/* font-size: 62.5%; */
+	/* This automatically sets the fon'r size tp 10px
+	so you can use "rem" at 1rem for 10px, 5.5rem for 55px etc
+	/* It helps keep the user's font size preference  */
+}
+
+body {
+	color: #e9e9e9;
+	overflow-x: hidden;
+	/* margin: 5px; */
+}
+#OpeningParallexImage {
+	background-image: linear-gradient(
+			rgba(14, 5, 5, 0.486),
+			rgba(0, 0, 0, 0.486)
+		),
+		url("img/pizza.jpg");
+	height: 76.5vh;
+	position: relative;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	animation: myanime 20s infinite;
+	display: grid;
+	place-items: center;
+}
+
+header {
+	width: inherit;
+	height: auto;
+	background-color: #e82d00;
+	/* border-top-left-radius: 7px;
+	border-top-right-radius: 7px; */
+	padding: 1.4em;
+}
+
+section {
+	height: 100vh;
+	padding: 25px;
+	margin: 0 auto;
+}
+/* ------------------------------ */
+/* NAVIGATION ------------------- */
+/* ------------------------------ */
+
+/* Main Navi */
+header h2 {
+	display: inline-block;
+}
+
+.logo {
+	height: 130px;
+	width: auto;
+	float: left;
+	margin: 10px 20px;
+}
+
+nav {
+	list-style: none;
+	margin-top: 7px;
+	float: right;
+	display: inline-table;
+}
+
+nav li {
+	display: inline-block;
+	margin-left: 40px;
+}
+
+.main-ul li a:link,
+.main-ul li a:visited {
+	text-transform: uppercase;
+	font: 90%;
+	transition: border-bottom 0.2s;
+	padding: 4px 0;
+	color: antiquewhite;
+}
+
+.main-ul li a:hover,
+.main-ul li a:active {
+	border-bottom: 2px solid#e4a804;
+}
+
+/* Sticky Navi */
+.sticky {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: #131d2af3;
+	box-shadow: 0 2px 2px #e4a80483;
+	z-index: 1;
+	/* display: none; */
+}
+.sticky .main-ul {
+	margin-top: 20px;
+}
+.sticky .logo {
+	display: block;
+	height: 55px;
+	width: auto;
+	float: left;
+	margin: 7px 10px;
+}
+/* Mobile Navi */
+.mobile-nav-icon {
+	float: right;
+	cursor: pointer;
+	display: none;
+	font-size: 160%;
+	display: none;
+	margin-left: 15px;
+}
+/* Small phones to small tablets from 481 to 767px */
+@media only screen and (max-width: 767px) {
+	.mobile-nav-icon {
+		display: inline-block;
+	}
+
+	.main-nav {
+		display: none;
+	}
+
+	.main-nav li a {
+		display: block;
+		margin: 4px;
+		border: 0;
+	}
+
+	.address-request input {
+		max-width: 220px;
+	}
+}
+/* ------------------ */
+.address-request,
+.search-request {
+	/* position: absolute;
+	top: 45%;
+	left: 30%;
+	transform: translate(-50%, -50%); */
+	/* background-color: #e4a80485; */
+	/* border-radius: 20px; */
+	padding: 15px;
+}
+
+.search-request {
+	justify-content: right;
+	color: #e4a804;
+}
+.search-request ::placeholder {
+	color: #e4a804;
+}
+.address-request input,
+.search-request input {
+	height: 20px;
+	width: 20rem;
+	max-width: 500px;
+	padding: 0.875rem 1rem;
+	margin-top: 10px;
+	background-color: transparent;
+	border: 0;
+	border-bottom: 2px solid #e4a804;
+	outline-style: none;
+	color: #e4a804;
+}
+
+::placeholder {
+	color: white;
+}
+
+/* --------------------- */
+/* Menu Display--------- */
+/* --------------------- */
+
+.menu-item {
+	/* display: ; */
+	min-height: 200px;
+	width: 130px;
+	background-color: #f9f9f9;
+	padding: 10px;
+	/* overflow: hidden; */
+	border-radius: 40px;
+	box-shadow: 1px 1px 20px #e4e4e4;
+	color: black;
+	text-align: center;
+	margin: 3%;
+	float: left;
+}
+
+.menu-image {
+	box-shadow: 1px 1px 20px #e4e3e1;
+	background-color: #2a2a2a;
+	height: 120px;
+	width: 120px;
+	margin: 12px auto;
+	border-radius: 50%;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.menu-image img {
+	height: inherit;
+	width: inherit;
+}
+.meal-price {
+	display: inline-block;
+	margin: 10px auto;
+	color: #e4a804;
+	font-size: 110%;
+}
+.menu-about {
+	margin-bottom: 10px;
+}
+
+.btn-add {
+	/* display: flex; */
+	justify-content: center;
+	padding-top: 3px;
+	margin-left: 0.5em;
+	border-radius: 10px;
+	box-shadow: 1px 1px 20px #e4e3e1;
+	font-size: 130%;
+}
+
+/* ------------------------------------- */
+/* FOOTER */
+/* ------------------------------------- */
+footer {
+	background-color: #2a2a2a;
+	padding: 30px;
+	font-size: 85%;
+	/* border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px; */
+	color: #e4a804;
+}
+
+.footer-nav {
+	float: left;
+	list-style: none;
+}
+.social-icon {
+	float: right;
+	list-style: none;
+	color: #e4a804;
+}
+
+.footer-nav li,
+.social-icon li {
+	display: inline-block;
+	margin: 8px;
+}
+
+footer p {
+	font-size: 100%;
+	text-align: center;
+	margin-top: 10px;
+}
+
+/* Animation for the Opening Parallex Image */
+@keyframes myanime {
+	0% {
+		background-image: linear-gradient
+				(rgba(14, 5, 5, 0.486), rgba(0, 0, 0, 0.486)),
+			url("img/pizza.jpg");
+	}
+	33% {
+		background-image: linear-gradient(
+				rgba(14, 5, 5, 0.486),
+				rgba(0, 0, 0, 0.486)
+			),
+			url("img/brownies.jpg");
+	}
+	66% {
+		background-image: linear-gradient(
+				rgba(14, 5, 5, 0.486),
+				rgba(0, 0, 0, 0.486)
+			),
+			url("img/feast.jpg");
+	}
+	100% {
+		background-image: linear-gradient(
+				rgba(14, 5, 5, 0.486),
+				rgba(0, 0, 0, 0.486)
+			),
+			url("img/burger.jpg");
+	}
+}
