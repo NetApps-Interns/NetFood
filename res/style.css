@@ -49,7 +49,7 @@ header {
 }
 
 section {
-	height: 100vh;
+	height: 77vh;
 	padding: 25px;
 	margin: 0 auto;
 }
@@ -146,19 +146,18 @@ nav li {
 	}
 }
 /* ------------------ */
-.address-request,
-.search-request {
+.address-request {
+	/* .search-request { */
 	/* position: absolute;
 	top: 45%;
 	left: 30%;
 	transform: translate(-50%, -50%); */
-	/* background-color: #e4a80485; */
-	/* border-radius: 20px; */
-	padding: 15px;
+	background-color: #0000009d;
+	border-radius: 20px;
+	padding: 30px;
 }
 
 .search-request {
-	justify-content: right;
 	color: #e4a804;
 }
 .search-request ::placeholder {
@@ -185,16 +184,25 @@ nav li {
 /* --------------------- */
 /* Menu Display--------- */
 /* --------------------- */
+.popular-dishes {
+	text-align: center;
+	height: 210px;
+	width: 1000px;
+}
+
+.popular-dishes .menu-item {
+	margin: 0 auto;
+	width: 300px;
+}
 
 .menu-item {
-	/* display: ; */
 	min-height: 200px;
 	width: 130px;
-	background-color: #f9f9f9;
+	background-color: #c1c1c1;
 	padding: 10px;
 	/* overflow: hidden; */
-	border-radius: 40px;
-	box-shadow: 1px 1px 20px #e4e4e4;
+	border-radius: 15px;
+	box-shadow: 1px 1px 10px #e4e4e4;
 	color: black;
 	text-align: center;
 	margin: 3%;
@@ -219,28 +227,40 @@ nav li {
 .meal-price {
 	display: inline-block;
 	margin: 10px auto;
-	color: #e4a804;
+	/* color: #e4a804; */
 	font-size: 110%;
 }
 .menu-about {
 	margin-bottom: 10px;
 }
 
-.btn-add {
+.btn-add, .btn-fav {
 	/* display: flex; */
 	justify-content: center;
 	padding-top: 3px;
 	margin-left: 0.5em;
-	border-radius: 10px;
-	box-shadow: 1px 1px 20px #e4e3e1;
+	/* border-radius: 10px; */
+	/* box-shadow: 1px 1px 20px #e4e3e1; */
 	font-size: 130%;
+	transition: font-size .5s;
+
+}
+
+.btn-add:hover,
+.btn-fav:hover
+{
+	font-size: 150%;
+	
+}
+.menu-body {
+	background-color: #2a2a2a;
 }
 
 /* ------------------------------------- */
 /* FOOTER */
 /* ------------------------------------- */
 footer {
-	background-color: #2a2a2a;
+	background-color: #21262a;
 	padding: 30px;
 	font-size: 85%;
 	/* border-bottom-left-radius: 7px;

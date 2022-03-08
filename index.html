@@ -33,17 +33,20 @@
 				<ul class="main-nav">
 					<li><a href="#">Sign Up</a></li>
 					<li><a href="#">Log In</a></li>
+					<li><a href="#"><ion-icon name="heart"></ion-icon></a></li>
+					<li><a href="#"><ion-icon name="cart-outline"></ion-icon></a></li>
 				</ul>
 			</nav>
 		</header>
 		<div id="OpeningParallexImage">
 			<div class="address-request">
 				<p>
-					<ion-icon name="pin-outline"></ion-icon>
+					<ion-icon name="pin"></ion-icon>
 					<span> Delivering to </span>
 				</p>
 				<div>
 					<input
+					onended="menu.html"
 						placeholder="Enter your delivery address..."
 						autocomplete="off"
 						name="address"
@@ -54,11 +57,48 @@
 				<div id="geo-dropdown" style="display: none">
 					<!---->
 					<div class="geo-option">
-						<ion-icon name="map-outline"></ion-icon>
+						<ion-icon name="map"></ion-icon>
 						<span class="pls"> Choose on map </span>
 					</div>
 				</div>
 			</div>
+
+			<!-- <div class="popular-dishes">
+				<h2>Popular Orders</h2>
+
+				<div class="menu-item">
+					<div class="menu-image">
+						<img
+							src="res/img/brownies.jpg"
+							alt="food image"
+						/>
+					</div>
+					<br />
+					<p class="menu-about">
+						Delicious, might get you high
+					</p>
+					<span class="meal-price">#1300</span>
+					<span class="btn-add">
+						<ion-icon name="add-outline"></ion-icon>
+					</span>
+				</div>
+				<div class="menu-item">
+					<div class="menu-image">
+						<img
+							src="res/img/brownies.jpg"
+							alt="food image"
+						/>
+					</div>
+					<br />
+					<p class="menu-about">
+						Delicious, might get you high
+					</p>
+					<span class="meal-price">#1300</span>
+					<span class="btn-add">
+						<ion-icon name="add-outline"></ion-icon>
+					</span>
+				</div>
+			</div> -->
 		</div>
 
 		<footer>
