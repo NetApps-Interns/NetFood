@@ -9,7 +9,7 @@ a {
 }
 html {
 	scroll-behavior: smooth;
-	background-color: #f3f3f3;
+	background-color: black;
 
 	/* font-size: 62.5%; */
 	/* This automatically sets the fon'r size tp 10px
@@ -106,9 +106,11 @@ nav li {
 	z-index: 1;
 	/* display: none; */
 }
+
 .sticky .main-ul {
 	margin-top: 20px;
 }
+
 .sticky .logo {
 	display: block;
 	height: 55px;
@@ -116,6 +118,7 @@ nav li {
 	float: left;
 	margin: 7px 10px;
 }
+
 /* Mobile Navi */
 .mobile-nav-icon {
 	float: right;
@@ -125,6 +128,7 @@ nav li {
 	display: none;
 	margin-left: 15px;
 }
+
 /* Small phones to small tablets from 481 to 767px */
 @media only screen and (max-width: 767px) {
 	.mobile-nav-icon {
@@ -145,7 +149,11 @@ nav li {
 		max-width: 220px;
 	}
 }
-/* ------------------ */
+
+
+/* --------------------- */
+/* --------------------- */
+
 .address-request {
 	/* .search-request { */
 	/* position: absolute;
@@ -209,7 +217,7 @@ nav li {
 	box-shadow: 1px 1px 10px #e4e4e4;
 	color: black;
 	text-align: center;
-	margin: 3%;
+	margin: 2.5%;
 	float: left;
 }
 
@@ -251,16 +259,66 @@ nav li {
 }
 
 .btn-add:hover,
-.btn-fav:hover
-{
+.btn-fav:hover{
 	font-size: 150%;
 	
 }
-.menu-body {	
-	background-color: #000000;
+
+.image-background {	
+	background-image: url('img/bg2.png') ;
+	position: relative;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 	overflow-y: scroll;
+}
 
 
+/* ------------------------------- */
+/* SIGN UP AND LOG IN PAGE----------------- */
+
+.hover-tab{
+	position: absolute;
+	top: 50%;
+	left: 47%;
+	transform: translate(-50%, -50%);
+	/* display: grid;
+	place-items: center; */
+	background-color: #e82e009d;
+	width:70%;
+	margin: 5% 3%;
+	/* border-radius: 10px; */
+}
+/* Style tab links */
+.tablink {
+  background-color: #222;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 50%;
+}
+
+.tablink:hover {
+	color: #e4a804;
+}
+
+.active {
+	background-color: initial;
+
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  /* color: white; */
+  display: none;
+  padding: 100px 20px;
+  height:400px;
+  width: 50%;
 }
 
 /* ------------------------------------- */
@@ -345,6 +403,7 @@ footer p {
 {
 	/* box-shadow: inset 0 0 6px rgba(	0,0,0,0.6); */
 	background-color: inherit;
+	padding: 0px 2px;
 }
 
 ::-webkit-scrollbar
