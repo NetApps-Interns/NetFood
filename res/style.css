@@ -62,6 +62,11 @@ header h2 {
 	display: inline-block;
 }
 
+header::after{
+	content: '';
+	display: table;
+	clear: both;
+}
 .logo {
 	height: 50px;
 	width: auto;
@@ -283,12 +288,9 @@ nav li {
 	top: 50%;
 	left: 47%;
 	transform: translate(-50%, -50%);
-	/* display: grid;
-	place-items: center; */
 	background-color: #e82e009d;
 	width:70%;
 	margin: 5% 3%;
-	/* border-radius: 10px; */
 }
 /* Style tab links */
 .tablink {
@@ -299,7 +301,7 @@ nav li {
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
-  font-size: 17px;
+  /* font-size: 17px; */
   width: 50%;
 }
 
@@ -317,8 +319,9 @@ nav li {
   /* color: white; */
   display: none;
   padding: 100px 20px;
-  height:400px;
-  width: 50%;
+  height:100%;
+  /* min-height: 300px; */
+  width: 90%;
 }
 
 /* ------------------------------------- */
