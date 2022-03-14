@@ -1,15 +1,3 @@
-var i = 0;
-var txt = "Enter your delivery address...";
-var speed = 50;
-
-function typeWriter() {
-	if (i < txt.length) {
-		document.getElementById("input").innerHTML += txt.charAt(i);
-		i++;
-		setTimeout(typeWriter, speed);
-	}
-}
-
 // Mobile View Link icon display
 $(".js--nav-icon").click(function () {
 	var nav = $(".main-nav");
@@ -21,28 +9,20 @@ $(".js--nav-icon").click(function () {
 });
 
 
-function openPage(pageName, elmnt) {
-	// Hide all elements with class="tabcontent" by default 
+// 
+function openPage(pageName,elmnt,color) {
 	var i, tabcontent, tablinks;
-
 	tabcontent = document.getElementsByClassName("tabcontent");
-
 	for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
-	}	
-
-
-
-	// Show the specific tab content
+	  tabcontent[i].style.display = "none";
+	}
+	tablinks = document.getElementsByClassName("tablink");
+	for (i = 0; i < tablinks.length; i++) {
+	  tablinks[i].style.backgroundColor = "";
+	}
 	document.getElementById(pageName).style.display = "block";
-
-	// 
-	// elmnt.classList.add("active");
-	elmnt.classList.add("active");
-	other.classList.remove("active");
-
-
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+	elmnt.style.backgroundColor = color;
+  }
+  
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
