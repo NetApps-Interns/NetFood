@@ -224,7 +224,6 @@ nav li {
 /* Menu Display--------- */
 /* --------------------- */
 .container{
-
 	margin: 0 auto;
 }
 .popular-dishes {
@@ -320,18 +319,19 @@ nav li {
 	background-color: #e82e009d;
 	width:70%;
 	margin: 5% 3%;
+	border-radius: 1.25rem;
 }
 /* Style tab links */
 .tablink {
-  background-color: #222;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  /* font-size: 17px; */
-  width: 50%;
+	background-color: #222;
+	color: white;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	/* font-size: 17px; */
+	width: 50%;
 }
 
 .tablink:hover {
@@ -340,22 +340,18 @@ nav li {
 
 .active {
 	background-color: initial;
-
+	
 }
 
 /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
-  /* color: white; */
-  display: none;
-  padding: 50px;
-  min-height: 40vh;
-  margin: 5%;
-}
-
-.error-msg {
-	padding-top: 10px;
-	color: purple;
-	text-align: center;
+	/* color: white; */
+	display: none;
+	padding: 1.2em;
+	min-height: 40vh;
+	margin: 5%;
+	border-radius: 50%;
+	transition: display 22s;
 }
 
 .success-msg {
@@ -364,9 +360,14 @@ nav li {
 	text-align: center;
 }
 
-.error-field {
-	border: 1px solid #d96557;
-}
+/* .error{
+	border: 1px solid #000000;
+	border-radius: 1.25rem;
+	padding: 10px;
+	color: purple;
+	text-align: center;
+	background-color: #fff;
+} */
 /* ------------------------------------- */
 /* LOGIN */
 /* ------------------------------------- */
@@ -463,19 +464,6 @@ footer p {
 	from {opacity: 0;}
 	to {opacity:1 ;}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ::-webkit-scrollbar-track
 {
