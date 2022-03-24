@@ -61,7 +61,7 @@ section {
 header h2 {
 	display: inline-block;
 }
-
+/* A clearfix to fix the overflow of the mobile nav */
 header::after{
 	content: '';
 	display: table;
@@ -133,6 +133,30 @@ nav li {
 	display: none;
 	margin-left: 15px;
 }
+.cart::before{
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-right: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent #555 transparent;
+}
+.cart{
+	display: block;
+	z-index: 3;
+	width: 350px;
+	height: 400px;
+	overflow: hidden;
+	background-color: #fff;
+
+}
+/* Toggle this class - hide and show the popup */
+.cart .show {
+	visibility: visible;
+	animation: fadeIn 1s;
+  }
 
 /* Small phones to small tablets from 481 to 767px */
 @media only screen and (max-width: 767px) {
@@ -159,7 +183,7 @@ nav li {
 /* --------------------- */
 /* --------------------- */
 
-.address-request {
+.address-request{
 	/* .search-request { */
 	/* position: absolute;
 	top: 45%;
@@ -178,7 +202,8 @@ nav li {
 	color: #e4a804;
 }
 .address-request input,
-.search-request input {
+.search-request input,
+.login-request input  {
 	height: 20px;
 	width: 20rem;
 	max-width: 500px;
@@ -198,6 +223,9 @@ nav li {
 /* --------------------- */
 /* Menu Display--------- */
 /* --------------------- */
+.container{
+	margin: 0 auto;
+}
 .popular-dishes {
 	text-align: center;
 	padding: 70px;
@@ -291,18 +319,19 @@ nav li {
 	background-color: #e82e009d;
 	width:70%;
 	margin: 5% 3%;
+	border-radius: 1.25rem;
 }
 /* Style tab links */
 .tablink {
-  background-color: #222;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  /* font-size: 17px; */
-  width: 50%;
+	background-color: #222;
+	color: white;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	/* font-size: 17px; */
+	width: 50%;
 }
 
 .tablink:hover {
@@ -311,18 +340,60 @@ nav li {
 
 .active {
 	background-color: initial;
-
+	
 }
 
 /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
-  /* color: white; */
-  display: none;
-  padding: 100px 20px;
-  height:100%;
-  /* min-height: 300px; */
-  width: 90%;
+	/* color: white; */
+	display: none;
+	padding: 1.2em;
+	min-height: 40vh;
+	margin: 5%;
+	border-radius: 50%;
+	transition: display 22s;
 }
+
+.success-msg {
+    padding-top: 10px;
+	color: #176701;
+	text-align: center;
+}
+
+/* .error{
+	border: 1px solid #000000;
+	border-radius: 1.25rem;
+	padding: 10px;
+	color: purple;
+	text-align: center;
+	background-color: #fff;
+} */
+/* ------------------------------------- */
+/* LOGIN */
+/* ------------------------------------- */
+.login-request input {
+	display: block;
+	width: 60%;
+	margin-bottom: 3rem;
+}
+        
+button {
+	background-color: #e4a804;
+	color: white;
+	padding: 20px 20px;
+	/* margin: 8px 0; */
+	border: none;
+	cursor: pointer;
+	width: 100%;
+}
+
+button:hover {
+	opacity: 0.8;
+	color: #000000;
+}
+
+
+
 
 /* ------------------------------------- */
 /* FOOTER */
@@ -388,19 +459,11 @@ footer p {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Fade in Animation */
+@keyframes fadeIn {
+	from {opacity: 0;}
+	to {opacity:1 ;}
+}
 
 ::-webkit-scrollbar-track
 {
