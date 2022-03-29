@@ -1,7 +1,12 @@
 <?php
+include __DIR__.'/../CORE/config/init.php';
+
+header("Content-type: application/json");
+
+
     $error = '';
         
-    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sign-up-submit'])){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $fname = trim( $_POST['fname']);
         $lname = trim( $_POST['lname']);
@@ -10,6 +15,7 @@
         $password = trim( $_POST[ 'password']);
         $phone_number = trim( $_POST[ 'phone_number']);
         $password_hash = password_hash ($password, PASSWORD_BCRYPT);
+
 
 
         if($query = $db->prepare ("SELECT * FROM customer WHERE customer_email = ?")) {
@@ -22,11 +28,11 @@
             // Store the result so we can check if the account exists in the database.
             $query->store_result();
             if ($query->num_rows > 0) {
-            $error .= '<p class="error">This email address is already registered!</p>'; 
+                output_json("This email address is already registered!", 0);
             } else {
                 // Validate password
                 if (strlen($password ) < 6) {
-                $error.= '<p class="error">Password must have atleast 6 characters.</p>';
+                output_json("This Password is too short!\nKindly make it loneger than 6 characters.", 0);
                 }
             } 
 
@@ -38,9 +44,9 @@
                 // die($insertQuery->error);
 
                 if ($result) { 
-                    $error .= '<p class="success">Your registration was successful! </p>';
+                    output_json("Your registration was successful!", 1);
                 } else {
-                    $error .= '<p class="error">Something went wrong! </p>';
+                    output_json("Something went wrong!!", 0);
                 }
                 
                 $query->close();

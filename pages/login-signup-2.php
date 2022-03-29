@@ -8,17 +8,18 @@
 
         <div id="sign-up-tab" class="tabcontent">
 			<?php 
-			include "api\user-signin.php";
-			echo $error?>
+			// include "api\user-signup.php";
+			// echo $error
+			?>
 
-            <form action="" method="post" name="sign-up" class="login-request" >
+            <form action="" method="post" id="signupForm" class="login-request" >
 			
 				<div class="row">
 					<div class="col span-1-of-2">
-						<input type="text" name="fname" placeholder="First Name" required>
+						<input type="text" name="fname" id="fname" placeholder="First Name" required>
 					</div>
 					<div class="col span-1-of-2">
-						<input type="text" name="lname" placeholder="Last Name" required>
+						<input type="text" name="lname" id="lname" placeholder="Last Name" required>
 					</div>
 				</div>
 
@@ -31,7 +32,7 @@
 				</div>
 
 				<div class="row">
-					<input class="col password" type="password" name="password" placeholder="Password" required>
+					<input class="col password" id ="signupPassword" type="password" name="password" placeholder="Password" required>
 					<ion-icon name="eye-outline" class="col togglePassword"></ion-icon>
 				
 				</div>
@@ -49,17 +50,17 @@
 			
 		
 		<?php
-			include "api\user-login.php";
-			echo $error?>
+			// include "api\user-login.php";
+			// echo $error?>
 
-			<form name="login" action="" method="post" class="login-request">
+			<form id="loginForm" action="" method="post" class="login-request">
 			
 				<div class="row">
 					<input type="text" name="username" id="username" placeholder="Email or Phone Number" required>
 				</div>
 				
 				<div class="row">
-						<input class="col password" name="password" type="password" placeholder="Password" required>
+						<input class="col password" id="password" name="password" type="password" placeholder="Password" required>
 					<ion-icon name="eye-outline" class="col togglePassword"></ion-icon>
 				</div>
 
@@ -72,3 +73,81 @@
 
     </div>
     </section>
+
+	<script>
+		$(document).ready(
+			function(){
+				document.getElementById("defaultOpen").click();
+			}
+		)
+
+		$('#loginForm').on('submit', async function(e){
+			e.stopPropagation()
+			e.preventDefault();
+			username = $('#username').val();
+			password = $('#password').val();
+			res = await $.post(
+				'/api/user_login.php', 
+				{ username: username, password: password }
+			)
+			// print_r(res);
+
+			if (res.flag){
+				const Toast = Swal.mixin({
+				toast: true,
+				position: 'top',
+				showConfirmButton: false,
+				timer: 900,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+				})
+
+				Toast.fire({
+				icon: 'success',
+				title: res.msg
+				})
+
+				location.href = '/?page=menu';
+
+			}else{
+				Swal.fire(
+					res.msg,
+					'Let\'s try something else!',
+					'error'
+				)
+			}
+		})
+
+		$('#signupForm').on('submit', async function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			fname = $('#fname').val();
+			lname = $('#lname').val();
+			email = $('#email').val();
+			phone_number = $('#phone_number').val();
+			password = $('#signupPassword').val();
+
+			res = await $.post(
+				'/api/user-signup.php', 
+				{ 
+					fname: fname,
+					lname: lname,
+					email: email,
+					phone_number: phone_number,
+					password: password 
+				}
+			)
+
+			if (res.flag){
+				alert(res.msg)
+			}else{
+				alert(res.msg)
+				
+			}
+
+		})
+
+	</script>

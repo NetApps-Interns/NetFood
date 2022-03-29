@@ -2,9 +2,9 @@
 $(".js--nav-icon").click(function () {
 	var nav = $(".main-nav");
 	var icon = $(".js--nav-icon");
-
+	
 	nav.slideToggle(300);
-
+	
 	// if (icon.hasClass)
 });
 
@@ -26,7 +26,6 @@ function openPage(pageName,elmnt,color) {
 }
   
 // Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
 
 
 
@@ -43,6 +42,15 @@ togglePassword.forEach(e=>{
 })
 
 
+async function logout() {
+	res = await $.post('/api/user-logout.php');
+	if (res.flag){
+		alert(res.msg);
+		location.href= '/';
+	}
+}
+
+
 // // prevent form submit and page reload
 // const form = document.querySelector("form");
 // form.addEventListener('submit', function (e) { 
@@ -56,11 +64,11 @@ togglePassword.forEach(e=>{
 // }
 
 
-// When the user clicks on div, open the popup
-function myFunction() {
-	var popup = document.getElementById("cart");
-	popup.classList.toggle("show");
-}
+// // When the user clicks on div, open the popup
+// function myFunction() {
+// 	var popup = document.getElementById("cart");
+// 	popup.classList.toggle("show");
+// }
 
 
 

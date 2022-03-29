@@ -1,13 +1,13 @@
-<div id="OpeningParallexImage">
+		<div id="OpeningParallexImage">
 			<div class="address-request">
 				<p>
-					<ion-icon name="pin"></ion-icon>
-					<span> Delivering to </span>
+					<ion-icon name="search"></ion-icon>
+					<span> What do you want? </span>
 				</p>
 				<div>
 					<input
 					onforminput="menu.html"
-						placeholder="Enter your delivery address..."
+						placeholder="Enter "
 						autocomplete="off"
 						name="address"
 						class="input"
