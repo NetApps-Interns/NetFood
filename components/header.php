@@ -14,36 +14,21 @@
 	<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&display=swap" rel="stylesheet" />
 	<link rel="shortcut icon" href="assets/res/img/favicon.ico" type="image/x-icon" />
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-	<script src="assets/res/script.js"></script>
+	<script src="assets/vendor/js/jquery.min.js"></script>
+	<script src="assets/vendor/js/sweetalert2.min.js"></script>
+	
 
 	<title>NETFood</title>
 </head>
 
 <body>
-	<header>
-		<a href="index.php?page=menu">
-			<img src="assets/res/img/logo.png" alt="NETFood logo" class="logo" />
-			<h2>NETFood</h2>
-		</a>
-		<nav>
-			<a class="mobile-nav-icon js--nav-icon">
-				<ion-icon name="menu-outline"></ion-icon>
-			</a>
-			<ul class="main-nav">
-				<li><a href="index.php?page=login-signup">Log In / Sign Up</a></li>
-				<li>
-					<a href="index.php?page=favorites">
-						<ion-icon name="heart"></ion-icon>
-					</a>
-				</li>
-				<li>
-					<a href="index.php?page=cart">
-						<ion-icon name="cart-outline"></ion-icon>
-					</a>
-				</li>
-			</ul>
-		</nav>
-	</header>
+	<?php 
+	
+	if (isset($_SESSION["userid"])) {
+		include 'private-header.php';
+	}else{
+		include 'public-header.php';
+	}
+	
+	// $_SESSION["userid"] ? '':
+	
