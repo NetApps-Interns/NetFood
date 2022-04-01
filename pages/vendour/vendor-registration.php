@@ -6,13 +6,11 @@ include('api/v-reg.php');
 ?>
 
 
-<section>
+
     <header class="row">
-        <h2>VENDOR_REGISTRATION</h2>
-        
     </header>
     <div id="OpeningParallexImage">
-
+ <h2>VENDOR_REGISTRATION</h2>
         <form action="pages/vendour/vendor-registration.php" method="post" class="login-request">
             <div class="adds" class="col-1">
 
@@ -59,5 +57,7 @@ include('api/v-reg.php');
         </form>
 
     </div>
- </section>   
-    
+ 
+<!--     		
+		//<?php
+			//include 'components/header.php'; ?> -->
