@@ -57,32 +57,32 @@ include '../components/admin_header.php';?>
       <br /> <br />
 
   
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+      <form id="regadmin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
           <table  style="width: 30%;">
               <tr>
                   <td>Full Name</td>
-                  <td><input type="text" name="name" placeholder="Enter Your Name">
+                  <td><input type="text" id="name" placeholder="Enter Your Name">
                        <span class = "error">* <?php echo $nameErr;?></span>
                   </td>
               </tr>
               <tr>
                   <td>Email: </td>
                   <td>
-                      <input required type="email" name="email" placeholder="Email">
+                      <input required type="email" id="email" placeholder="Email">
                       <span class = "error">* <?php echo $emailErr;?></span>
                   </td>
               </tr>
               <tr>
                   <td>Contact: </td>
                   <td>
-                      <input type="number" name="contact" placeholder="Enter Contact Details">
+                      <input type="number" id="contact" placeholder="Enter Contact Details">
                       <span class = "error">* <?php echo $contactErr;?></span>
                   </td>
               </tr>
               <tr>
                   <td>Password</td>
                   <td>
-                      <input required type="password" name="password" placeholder="Enter Password">
+                      <input required type="password" id="password" placeholder="Enter Password">
                       <span class = "error">* <?php echo $passwordErr;?></span>
                   </td>
               </tr>
@@ -93,6 +93,52 @@ include '../components/admin_header.php';?>
               </tr>
           </table>
       </form>
+
+
+      <script>
+		
+      $('#regadmin').on('submit', async function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			name = $('#name').val();
+			email = $('#email').val();
+			contact = $('#contact').val();
+			password = $('#password').val();
+			
+			data= { 
+					name: name,
+					email: email,
+					contact: contact,
+					password: password 
+				}
+				console.log(data);
+			res = await $.post(
+				'/api/add-admin.php', 
+				data
+			)
+
+			// console.log("passed the res");
+			// console.log(res) 
+			// return;
+			if (res.flag){
+				Swal.fire(
+					res.msg[0],
+					res.msg[1],
+					'success'
+				)
+			}else{
+				Swal.fire(
+				res.msg[0],
+				res.msg[1],
+				'info'
+				)
+
+				
+			}
+
+		});
+
+	</script>
 
 
 

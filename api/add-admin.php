@@ -1,8 +1,12 @@
 <?php
+
+    include __DIR__.'/../CORE/config/init.php';
+    header("Content-type: application/json");
+
     //process the value and save in database
     //Check if button is clicked
-    if(isset($_POST['submit']))
-    {
+    if ($_SERVER["REQUEST_METHOD"]=="POST") {
+
         //button clicked
         //get data from form
         $name = $_POST['name'];
@@ -20,6 +24,8 @@
        //execute query
       
        $res = mysqli_query($db, $sql);
+
+       die(output_json(['Admin successfully added'], 1));
     }   
        
    
