@@ -1,6 +1,6 @@
 <?php
 //connection
-include('confCORE/config/config.php');
+include('CORE/config/config.php');
 
 $statement = $pdo->prepare('SELECT * FROM vendor');
 $statement->execute();
