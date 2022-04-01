@@ -42,17 +42,6 @@ togglePassword.forEach(e=>{
 })
 
 
-<<<<<<< HEAD
-async function logout() {
-	res = await $.post('/api/user-logout.php');
-	if (res.flag){
-		alert(res.msg);
-		location.href= '/';
-	}
-}
-
-
-=======
 function logout() {
 	
 	// alert(res.msg);
@@ -91,7 +80,6 @@ function logout() {
 
 
 
->>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
 // // prevent form submit and page reload
 // const form = document.querySelector("form");
 // form.addEventListener('submit', function (e) { 
