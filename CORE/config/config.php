@@ -11,4 +11,8 @@
     if ($db === false){
         die("Error: Connection Error.". mysqli_connect_error());
     }
-?>
+
+    $pdo = new PDO('mysql:host=localhost;port=3306=;dbname=netfood-db', 'root', '');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    const ITEM_IMG_DIR = "/uploads/img/item/";

@@ -37,6 +37,8 @@ body {
 	animation: myanime 20s infinite;
 	display: grid;
 	place-items: center;
+	border-bottom-right-radius: .875rem;;
+	border-bottom-left-radius: .875rem;;
 }
 
 header {
@@ -72,6 +74,14 @@ header::after{
 	width: auto;
 	float: left;
 	margin: -13px 7px;
+}
+
+.profile-picture {
+	height: 50px;
+	width: 50px;
+	float: right;
+	margin: -13px 7px;
+	border-radius: 50%;
 }
 
 nav {
@@ -143,20 +153,7 @@ nav li {
 	border-style: solid;
 	border-color: transparent transparent #555 transparent;
 }
-.cart{
-	display: block;
-	z-index: 3;
-	width: 350px;
-	height: 400px;
-	overflow: hidden;
-	background-color: #fff;
 
-}
-/* Toggle this class - hide and show the popup */
-.cart .show {
-	visibility: visible;
-	animation: fadeIn 1s;
-  }
 
 /* Small phones to small tablets from 481 to 767px */
 @media only screen and (max-width: 767px) {
@@ -174,8 +171,10 @@ nav li {
 		border: 0;
 	}
 
-	.address-request input {
-		max-width: 220px;
+	.address-request input,
+.search-request input,
+.login-request input  {
+	max-width: 250px;
 	}
 }
 
@@ -206,7 +205,7 @@ nav li {
 .login-request input  {
 	height: 20px;
 	width: 20rem;
-	max-width: 500px;
+	max-width: 200px;
 	padding: 0.875rem 1rem;
 	margin-top: 10px;
 	background-color: transparent;
@@ -223,25 +222,10 @@ nav li {
 /* --------------------- */
 /* Menu Display--------- */
 /* --------------------- */
-.container{
-	margin: 0 auto;
-}
-.popular-dishes {
-	text-align: center;
-	padding: 70px;
-	background-color: #000000;
-	height: 40vh;
-	overflow-y: scroll;
-}
-
-.popular-dishes .menu-item {
-	display: inline-block;
-	width: 220px;
-	
-}
-
 .menu-item {
 	min-height: 200px;
+	max-height: 250px;
+	/* height: 250px; */
 	width: 130px;
 	background-color: #c1c1c1;
 	padding: 10px;
@@ -250,13 +234,13 @@ nav li {
 	box-shadow: 1px 1px 10px #e4e4e4;
 	color: black;
 	text-align: center;
-	margin: 2.5%;
+	margin: 2rem;
 	float: left;
 }
 
 .menu-image {
 	box-shadow: 1px 1px 20px #e4e3e1;
-	background-color: #2a2a2a;
+	background-color: #e4a804;
 	height: 120px;
 	width: 120px;
 	margin: 12px auto;
@@ -279,13 +263,49 @@ nav li {
 	margin-bottom: 10px;
 }
 
+.container{
+	margin: 0 auto;
+	text-align: center;
+	height: 43.5vh;
+	overflow-y: scroll;
+	display: flex;
+	justify-content: center; align-items: center;
+	padding:.2rem;
+}
+
+.popular-dishes {
+	text-align: center;
+	padding: 40px;
+	padding-top: 10px;
+	background-color: #000000;
+	/* height: 45vh; */
+	margin: 0.875rem;
+	border-radius: .875rem;
+	box-shadow: 1px 1px 5px rgb(228, 168, 4);
+
+}
+
+.popular-dishes .menu-item {
+	/* padding-top: 0px; */
+	display: inline-block;
+	width: 220px;
+	
+}
+
+.popular-dishes .menu-image {
+	margin-top: 0;
+	height: 130px;
+	width: inherit;
+	border-radius: inherit;
+}
+
+
 .btn-add, .btn-fav {
 	/* display: flex; */
 	justify-content: center;
 	padding-top: 3px;
 	margin-left: 0.5em;
 	/* border-radius: 10px; */
-	/* box-shadow: 1px 1px 20px #e4e3e1; */
 	font-size: 130%;
 	transition: font-size .5s;
 
@@ -470,6 +490,8 @@ footer p {
 	/* box-shadow: inset 0 0 6px rgba(	0,0,0,0.6); */
 	background-color: inherit;
 	padding: 0px 2px;
+	border-bottom-right-radius: .875rem;
+	border-top-right-radius: .875rem;
 }
 
 ::-webkit-scrollbar
