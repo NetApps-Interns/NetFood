@@ -23,7 +23,7 @@
                         <ion-icon name="person"></ion-icon>
 					</a>
 				</li>
-                <li><a href="#" onclick="logout();return false">Log Out</a></li>
+                <li><a href="#" id="logoutBtn" onclick="logout();return false">Log Out</a></li>
 			</ul>
 		</nav>
 		
