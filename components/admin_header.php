@@ -33,17 +33,11 @@
 				<ion-icon name="menu-outline"></ion-icon>
 			</a>
 			<ul class="main-nav">
-				<li><a href="index.php?page=login-signup">Log In / Sign Up</a></li>
-				<li>
-					<a href="index.php?page=favorites">
-						<ion-icon name="heart"></ion-icon>
-					</a>
-				</li>
-				<li>
-					<a href="index.php?page=cart">
-						<ion-icon name="cart-outline"></ion-icon>
-					</a>
-				</li>
+				<li><a href="../Admin/Dashboard.php">Dashboard</a></li>
+				<li><a href="../Admin/manage_admin.php">Admins</a></li>
+                <li><a href="../Admin/Orders.php">Orders</a></li>
+				<li><a href="../Admin/Manage_Vendors.php">Vendors</a></li>
+                <li><a href="../Admin/Manage_riders.php">Logistics</a></li>
 			</ul>
 		</nav>
 	</header>
