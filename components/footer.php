@@ -3,7 +3,11 @@
                 <div class="col span-1-of-2">
                     <ul class="footer-nav">
                         <li><a href="index.php?page=about-us">About us</a></li>
+<<<<<<< HEAD
                         <li><a href="index.php?page=become-a-vendor">Become a Vendor</a></li>
+=======
+                        <li><a href="">Become a Vendor</a></li>
+>>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
                         <li><a href="#">iOS App</a></li>
                         <li><a href="#">Android App</a></li>
                     </ul>
@@ -34,9 +38,12 @@
 	<script src="assets/res/script.js"></script>
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<<<<<<< HEAD
 <?php
 print_r($_SESSION);
 ?>
+=======
+>>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
     </body>
 
 </html>

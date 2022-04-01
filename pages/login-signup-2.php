@@ -90,14 +90,21 @@
 				'/api/user_login.php', 
 				{ username: username, password: password }
 			)
+<<<<<<< HEAD
 			// print_r(res);
+=======
+>>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
 
 			if (res.flag){
 				const Toast = Swal.mixin({
 				toast: true,
 				position: 'top',
 				showConfirmButton: false,
+<<<<<<< HEAD
 				timer: 900,
+=======
+				timer: 1500,
+>>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
 				timerProgressBar: true,
 				didOpen: (toast) => {
 					toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -119,7 +126,11 @@
 					'error'
 				)
 			}
+<<<<<<< HEAD
 		})
+=======
+		});
+>>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
 
 		$('#signupForm').on('submit', async function(e){
 			e.stopPropagation();
@@ -129,16 +140,22 @@
 			email = $('#email').val();
 			phone_number = $('#phone_number').val();
 			password = $('#signupPassword').val();
+<<<<<<< HEAD
 
 			res = await $.post(
 				'/api/user-signup.php', 
 				{ 
+=======
+			
+			data= { 
+>>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
 					fname: fname,
 					lname: lname,
 					email: email,
 					phone_number: phone_number,
 					password: password 
 				}
+<<<<<<< HEAD
 			)
 
 			if (res.flag){
@@ -149,5 +166,33 @@
 			}
 
 		})
+=======
+				console.log(data);
+			res = await $.post(
+				'/api/user_signup.php', 
+				data
+			)
+
+			// console.log("passed the res");
+			// console.log(res) 
+			// return;
+			if (res.flag){
+				Swal.fire(
+					res.msg[0],
+					res.msg[1],
+					'success'
+				)
+			}else{
+				Swal.fire(
+				res.msg[0],
+				res.msg[1],
+				'info'
+				)
+
+				
+			}
+
+		});
+>>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
 
 	</script>

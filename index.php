@@ -38,9 +38,15 @@ switch ($page) {
         require 'pages/login-signup-2.php';
         break;
     
+<<<<<<< HEAD
     case 'become-a-vendor':
         # code...
         require 'pages/vendour/vendor-registration.php';
+=======
+    case '#':
+        # code...
+        require 'pages/#.php';
+>>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
         break;
     
     case '#':

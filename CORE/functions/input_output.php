@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 function output_json(string $msg, bool $flag, array $data = [], bool $auth = true):string 
+=======
+function output_json(array $msg, bool $flag, array $data = [], bool $auth = true):string 
+>>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
 {
     return json_encode([
                         'msg'=>$msg,

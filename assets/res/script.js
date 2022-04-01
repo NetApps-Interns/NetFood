@@ -42,6 +42,7 @@ togglePassword.forEach(e=>{
 })
 
 
+<<<<<<< HEAD
 async function logout() {
 	res = await $.post('/api/user-logout.php');
 	if (res.flag){
@@ -51,6 +52,46 @@ async function logout() {
 }
 
 
+=======
+function logout() {
+	
+	// alert(res.msg);
+	Swal.fire({
+		title: 'Are you sure you want to logout?',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, log out!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+
+			async function t(){
+				res = await $.post('/api/user_logout.php');
+			
+				if (res.flag){
+					
+					Swal.fire(
+						res.msg[0],
+						res.msg[1],
+						'success'
+					)
+					location.href= '/';
+				}
+			}
+			t();
+		
+		}
+	});
+		
+
+
+	
+}
+
+
+
+>>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
 // // prevent form submit and page reload
 // const form = document.querySelector("form");
 // form.addEventListener('submit', function (e) { 
