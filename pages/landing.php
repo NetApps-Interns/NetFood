@@ -2,12 +2,12 @@
 			<div class="address-request">
 				<p>
 					<ion-icon name="search"></ion-icon>
-					<span> What do you want? </span>
+					<span> What do you want to eat?</span>
 				</p>
 				<div>
 					<input
 					onforminput="menu.html"
-						placeholder="Enter "
+						placeholder=""
 						autocomplete="off"
 						name="address"
 						class="input"

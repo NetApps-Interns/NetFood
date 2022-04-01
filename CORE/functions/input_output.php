@@ -1,6 +1,6 @@
 <?php
 
-function output_json(string $msg, bool $flag, array $data = [], bool $auth = true):string 
+function output_json(array $msg, bool $flag, array $data = [], bool $auth = true):string 
 {
     return json_encode([
                         'msg'=>$msg,

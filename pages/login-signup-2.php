@@ -90,14 +90,13 @@
 				'/api/user_login.php', 
 				{ username: username, password: password }
 			)
-			// print_r(res);
 
 			if (res.flag){
 				const Toast = Swal.mixin({
 				toast: true,
 				position: 'top',
 				showConfirmButton: false,
-				timer: 900,
+				timer: 1500,
 				timerProgressBar: true,
 				didOpen: (toast) => {
 					toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -119,7 +118,7 @@
 					'error'
 				)
 			}
-		})
+		});
 
 		$('#signupForm').on('submit', async function(e){
 			e.stopPropagation();
@@ -129,25 +128,39 @@
 			email = $('#email').val();
 			phone_number = $('#phone_number').val();
 			password = $('#signupPassword').val();
-
-			res = await $.post(
-				'/api/user-signup.php', 
-				{ 
+			
+			data= { 
 					fname: fname,
 					lname: lname,
 					email: email,
 					phone_number: phone_number,
 					password: password 
 				}
+				console.log(data);
+			res = await $.post(
+				'/api/user_signup.php', 
+				data
 			)
 
+			// console.log("passed the res");
+			// console.log(res) 
+			// return;
 			if (res.flag){
-				alert(res.msg)
+				Swal.fire(
+					res.msg[0],
+					res.msg[1],
+					'success'
+				)
 			}else{
-				alert(res.msg)
+				Swal.fire(
+				res.msg[0],
+				res.msg[1],
+				'info'
+				)
+
 				
 			}
 
-		})
+		});
 
 	</script>
