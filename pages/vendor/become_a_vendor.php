@@ -1,9 +1,9 @@
 <?php
-include_once 'CORE/config/init.php';
-include_once 'pages/vendor/vendor_header.php.php';
+//include_once 'CORE/config/init.php';
+include_once 'pages/vendor/vendor_header.php';
 
 
-include_once 'pages/vendor/footer.php.php';
+include_once 'pages/vendor/footer.php';
 // //if the user is already logged in then redirect user to welcome page
 // if (isset($_SESSION["userid"]) && $_SESSION["user"] === true) {
 //     header("location: menu.php");
