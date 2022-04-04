@@ -1,5 +1,6 @@
 <?php
 include __DIR__.'/../CORE/config/init.php';
+header('content-type: application/json');
 
 
 if (isset($_POST['item_name'], $_POST['ingredients'], $_POST['price'], $_POST['description'], $_FILES['photo'])) {
@@ -9,27 +10,28 @@ if (isset($_POST['item_name'], $_POST['ingredients'], $_POST['price'], $_POST['d
   $description =  $_POST['description'];
   $image =        $_POST['photo'] ?: null;
 
-  echo ("hello");
+  // echo ("hello");
 
-  $target_dir = __DIR__ . "/";
-  $target_file = $target_dir . basename($_FILES["image"]["name"]);
+  $target_dir = __DIR__ . "/../".ITEM_IMG_DIR;
+  $new_file_name= md5(uniqid(time(),true));
+  $uploaded_file_name = basename($_FILES["image"]["name"]);
+  $target_file = $target_dir . $new_file_name;
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 
   if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-    echo "Sorry, only JPG, JPEG & PNG files are allowed.";
+    // echo "Sorry, only JPG, JPEG & PNG files are allowed.";
+    die(output_json(["Sorry, only JPG, JPEG & PNG files are allowed."], 0));
     $uploadOk = 0;
   }
   // Check if $uploadOk is set to 0 by an error
   if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+    die(output_json(["Sorry, your file was not uploaded."], 0));
     // if everything is ok, try to upload file
   } else {
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-      echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"]));
-    } else {
-      echo "Sorry, there was an error uploading your file.";
+    if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+     die(output_json(["Sorry, there was an error uploading your file."], 0));
     }
   }
 
@@ -40,7 +42,10 @@ if (isset($_POST['item_name'], $_POST['ingredients'], $_POST['price'], $_POST['d
   $statement->bindValue(':ingredients', $ingredients);
   $statement->bindValue(':description', $description);
   $statement->bindValue(':price', $price);
-  $statement->bindValue(':image', $target_file);
-  $statement->execute();
-
+  $statement->bindValue(':image', $new_file_name);
+  if ($statement->execute()){
+    die(output_json(["Item added succesfully"], 1));
+  }
+  
 }
+die(output_json(["Error in adding item"], 0));
