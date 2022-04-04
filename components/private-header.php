@@ -23,11 +23,7 @@
                         <ion-icon name="person"></ion-icon>
 					</a>
 				</li>
-<<<<<<< HEAD
-                <li><a href="#" onclick="logout();return false">Log Out</a></li>
-=======
                 <li><a href="#" id="logoutBtn" onclick="logout();return false">Log Out</a></li>
->>>>>>> ceb8ddc90de2be4e13c9c55ed67ebddee887099b
 			</ul>
 		</nav>
 		
