@@ -41,14 +41,7 @@ include '../components/admin_header.php';?>
                 </td>
         </tr>
         
-        <?php
-                        }
-                    }
-                    else{
-                        
-                    }
-                }
-                ?>
+        <?php }}} ?>
        </table>
        <script>
 		
