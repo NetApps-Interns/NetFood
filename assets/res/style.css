@@ -107,7 +107,7 @@ nav li {
 
 .main-ul li a:hover,
 .main-ul li a:active {
-	border-bottom: 2px solid#e4a804;
+	border-bottom: 2px solid #e4a804;
 }
 
 /* Sticky Navi */
@@ -548,6 +548,7 @@ table tr td{
 	background-color: #e82d00;
 	padding: 1%;
 	font-weight: bold;
+	width: 50%;
 }
 .btn-delete:hover{
 	background-color: #75040483;

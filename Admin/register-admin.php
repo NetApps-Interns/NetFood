@@ -75,7 +75,7 @@ include '../components/admin_header.php';?>
               <tr>
                   <td>Contact: </td>
                   <td>
-                      <input type="number" id="contact" placeholder="Enter Contact Details">
+                      <input type="text" id="contact" placeholder="Enter Contact Details">
                       <span class = "error">* <?php echo $contactErr;?></span>
                   </td>
               </tr>
@@ -126,11 +126,13 @@ include '../components/admin_header.php';?>
 					res.msg[1],
 					'success'
 				)
+				location.href = 'manage_admin.php';
+
 			}else{
 				Swal.fire(
 				res.msg[0],
 				res.msg[1],
-				'info'
+				'error'
 				)
 
 				
