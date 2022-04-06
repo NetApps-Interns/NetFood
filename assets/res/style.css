@@ -276,6 +276,21 @@ nav li {
 .popular-dishes {
 	text-align: center;
 	padding: 50px;
+	padding-top: 10px;
+	background-color: #000000;
+	height: 40vh;
+	overflow-y: scroll;
+	margin: 0.875rem;
+	border-radius: .875rem;
+	/* display: flex;
+	justify-content: center; align-items: center; */
+	/* box-shadow: 1px 1px 5px #e4e4e4; */
+
+	padding: 40px;
+	padding-top: 10px;
+	background-color: #000000;
+
+	padding: 50px;
 	padding-top: 30px;
 	/* background-color: #000000; */
 	/* height: 45vh; */

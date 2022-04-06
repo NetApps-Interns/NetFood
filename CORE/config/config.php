@@ -2,7 +2,7 @@
     define('DBSERVER', 'localhost'); //DB server
     define('DBUSERNAME', 'root'); //DB Username
     define('DBPASSWORD', ''); //DB password
-    define('DBNAME', 'netfood-db'); //DB Name
+    define('DBNAME', 'netfood-db'); //DB password
 
     // connect to MySQL DB
     $db = mysqli_connect(DBSERVER, DBUSERNAME, DBPASSWORD, DBNAME);

@@ -3,7 +3,7 @@
                 <div class="col span-1-of-2">
                     <ul class="footer-nav">
                         <li><a href="index.php?page=about-us">About us</a></li>
-                        <li><a href="">Become a Vendor</a></li>
+                        <li><a href="pages/vendor-pages/become_a_vendor.php?page=become-a-vendor">Become a Vendor</a></li>
                         <li><a href="#">iOS App</a></li>
                         <li><a href="#">Android App</a></li>
                     </ul>
