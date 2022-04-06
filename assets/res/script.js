@@ -9,9 +9,9 @@ $(".js--nav-icon").click(function () {
 });
 
 function stickify() {
-	if (document.documentElement.scrollTop >= 127) {
+	if (document.documentElement.scrollTop >= 144) {
 		$("header").addClass("sticky");
-		console.log("yes");
+		console.log("yes144");
 	} else {
 		$("header").removeClass("sticky");
 	}

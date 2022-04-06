@@ -221,6 +221,9 @@ nav li {
 /* --------------------- */
 /* Menu Display--------- */
 /* --------------------- */
+.menu-page{
+	height: auto;
+}
 .menu-item {
 	min-height: 200px;
 	max-height: 250px;
@@ -270,6 +273,13 @@ nav li {
 	display: flex;
 	justify-content: center; align-items: center;
 	padding:.2rem;
+}
+
+.center-con{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .popular-dishes {
