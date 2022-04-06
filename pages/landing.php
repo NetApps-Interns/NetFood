@@ -132,6 +132,12 @@
 			</div>
 		</div>
 
+		<style>
+			.splide__pagination {
+				bottom: -1.5em;
+			}
+		</style>
+
 		<script>
 		var splide = new Splide( '.splide', {
 			type    : 'loop',
@@ -139,6 +145,11 @@
 			autoplay: true,
   			gap    : '3rem',
 			  breakpoints: {
+				860: {
+				perPage: 3,
+				gap    : '2rem',
+				// height : '6rem',
+				},
 				640: {
 				perPage: 2,
 				gap    : '1rem',
