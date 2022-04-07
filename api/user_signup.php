@@ -6,11 +6,11 @@ header("Content-type: application/json");
         
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    $fname = trim( $_POST['fname']);
-    $lname = trim( $_POST['lname']);
-    $email = trim ($_POST['email']);
+    $fname = name( $_POST['fname']);
+    $lname = name( $_POST['lname']);
+    $email = email($_POST['email']);
     $password = trim( $_POST[ 'password']);
-    $phone_number = trim( $_POST[ 'phone_number']);
+    $phone_number = phone( $_POST[ 'phone_number']);
 
     $fullname = $fname . ' ' . $lname;
     $password_hash = password_hash ($password, PASSWORD_BCRYPT);
@@ -35,6 +35,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $error .='<p>Password too short</p>';
             die(output_json(["This Password is too short!","Kindly make it longer than 6 characters."], 0));
             }
+            // Check phone number
+            if (!$phone_number) {
+            $error .='<p>Phone number incorrect</p>';
+            die(output_json(["This phone number is invalid!","Kindly input a correct phone number!"], 0));
+            }
+
         } 
 
         if (empty($error) ) {

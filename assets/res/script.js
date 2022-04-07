@@ -8,6 +8,17 @@ $(".js--nav-icon").click(function () {
 	// if (icon.hasClass)
 });
 
+function stickify() {
+	if (document.documentElement.scrollTop >= 170) {
+		$("header").addClass("sticky");
+	} else {
+		$("header").removeClass("sticky");
+
+	}
+}
+
+window.addEventListener("scroll", stickify);
+
 
 // 
 function openPage(pageName,elmnt,color) {

@@ -1,6 +1,10 @@
 <?php
-
-    $statement = $pdo->prepare('SELECT * FROM item');
+    if (!isset($_SESSION["userid"])) {
+        header('Location: index.php?page=login-signup');
+        exit;
+    }
+    
+    $statement = $pdo->prepare('SELECT * FROM favorite where idcustomer= userid');
     $statement->execute();
     $items=$statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -12,7 +16,7 @@
 		<div>
 			<ion-icon name="search-outline"></ion-icon>
 			<input
-				placeholder="What do you want?"
+				placeholder="Search favorites"
 				name="meal-request"
 				class="input"
 			/>
@@ -22,10 +26,9 @@
 <div class="center-con">
 	
 	<?php foreach  ($items as $item): ?>
-
         <div class="menu-item">
             <div class="menu-image">
-                <img src="<?php echo $item['image'] ?>" alt="food image"/>
+                <img src="<?php echo $item['photo'] ?>" alt="food image"/>
             </div> <br />
 
             <p class="menu-about"> <?php echo $item['description'] ?> </p>
@@ -36,6 +39,7 @@
 				<span class="btn-add"><ion-icon name="add-outline"></ion-icon></span>
 			</div>
         </div>
+    <?php endforeach; ?>
 
-	<?php endforeach; ?>
+</div>
 </section>
