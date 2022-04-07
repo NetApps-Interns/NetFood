@@ -35,6 +35,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $error .='<p>Password too short</p>';
             die(output_json(["This Password is too short!","Kindly make it longer than 6 characters."], 0));
             }
+            // Check phone number
+            if (!$phone_number) {
+            $error .='<p>Phone number incorrect</p>';
+            die(output_json(["This phone number is invalid!","Kindly ensure you input it correctly!"], 0));
+            }
+
         } 
 
         if (empty($error) ) {
