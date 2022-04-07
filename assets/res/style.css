@@ -107,22 +107,21 @@ nav li {
 
 .main-ul li a:hover,
 .main-ul li a:active {
-	border-bottom: 2px solid#e4a804;
+	border-bottom: 2px solid #e4a804;
 }
 
 /* Sticky Navi */
 .sticky {
 	position: fixed;
-	width: 100%;
 	top: 0;
+	right: 0;
 	left: 0;
-	background-color: #131d2af3;
 	box-shadow: 0 2px 2px #e4a80483;
 	z-index: 1;
 	/* display: none; */
 }
 
-.sticky .main-ul {
+/* .sticky .main-ul {
 	margin-top: 20px;
 }
 
@@ -132,7 +131,7 @@ nav li {
 	width: auto;
 	float: left;
 	margin: 7px 10px;
-}
+} */
 
 /* Mobile Navi */
 .mobile-nav-icon {
@@ -222,6 +221,9 @@ nav li {
 /* --------------------- */
 /* Menu Display--------- */
 /* --------------------- */
+.menu-page{
+	height: auto;
+}
 .menu-item {
 	min-height: 200px;
 	max-height: 250px;
@@ -271,6 +273,13 @@ nav li {
 	display: flex;
 	justify-content: center; align-items: center;
 	padding:.2rem;
+}
+
+.center-con{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .popular-dishes {

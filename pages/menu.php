@@ -7,7 +7,7 @@
 
 ?>
 
-<section class="image-background">
+<section class="image-background menu-page">
 	<div class="search-request">
 		<div>
 			<ion-icon name="search-outline"></ion-icon>
@@ -19,11 +19,12 @@
 		</div>
 	</div>
 
-
+<div class="center-con">
+	
 	<?php foreach  ($items as $item): ?>
         <div class="menu-item">
             <div class="menu-image">
-                <img src="<?php echo $item['photo'] ?>" alt="food image"/>
+                <img src="<?php echo ITEM_IMG_DIR.$item['photo'] ?>" alt="food image"/>
             </div> <br />
 
             <p class="menu-about"> <?php echo $item['description'] ?> </p>
@@ -126,5 +127,7 @@
 			<span class="btn-add"><ion-icon name="add-outline"></ion-icon></span>
 		</div>
 	</div>
+	
+</div>
 
 </section>

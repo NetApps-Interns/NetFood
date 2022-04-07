@@ -1,11 +1,12 @@
 <?php
 include_once 'CORE/config/init.php';
 
-//if the user is already logged in then redirect user to welcome page
-if (isset($_SESSION["userid"]) && $_SESSION["user"] === true) {
-    header("location: menu.php");
-    exit;
-}
+// //if the user is already logged in then redirect user to welcome page
+// if (isset($_SESSION["userid"])) {
+//     header("location: menu.php");
+//     exit;
+// }
+
 include 'components/header.php';
 
 $page = $_GET['page'] ?? '';
@@ -19,6 +20,7 @@ $page = $_GET['page'] ?? '';
 switch ($page) {
     
     case '':
+    case 'landing':
         # code...
         require 'pages/landing.php';
         break;

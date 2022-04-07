@@ -6,7 +6,7 @@ header("Content-type: application/json");
 // $out = ['msg' => 'login', 'flag' => 1];
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
-	$email = trim($_POST['username']); 
+	$email = email($_POST['username']); 
 	$password = trim($_POST['password']);
 	// die($password);
 	
