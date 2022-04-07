@@ -534,3 +534,46 @@ footer p {
 	border-radius: 10px;
 }
 
+/* Admin */
+.col-4{
+	width: 15%;
+	margin: 1%;
+	background-color:#2a2a2a;
+	padding: 2%;
+	float: left;
+}
+.text-center{
+	text-align: center;
+}
+.dash-fix{
+	float: none;
+	clear: both;
+}
+.tbl-full{
+	width: 100%;
+}
+table tr th{
+	border-bottom:1px solid #c1c1c1;
+	padding: 1%;
+	text-align: left;
+}
+table tr td{
+	padding: 1%; 
+}
+.btn-admin{
+	background-color: #e4a804;	
+	padding: 1%;
+	font-weight: bold;
+}
+.btn-admin:hover{
+	background-color: orange;
+}
+.btn-delete{
+	background-color: #e82d00;
+	padding: 1%;
+	font-weight: bold;
+	width: 50%;
+}
+.btn-delete:hover{
+	background-color: #75040483;
+}

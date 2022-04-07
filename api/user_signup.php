@@ -3,7 +3,7 @@ include __DIR__.'/../CORE/config/init.php';
 header("Content-type: application/json");
 
 // echo fname;
-        
+      
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $fname = name( $_POST['fname']);
@@ -16,14 +16,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $password_hash = password_hash ($password, PASSWORD_BCRYPT);
 
 
-    
     if($query = $db->prepare ("SELECT * FROM customer WHERE customer_email = ?")) {
         $error = '';
-
+       
         //Bind parameters (s string, i = int, b = blob, etc), in our case the = username is a string so we use "s" 
         $query->bind_param ('s', $email);
         $query->execute();
 
+      
         // Store the result so we can check if the account exists in the database.
         $query->store_result();
         if ($query->num_rows > 0) {
@@ -42,9 +42,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
 
         } 
-
+      
         if (empty($error) ) {
-        
             $insertQuery = $db->prepare("INSERT INTO customer (customer_name, customer_email, customer_phone_number, customer_password) VALUES (?, ?, ?, ?)");
             $insertQuery->bind_param("ssss", $fullname, $email, $phone_number, $password_hash);
             $result = $insertQuery->execute();
