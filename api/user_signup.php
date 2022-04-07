@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Check phone number
             if (!$phone_number) {
             $error .='<p>Phone number incorrect</p>';
-            die(output_json(["This phone number is invalid!","Kindly ensure you input it correctly!"], 0));
+            die(output_json(["This phone number is invalid!","Kindly input a correct phone number!"], 0));
             }
 
         } 
