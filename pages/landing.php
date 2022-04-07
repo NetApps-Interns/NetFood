@@ -25,16 +25,43 @@
 
 		</div>
 
+		<?php
+
+			$statement = $pdo->prepare('SELECT * FROM item');
+			// $statement = $pdo->prepare('SELECT id_order_details, SUM(no_of_items) qty FROM order_details GROUP BY id_order_details ORDER BY qty DESC LIMIT 5;');
+			$statement->execute();
+			$items=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+		?>
+
 
 		<div class="popular-dishes image-background">
 			<h1>Popular Orders</h1>
 			<div class="splide">
 				<div class="splide__track">
 					<div class="container splide__list">
+					<?php foreach  ($items as $item): ?>
+						
+						<div class="menu-item  splide__slide">
+							<div class="menu-image">
+								<img src="<?php echo ITEM_IMG_DIR.$item['photo'] ?>" alt="food image"/>
+							</div> <br />
+
+							<p class="menu-about"> <?php echo $item['description'] ?> </p>
+							<span class="meal-price"><span>&#8358;</span><?php echo $item['price'] ?></span>
+
+							<div>
+								<span class="btn-fav"><ion-icon name="heart-outline"></ion-icon></span>
+								<span class="btn-add"><ion-icon name="add-outline"></ion-icon></span>
+							</div>
+						</div>
+					<?php endforeach; ?>
+
 						<div class="menu-item splide__slide">
 							<div class="menu-image">
 								<img
-									src="res/img/brownies.jpg"
+									src= "res/img/brownies.jpg"
 									alt="food image"
 								/>
 							</div>
