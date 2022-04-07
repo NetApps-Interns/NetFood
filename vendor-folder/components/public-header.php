@@ -8,7 +8,7 @@
 				<ion-icon name="menu-outline"></ion-icon>
 			</a>
 			<ul class="main-nav">
-				<li><a href="index.php?page=login-signup">Log In / Sign Up</a></li>
+				<li><a href="../pages/vendor_login.php">Log In / Sign Up</a></li>
 				<!-- <li>
 					<a href="index.php?page=favorites">
 						<ion-icon name="heart"></ion-icon>

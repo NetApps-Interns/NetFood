@@ -45,9 +45,9 @@ switch ($page) {
         require 'vendor-folder/pages/become_a_vendor.php?page=become-a-vendor';
         break;
     
-    case '#':
+    case 'dashboard':
         # code...
-        require 'pages/#.php';
+        require 'pages/../venodr-folder/pages/v-admin.php';
         break;
     
     case '#':
