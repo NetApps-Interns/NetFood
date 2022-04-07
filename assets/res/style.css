@@ -577,3 +577,21 @@ table tr td{
 .btn-delete:hover{
 	background-color: #75040483;
 }
+.btn-edit{
+	background-color: blue;
+	padding: 1%;
+	font-weight: bold;
+	width: 50%;
+}
+.btn-edit:hover{
+	background-color: #75040483;
+}
+.btn-preview{
+	background-color: rgb(10, 173, 10);
+	padding: 1%;
+	font-weight: bold;
+	width: 50%;
+}
+.btn-preview:hover{
+	background-color: #75040483;
+}
