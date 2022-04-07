@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" href="../assets/vendor/css/normalize.css" />
 	<link rel="stylesheet" href="../assets/res/style.css" />
+	<link rel="stylesheet" href="../assets/res/vendor-style.css " />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&display=swap" rel="stylesheet" />

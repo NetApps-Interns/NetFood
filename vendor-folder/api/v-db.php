@@ -1,6 +1,6 @@
 <?php
     //connection
-include ('CORE/config/config.php');
+include ('../CORE/config/config.php');
 
     $statement = $pdo->prepare('SELECT * FROM item ORDER BY create_date DESC');
     $statement->execute();

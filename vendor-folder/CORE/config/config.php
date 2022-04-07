@@ -16,3 +16,4 @@
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     const ITEM_IMG_DIR = "uploads/img/item/";
+?>
