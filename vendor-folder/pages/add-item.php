@@ -1,53 +1,46 @@
 <?php
-include __DIR__.'../CORE/config/init.php';
-header('content-type: application/json');
+//link to php page
+include ('../api/add.php');
+    
+include '../components/vendor_header.php';
+?>
 
+        <h2>ADD-ITEM</h2>
+       
 
-if (isset($_POST['item_name'], $_POST['ingredients'], $_POST['price'], $_POST['description'], $_POST['photo'])) {
-  $item_name =    $_POST['item_name'];
-  $ingredients =  $_POST['ingredients'];
-  $price =        $_POST['price'];
-  $description =  $_POST['description'];
-  $image =        $_POST[''] ;
+        <section class="image-background">
 
-  // echo ("hello");
+        <form action="add-item.php" method="post" class="login-request">
+            <div class="adds" class="col-1">
+            </div>
 
-  // $target_dir = __DIR__ . "/../".ITEM_IMG_DIR;
-  // $new_file_name= md5(uniqid(time(),true));
-  // $uploaded_file_name = basename($_FILES["image"]["name"]);
-  // $target_file = $target_dir . $new_file_name;
-  // $uploadOk = 1;
-  // $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            <div class="">
+                <input name="item_name" placeholder="food title/ name" type="text" class="">
+        
+            <div class="">
+                <input name="ingredients" placeholder="enter ingredients used" type="text" class="">
 
+            <div class="">
+            <label for="" class=""> Uplaod food image </label>
+                <input name="image" placeholder="Uplaod food image" type="file" name="uploadfile" value=""class="">
+                   
+                   
+            </div>
 
-  // if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-  //   // echo "Sorry, only JPG, JPEG & PNG files are allowed.";
-  //   die(output_json(["Sorry, only JPG, JPEG & PNG files are allowed."], 0));
-  //   $uploadOk = 0;
-  // }
-  // // Check if $uploadOk is set to 0 by an error
-  // if ($uploadOk == 0) {
-  //   die(output_json(["Sorry, your file was not uploaded."], 0));
-  //   // if everything is ok, try to upload file
-  // } else {
-  //   if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-  //    die(output_json(["Sorry, there was an error uploading your file."], 0));
-  //   }
-  // }
+            <label for="" class=""> Food Description</label>
+            <div class="">
+                <textarea name="description" id="myEditor" type="text"  placeholder="Enter Your Post Decription/Content"></textarea>
+                   
+            </div>
 
-  $statement = $pdo->prepare("INSERT INTO items (item_name, ingredients,  price, image, description) 
-                                      VALUES(:item_name, :ingredients, :price, :image, :description)");
+            <div class="">
+                <input  name="price" type="number" class="" placeholder="₦0000.00" id="">
+            </div>
 
-  $statement->bindValue(':item_name', $item_name);
-  $statement->bindValue(':ingredients', $ingredients);
-  $statement->bindValue(':description', $description);
-  $statement->bindValue(':price', $price);
-  $statement->bindValue(':image', $new_file_name);
-  if ($statement->execute()){
-    die(output_json(["Item added succesfully"], 1));
-  }
-  
-}
-die(output_json(["Error in adding item"], 0));
+            <button  type="submit"  name="upload" action="submit" value="">ADD ITEM</button>
+    </div>
+    </form>
 
-
+    </div>
+        </section>
+        <?php include '../components/vendor_footer.php';?>
