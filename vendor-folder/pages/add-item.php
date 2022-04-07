@@ -1,5 +1,5 @@
 <?php
-include __DIR__.'/../CORE/config/init.php';
+include __DIR__.'../CORE/config/init.php';
 header('content-type: application/json');
 
 
@@ -49,3 +49,5 @@ if (isset($_POST['item_name'], $_POST['ingredients'], $_POST['price'], $_POST['d
   
 }
 die(output_json(["Error in adding item"], 0));
+
+

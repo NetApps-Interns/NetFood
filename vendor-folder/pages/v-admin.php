@@ -8,10 +8,73 @@ include '../components/vendor_header.php';
 ?>
 <!-- <link rel="stylesheet" href="../assets/res/style.css">
          -->
+<style>
+    .col-4{
+    width: 15%;
+    margin: 1%;
+    background-color:#2a2a2a;
+    padding: 2%;
+    float: left;
+  }
+  .text-center{
+    text-align: center;
+  }
+  .dash-fix{
+    float: none;
+    clear: both;
+  }
+  .tbl-full{
+    width: 100%;
+  }
+  table tr th{
+    border-bottom:1px solid #c1c1c1;
+    padding: 1%;
+    text-align: left;
+  }
+  table tr td{
+    padding: 1%; 
+  }
+  .btn-admin{
+    background-color: #e4a804;	
+    padding: 1%;
+    font-weight: bold;
+  }
+  .btn-admin:hover{
+    background-color: orange;
+  }
+  .btn-delete{
+    background-color: #e82d00;
+    padding: 2%;
+    font-weight: bold;
+    width: 25%;
+  }
+  .btn-delete:hover{
+    background-color: #75040483;
+  }
+  .btn-edit{
+    background-color: blue;
+    padding: 2%;
+    font-weight: bold;
+    width: 25%;
+  }
+  .btn-edit:hover{
+    background-color: #75040483;
+  }
+  .btn-preview{
+    background-color: rgb(10, 173, 10);
+    padding: 2%;
+    font-weight: bold;
+    width: 25%;
+  }
+  .btn-preview:hover{
+    background-color: #75040483;
+  }
+
+</style>
   <section class="image-background"> 
      <h1>Vendor dashboard </h1>
            
-        <a type="button" action="submit" class="btn-admin"  href="add-item.php" value="add-item">ADD-ITEM</a>
+        <a type="button" action="submit" class="btn-admin"  href="../pages/add-item.php" value="add-item">ADD-ITEM</a>
         
                 <table class="tbl-full">
         <thead>
@@ -44,9 +107,9 @@ include '../components/vendor_header.php';
           
        
         <td colspan="2">
-            <a type="button" action="submit" class="btn-edit" href="edit.php?id=<?= $item['id']; ?>">EDIT</a>
-            <a type="button" action="submit" class="btn-delete" href="delete.php?id=<?= $item['id']; ?>">DELETE</a>
-            <a type="button" action="submit" class="btn-preview" href="index.php?id=<?= $item['id']; ?>" value="preview">PREVIEW</a>
+            <a type="button" action="submit" class="btn-edit" href="../pages/edit.php<?= $item['id']; ?>">EDIT</a>
+            <a type="button" action="submit" class="btn-delete" href="../api/delete.php<?=$item['id']; ?>">DELETE</a>
+            <a type="button" action="submit" class="btn-preview" href="menu.php<?= $item['id']; ?>" value="preview">PREVIEW</a>
         </td>
       <?php endforeach; ?>
     </tr>
