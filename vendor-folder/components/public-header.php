@@ -1,6 +1,6 @@
 <header>
 		<a href="index.php?page=menu">
-			<img src="assets/res/img/logo.png" alt="NETFood logo" class="logo" />
+			<img src="../assets/res/img/logo.png" alt="NETFood logo" class="logo" />
 			<h2>NETFood</h2>
 		</a>
 		<nav>
@@ -9,7 +9,7 @@
 			</a>
 			<ul class="main-nav">
 				<li><a href="index.php?page=login-signup">Log In / Sign Up</a></li>
-				<li>
+				<!-- <li>
 					<a href="index.php?page=favorites">
 						<ion-icon name="heart"></ion-icon>
 					</a>
@@ -18,7 +18,7 @@
 					<a href="index.php?page=cart">
 						<ion-icon name="cart-outline"></ion-icon>
 					</a>
-				</li>
+				</li> -->
 			</ul>
 		</nav>
 	</header>

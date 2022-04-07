@@ -1,6 +1,6 @@
 <?php
     //connection
-include 'CORE/config/config.php';
+include '../config.php';
 
 if(isset( $_POST['vendor_name'], $_POST['description'], $_POST['contact_info'], $_POST['contact_email'], $_POST['vendor_address'], $_POST['vendor_password'])){
 

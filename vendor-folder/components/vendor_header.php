@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&display=swap" rel="stylesheet" />
-	<link rel="shortcut icon" href="assets/res/img/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="../assets/res/img/favicon.ico" type="image/x-icon" />
 
 	<script src="../assets/vendor/js/jquery.min.js"></script>
 	<script src="../assets/vendor/js/sweetalert2.min.js"></script>

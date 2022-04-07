@@ -40,7 +40,7 @@ switch ($page) {
     
     case 'become-a-vendor':
         # code...
-        require 'pages/vendour/vendor-registration.php';
+        require 'vendor-folder/pages/become_a_vendor.php?page=become-a-vendor';
         break;
     
     case '#':

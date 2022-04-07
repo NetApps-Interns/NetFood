@@ -1,6 +1,6 @@
 <?php
 //connection
-include ('CORE/config/config.php');
+include ('../CORE/config/config.php');
 
 
 if(isset( $_POST['item_name'], $_POST['ingredients'], $_POST['price'], $_POST['description'], $_FILES['image'])){

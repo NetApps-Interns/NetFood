@@ -1,6 +1,6 @@
 <header>
 		<a href="index.php?page=menu">
-			<img src="assets/res/img/logo.png" alt="NETFood logo" class="logo" />
+			<img src="../assets/res/img/logo.png" alt="NETFood logo" class="logo" />
 			<h2>NETFood</h2>
 		</a>
 		<nav>

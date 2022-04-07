@@ -1,12 +1,12 @@
 <?php
-include_once 'CORE/config/init.php';
+include_once 'vendor-folder/CORE/config/init.php';
 
 //if the user is already logged in then redirect user to welcome page
 if (isset($_SESSION["userid"]) && $_SESSION["user"] === true) {
-    header("location: menu.php");
+    header("location: pages/v-admin.php");
     exit;
 }
-include 'components/header.php';
+include 'components/vendor_header.php';
 
 $page = $_GET['page'] ?? '';
 
@@ -20,27 +20,12 @@ switch ($page) {
     
     case '':
         # code...
-        require 'pages/landing.php';
+        require 'pages/become-a-vendor.php';
         break;
     
     case 'menu':
         # code...
         require 'pages/menu.php';
-        break;
-    
-    case 'favorites':
-        # code...
-        require 'pages/favorites.php';
-        break;
-    
-    case 'login-signup':
-        # code...
-        require 'pages/login-signup-2.php';
-        break;
-    
-    case 'become-a-vendor':
-        # code...
-        require 'pages/vendour/vendor-registration.php';
         break;
     
     case '#':
@@ -70,7 +55,7 @@ switch ($page) {
 
 
 
-include 'components/footer.php';
+include 'components/vendor_footer.php';
 
 
 
