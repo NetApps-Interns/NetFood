@@ -2,7 +2,7 @@
 include '../components/admin_header.php';?>
 
 
-   <body>
+<section class="image-background">
        <h1>Vendors</h1>
       
        <br><br>
@@ -42,6 +42,7 @@ include '../components/admin_header.php';?>
           
        
        </table>
+</section>
        <script>
 		
         $('.btn-delete').on('click', async function(e){
@@ -83,5 +84,5 @@ include '../components/admin_header.php';?>
           });
   
       </script>
-   </body>
+   
    <?php include '../components/footer.php';?>
