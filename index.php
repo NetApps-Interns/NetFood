@@ -40,9 +40,9 @@ switch ($page) {
         require 'pages/login-signup-2.php';
         break;
     
-    case '#':
+    case 'become-a-vendor':
         # code...
-        require 'pages/#.php';
+        require 'pages/vendour/vendor-registration.php';
         break;
     
     case '#':

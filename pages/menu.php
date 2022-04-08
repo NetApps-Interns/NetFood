@@ -22,6 +22,7 @@
 <div class="center-con">
 	
 	<?php foreach  ($items as $item): ?>
+
         <div class="menu-item">
             <div class="menu-image">
                 <img src="<?php echo ITEM_IMG_DIR.$item['photo'] ?>" alt="food image"/>
