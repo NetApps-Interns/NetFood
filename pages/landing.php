@@ -45,11 +45,12 @@
 						
 						<div class="menu-item  splide__slide">
 							<div class="menu-image">
-								<img src="<?php echo ITEM_IMG_DIR.$item['photo'] ?>" alt="food image"/>
-							</div> <br />
-
-							<p class="menu-about"> <?php echo $item['description'] ?> </p>
-							<span class="meal-price"><span>&#8358;</span><?php echo $item['price'] ?></span>
+								<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src="<?= ITEM_IMG_DIR.$item['photo'] ?>" alt="<?= $item['item_name'] ?>"/>
+							</div> 
+							
+							<b><p class="menu-about"> <?= $item['item_name'] ?> </p></b>
+							<p class="menu-about"> <?= $item['description'] ?> </p>
+							<span class="meal-price"><span>&#8358;</span><?= $item['price'] ?></span>
 
 							<div>
 								<span class="btn-fav"><ion-icon name="heart-outline"></ion-icon></span>
@@ -170,7 +171,9 @@
 			type    : 'loop',
 			perPage : 4,
 			autoplay: true,
+			focus  : 'center',
   			gap    : '3rem',
+			wheel    : true,
 			  breakpoints: {
 				860: {
 				perPage: 3,

@@ -8,6 +8,7 @@ include_once 'CORE/config/init.php';
 // }
 
 include 'components/header.php';
+include 'components/cart.php';
 
 $page = $_GET['page'] ?? '';
 

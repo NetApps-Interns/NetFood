@@ -3,15 +3,19 @@
         header('Location: index.php?page=login-signup');
         exit;
     }
+
+    $userID=$_SESSION["userid"];
     
-    $statement = $pdo->prepare('SELECT * FROM favorite where idcustomer= userid');
+    $statement = $pdo->prepare('SELECT i.item_name FROM '.TBL_FAV.' f JOIN '.TBL_ITEM.' i where f.idcustomer= "$userID"');
     $statement->execute();
     $items=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 
+
+
 ?>
 
-<section class="image-background menu-page">
+<section class="image-background">
 	<div class="search-request">
 		<div>
 			<ion-icon name="search-outline"></ion-icon>
