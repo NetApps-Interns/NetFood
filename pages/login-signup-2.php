@@ -113,8 +113,8 @@
 
 			}else{
 				Swal.fire(
-					res.msg,
-					'Let\'s try something else!',
+					res.msg[0],
+					res.msg[1],
 					'error'
 				)
 			}
