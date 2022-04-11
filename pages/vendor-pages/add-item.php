@@ -1,8 +1,8 @@
 <?php
 //link to php page
-include ('api/add.php');
+include ('../api/add.php');
     
-include 'components/vendor_header.php';
+include '../components/vendor_header.php';
 ?>
 
         <h2>ADD-ITEM</h2>

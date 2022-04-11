@@ -6,8 +6,8 @@ include '/v-reg.php';
 
 ?>
 
-        <h2>VENDOR REGISTRATION</h2>
-        <section class="image-background">  
+    <h2>VENDOR REGISTRATION</h2>
+<section class="image-background">  
 
         <form action="vendor-registration.php" method="post" class="login-request">
             <div class="sign-up-form" class="col-1">
@@ -53,4 +53,5 @@ include '/v-reg.php';
         </form>
 
     </div>
+</section>
     <?php include '/components/vendor_footer.php'; ?>

@@ -1,6 +1,6 @@
 <?php
 //include_once 'CORE/config/init.php';
-include '/components/vendor_header.php';
+include '../components/vendor_header.php';
 ?>
 
 
@@ -10,9 +10,9 @@ include '/components/vendor_header.php';
         <h3>showcase your delicious  menu  on netfood and sell your first meal at your convinience</h3>
         <h2><a class="button" type="button" href='../pages/vendor-registration.php'>GET STARTED</a></h2>
     </div>
+</section>
 
-
-<?php include '/components/vendor_footer.php';?>
+<?php include '../components/vendor_footer.php';?>
 
  
  
