@@ -16,3 +16,10 @@
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     const ITEM_IMG_DIR = "uploads/img/item/";
+    
+
+    
+    // Database Table Definitons 
+
+    const TBL_FAV = 'favorites';
+    const TBL_ITEM = 'item';

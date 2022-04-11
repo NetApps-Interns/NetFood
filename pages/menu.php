@@ -25,17 +25,20 @@
 
         <div class="menu-item">
             <div class="menu-image">
-                <img src="<?php echo $item['image'] ?>" alt="food image"/>
+                <img src="<?= ITEM_IMG_DIR.$item['image'] ?>" alt="food image"/>
             </div> <br />
 
-            <p class="menu-about"> <?php echo $item['description'] ?> </p>
-            <span class="meal-price"><span>&#8358;</span><?php echo $item['price'] ?></span>
+            <p class="menu-about"> <?= $item['description'] ?> </p>
+            <span class="meal-price"><span>&#8358;</span><?= $item['price'] ?></span>
 
 			<div>
-				<span class="btn-fav"><ion-icon name="heart-outline"></ion-icon></span>
-				<span class="btn-add"><ion-icon name="add-outline"></ion-icon></span>
+				<a class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
+				<a onclick="addToCart(<?= $item['iditem']?>)" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
 			</div>
         </div>
+
+	
+</div>
 
 	<?php endforeach; ?>
 </section>

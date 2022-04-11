@@ -48,6 +48,7 @@ header {
 	/* border-top-left-radius: 7px;
 	border-top-right-radius: 7px; */
 	padding: 1.4em;
+	z-index: 5;
 }
 
 section {
@@ -117,7 +118,7 @@ nav li {
 	right: 0;
 	left: 0;
 	box-shadow: 0 2px 2px #e4a80483;
-	z-index: 1;
+	z-index: 5;
 	/* display: none; */
 }
 
@@ -241,8 +242,8 @@ nav li {
 }
 
 .menu-image {
-	box-shadow: 1px 1px 20px #e4e3e1;
-	background-color: #e4a804;
+	/* box-shadow: 1px 1px 20px #e4e3e1; */
+	/* background-color: #e4a804; */
 	height: 120px;
 	width: 120px;
 	margin: 12px auto;
@@ -253,7 +254,7 @@ nav li {
 
 .menu-image img {
 	height: inherit;
-	width: inherit;
+	width: auto;
 }
 .meal-price {
 	display: inline-block;

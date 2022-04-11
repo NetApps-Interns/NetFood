@@ -51,7 +51,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="index.php?page=cart">
+				<a href="" id="cd-cart-trigger">
 					<ion-icon name="cart-outline"></ion-icon>
 				</a>
 			</li>
