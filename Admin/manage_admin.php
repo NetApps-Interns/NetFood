@@ -4,7 +4,8 @@ include '../components/admin_header.php';?>
    <head>
        <title> Admin Page</title>
    </head>
-   <body>
+<section class="image-background">
+   
        <h1>Admin Panel</h1>
        <br> <br>
        <a href="register-admin.php" class="btn-admin">Add Admin</a>
@@ -43,6 +44,7 @@ include '../components/admin_header.php';?>
         
         <?php }}} ?>
        </table>
+</section>
        <script>
 		
         $('.btn-delete').on('click', async function(e){
@@ -84,5 +86,4 @@ include '../components/admin_header.php';?>
           });
   
       </script>
-   </body>
 <?php include '../components/footer.php';?>

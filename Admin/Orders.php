@@ -3,7 +3,7 @@ include '../components/admin_header.php';?>
  <head>
        <title> Admin Page</title>
    </head>
-   <body>
+   <section class="image-background">
        <h1>Admin Panel</h1>
        <br> <br>
        <a href="#" class="btn-admin">Add Admin</a>
@@ -25,7 +25,7 @@ include '../components/admin_header.php';?>
               </td>
           </tr>
        </table>
-   </body>
+   </section>
 
 
 
