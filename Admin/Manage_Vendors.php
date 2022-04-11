@@ -22,7 +22,7 @@ include '../components/admin_header.php';?>
                     $sn=1;
                     if($count>0){
                         while($rows=mysqli_fetch_assoc($res)){
-                            $id=$rows['idvendor'];
+                            $id=$rows['id'];
                             $name=$rows['vendor_name'];
                             $contact=$rows['contact'];
                                 $email=$rows['email'];
