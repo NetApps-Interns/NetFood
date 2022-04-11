@@ -20,7 +20,7 @@ switch ($page) {
     
     case '':
         # code...
-        require 'pages/become-a-vendor.php';
+        require 'vendor-folder/pages/become-a-vendor.php';
         break;
     
     case 'menu':

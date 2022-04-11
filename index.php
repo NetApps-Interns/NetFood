@@ -43,7 +43,7 @@ switch ($page) {
     
     case 'become-a-vendor':
         # code...
-        require 'vendor-folder/pages/become_a_vendor.php?page=become-a-vendor';
+        require '/vendor-folder/pages/become_a_vendor.php?';
         break;
     
     case 'dashboard':

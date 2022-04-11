@@ -77,7 +77,10 @@ include '../components/vendor_header.php';
 			}
 		});
 
-		// $('#signupForm').on('submit', async function(e){
+
+	</script>
+
+		<!-- // $('#signupForm').on('submit', async function(e){
 		// 	e.stopPropagation();
 		// 	e.preventDefault();
 		// 	fname = $('#fname').val();
@@ -120,6 +123,6 @@ include '../components/vendor_header.php';
 		// 	}
 
 		// });
+ -->
 
-	</script>
   
