@@ -6,7 +6,7 @@ include '../components/admin_header.php';?>
    <section class="image-background">
        <h1>Orders</h1>
        <br> <br>
-       <a href="#" class="btn-admin">Add Admin</a>
+       <a href="#" class="btn-new">Add Admin</a>
        <br><br>
        <table class="tbl-full">
           <tr>
@@ -36,7 +36,8 @@ include '../components/admin_header.php';?>
                 <td><?php echo $contact; ?></td>
                 <td> <?php echo $email; ?></td>
                 <td colspan="2">
-                    <button type="button" data-id="<?= $id ?>" class="btn-delete">Delete Vendor</button>
+                    <button type="button" data-id="<?= $id ?>" class="btn-new">Update Order</button>
+                    <button type="button" data-id="<?= $id ?>" class="btn-delete">Delete Order</button>
                 </td>
               </td>
           </tr>

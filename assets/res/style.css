@@ -579,6 +579,15 @@ table tr td{
 	background-color: #75040483;
 }
 
-.tbl-full tr td:hover {background-color:  #e4a804;}
+.tbl-full tr td:hover {background-color:wheat;
+	color: #000000;
+}
 
 .tbl-full tr td:nth-child(5)  { background-color:transparent; }
+.btn-new{
+	color: #000000;
+	background-color:wheat;
+	padding: 1%;
+	font-weight: bold;
+	width: 50%;
+}
