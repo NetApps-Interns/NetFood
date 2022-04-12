@@ -3,7 +3,7 @@ include '../components/admin_header.php';?>
  <head>
        <title> Admin Page</title>
    </head>
-   <body>
+   <section class="image-background">
        <h1>Manage Riders</h1>
        <br><br>
        <table class="tbl-full">
@@ -39,6 +39,7 @@ include '../components/admin_header.php';?>
           </tr>
           <?php }}} ?>
        </table>
+   </section>
        <script>
 		
         $('.btn-delete').on('click', async function(e){
@@ -80,7 +81,7 @@ include '../components/admin_header.php';?>
           });
   
       </script>
-   </body>
+  
 
 
 

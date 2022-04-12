@@ -56,7 +56,7 @@ include '../components/admin_header.php';?>
       <p><span class = "error">* required field.</span></p>
       <br /> <br />
 
-  
+      <section class="image-background">
       <form id="regadmin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
           <table  style="width: 30%;">
               <tr>
@@ -93,7 +93,7 @@ include '../components/admin_header.php';?>
               </tr>
           </table>
       </form>
-
+      </section>
 
       <script>
 		

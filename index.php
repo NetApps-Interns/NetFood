@@ -8,7 +8,6 @@ include_once 'CORE/config/init.php';
 // }
 
 include 'components/header.php';
-include 'components/cart.php';
 
 $page = $_GET['page'] ?? '';
 
@@ -41,14 +40,14 @@ switch ($page) {
         require 'pages/login-signup-2.php';
         break;
     
-    case 'become-a-vendor':
+    case 'become a vendor':
         # code...
-        require 'vendor-folder/pages/become_a_vendor.php?page=become-a-vendor';
+        require 'pages/vendor-pages/become_a_vendor.php';
         break;
     
-    case 'dashboard':
+    case '#':
         # code...
-        require 'pages/../venodr-folder/pages/v-admin.php';
+        require 'pages/#.php';
         break;
     
     case '#':

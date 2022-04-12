@@ -36,9 +36,9 @@
 				<a onclick="addToCart(<?= $item['iditem']?>)" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
 			</div>
         </div>
+    <?php endforeach; ?>
 
 	
 </div>
 
-	<?php endforeach; ?>
 </section>
