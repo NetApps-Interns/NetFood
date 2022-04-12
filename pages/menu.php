@@ -12,6 +12,7 @@
 		<div>
 			<ion-icon name="search-outline"></ion-icon>
 			<input
+				id="searchInput"
 				placeholder="What do you want?"
 				name="meal-request"
 				class="input"
@@ -25,9 +26,9 @@
 
         <div class="menu-item">
             <div class="menu-image">
-                <img src="<?= ITEM_IMG_DIR.$item['photo'] ?>" alt="food image"/>
-            </div> <br />
-
+				<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src="<?= ITEM_IMG_DIR.$item['photo'] ?>" alt="<?= $item['item_name'] ?>"/>
+            </div>
+			<b><p class="menu-about"> <?= $item['item_name'] ?> </p></b>
             <p class="menu-about"> <?= $item['description'] ?> </p>
             <span class="meal-price"><span>&#8358;</span><?= $item['price'] ?></span>
 

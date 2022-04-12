@@ -106,7 +106,7 @@
 
 				Toast.fire({
 				icon: 'success',
-				title: res.msg
+				title: res.msg[0]
 				})
 
 				location.href = '/?page=menu';

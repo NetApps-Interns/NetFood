@@ -30,6 +30,8 @@
 <div class="center-con">
 	
 	<?php foreach  ($items as $item): ?>
+
+
         <div class="menu-item">
             <div class="menu-image">
                 <img src="<?php echo $item['photo'] ?>" alt="food image"/>
@@ -39,8 +41,8 @@
             <span class="meal-price"><span>&#8358;</span><?php echo $item['price'] ?></span>
 
 			<div>
-				<span class="btn-fav"><ion-icon name="heart-outline"></ion-icon></span>
-				<span class="btn-add"><ion-icon name="add-outline"></ion-icon></span>
+				<a class="btn-fav"><ion-icon name="heart-outline"></ion-icon></a>
+				<a onclick="addToCart(<?= $item['iditem']?>)" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
 			</div>
         </div>
     <?php endforeach; ?>
