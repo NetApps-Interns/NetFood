@@ -16,7 +16,7 @@ $cartObj = $cartObj->getCart();
 			<div>
         <p class="cd-qty"><?= $item['qty'] ?>x</p> 
         <?= $item['extra']['name'] ?>
-        <p class="cd-price">#<?= $unitPrice ?></p>
+        <p class="cd-price"><span>&#8358;</span><?= $unitPrice ?></p>
       </div>
 			<a onclick="removeFromCart(<?= $item['itemID'] ?>, <?= $item['qty'] ?>)" class="cd-item-remove cd-img-replace">Remove</a>
 		</li>
@@ -26,7 +26,7 @@ $cartObj = $cartObj->getCart();
   </ul> <!-- cd-cart-items -->
 
 	<div class="cd-cart-total">
-		<p>Total <span id="cartTotal">#<?= $cartObj['total'] ?></span></p>
+		<p>Total <span id="cartTotal">&#8358; <?= $cartObj['total'] ?></span></p>
 	</div> <!-- cd-cart-total -->
 
 	<a class="checkout-btn">Checkout</a>
@@ -115,7 +115,7 @@ $cartObj = $cartObj->getCart();
     bottom: auto;
     height: 32px;
     border-radius: 50%;
-    background: url("../img/cd-remove-item.svg") no-repeat center center;
+    /* background: url("../img/cd-remove-item.svg") no-repeat center center; */
   }
   .no-touch #cd-cart .cd-item-remove:hover {
     background-color: #e0e6ef;
@@ -221,22 +221,21 @@ $cartObj = $cartObj->getCart();
 <script>
   updateCart = async function(data){
     let cartBody = '';
-    for (let item of data.items) {
+    for (let [key, item] of Object.entries(data.items)) {
       let unitPrice = item.price / item.qty;
       cartBody += `
       <li>
 			<div>
         <p class="cd-qty">${item.qty}x</p> 
         ${item.extra.name}
-        <p class="cd-price">#${unitPrice}</p>
+        <p class="cd-price"><span>&#8358;</span>${unitPrice}</p>
       </div>
 			<a onclick="removeFromCart(${item.itemID}, ${item.qty})" class="cd-item-remove cd-img-replace">Remove</a>
 		</li>
       `
     }
 $("#cartBody").html(cartBody)
-$("#cartTotal").html("#"+data.total)
-
+$("#cartTotal").html("<span>&#8358;</span>"+data.total)
   }
 
   addToCart = async function(itemId, qty = 1){
@@ -246,14 +245,30 @@ $("#cartTotal").html("#"+data.total)
       qty: qty
     })
     if (res.flag){
-      alert(res.msg[0])
-      updateCart(res.data)
-            
+      const Toast = Swal.mixin({
+				toast: true,
+				position: 'top-right',
+				showConfirmButton: false,
+				timer: 1000,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+				})
 
-    }else{
-      
-    
-    }
+				Toast.fire({
+				icon: 'success',
+				title: res.msg[0]
+				})
+
+        
+        
+      }else{
+        
+        
+      }
+      updateCart(res.data)
   }
   removeFromCart = async function(itemId, qty=1){
     let res = await $.post("/api/cart.php", {
@@ -263,10 +278,25 @@ $("#cartTotal").html("#"+data.total)
     })
     
     if (res.flag){
-      alert(res.msg[0])
-      updateCart(res.data)
-    }
+      const Toast = Swal.mixin({
+				toast: true,
+				position: 'top-right',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+			})
 
+      Toast.fire({
+      icon: 'success',
+      title: res.msg[0]
+      })
+
+    }
+    updateCart(res.data)
   }
 
   clearCart = async function(itemId, qty){

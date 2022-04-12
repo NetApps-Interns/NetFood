@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 	} 
 
 }
-die(output_json(['Email or Password Incorrect','Try again!'], 0));
+die(output_json(['Email or Password incorrect','Try again!'], 0));
 
 // $query->close();
 // Close connection

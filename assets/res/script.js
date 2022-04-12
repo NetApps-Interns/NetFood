@@ -135,6 +135,64 @@ function logout() {
 	
 }
 
+$('#searchInput').on('change keyup', async function(e){
+	e.stopPropagation()
+	e.preventDefault();
+	search = $('#searchInput').val();
+	pattern = /[a-z]{2,}/i
+
+	if (pattern.test(search)){
+		res = await $.get(
+			'/api/search.php', 
+			{ search: search }
+		)
+
+		if (res.flag){
+
+			data = res.data;
+
+			let menuBody = '';
+			for (let item of data) {
+			menuBody += `
+			<div class="menu-item">
+				<div class="menu-image">
+					<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src="<?=ITEM_IMG_DIR?>${item.pix}" alt="${item.itemName}"/>
+				</div>
+
+				<b><p class="menu-about">${item.itemName}</p></b>
+				<p class="menu-about">${item.itemDescription}</p>
+				<span class="meal-price"><span>&#8358;</span>${item.itemPrice}</span>
+
+				<div>
+					<a class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
+					<a onclick="addToCart(${item.id})" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
+				</div>
+			</div>
+			`
+			}
+			$(".center-con").html(menuBody)
+		}else{
+			const Toast = Swal.mixin({
+				toast: true,
+				position: 'top',
+				showConfirmButton: false,
+				timer: 10000,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+				})
+
+				Toast.fire({
+				icon: 'error',
+				title: res.msg[0]
+				})
+		}
+	}
+			
+			
+})
 
 
 // // prevent form submit and page reload

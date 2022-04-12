@@ -48,7 +48,7 @@ header {
 	/* border-top-left-radius: 7px;
 	border-top-right-radius: 7px; */
 	padding: 1.4em;
-	z-index: 5;
+	z-index: 10;
 }
 
 section {
@@ -227,7 +227,7 @@ nav li {
 }
 .menu-item {
 	min-height: 200px;
-	max-height: 250px;
+	max-height: 285px;
 	/* height: 250px; */
 	width: 130px;
 	background-color: #c1c1c1;
@@ -247,7 +247,7 @@ nav li {
 	height: 120px;
 	width: 120px;
 	margin: 12px auto;
-	border-radius: 50%;
+	border-radius: inherit;
 	overflow: hidden;
 	display: inline-block;
 }
@@ -255,6 +255,7 @@ nav li {
 .menu-image img {
 	height: inherit;
 	width: auto;
+	border-radius: inherit;
 }
 .meal-price {
 	display: inline-block;
@@ -319,12 +320,14 @@ nav li {
 	/* border-radius: 10px; */
 	font-size: 130%;
 	transition: font-size .5s;
+	color: black;
 
 }
 
 .btn-add:hover,
 .btn-fav:hover{
-	font-size: 150%;
+	/* font-size: 150%; */
+	color:rgb(228, 168, 4);
 	
 }
 
