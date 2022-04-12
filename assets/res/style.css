@@ -575,6 +575,10 @@ table tr td{
 	font-weight: bold;
 	width: 50%;
 }
-.btn-delete:hover{
+.no-hover button:hover{
 	background-color: #75040483;
 }
+
+.tbl-full tr td:hover {background-color:  #e4a804;}
+
+.tbl-full tr td:nth-child(5)  { background-color:transparent; }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2022 at 09:53 AM
+-- Generation Time: Apr 12, 2022 at 11:40 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -12,7 +12,10 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `netfood-db`
@@ -66,10 +69,18 @@ CREATE TABLE `item` (
   `iditem` int(11) NOT NULL,
   `item_name` varchar(60) NOT NULL,
   `ingredients` varchar(500) NOT NULL,
-  `item_description` varchar(500) NOT NULL,
+  `description` varchar(500) NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `photo` varchar(255) NOT NULL
+  `photo` varchar(255) NOT NULL,
+  `idvendor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`iditem`, `item_name`, `ingredients`, `description`, `price`, `photo`, `idvendor`) VALUES
+(1, 'Banana Fish', 'Banana, Fish and a lil bit of spice', 'Delicious', '2500', 'brownies.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -917,33 +928,16 @@ CREATE TABLE `menutype` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
---
-
-CREATE TABLE `order` (
-  `idorder` int(11) NOT NULL,
-  `order_date` date NOT NULL,
-  `total_amount` decimal(10,0) NOT NULL,
-  `order_status` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `processed_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `order_details`
 --
 
 CREATE TABLE `order_details` (
-  `id_order_details` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
   `no_of_items` int(11) NOT NULL,
   `total_amount` decimal(10,0) NOT NULL,
   `idorder` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `idmenu` int(11) NOT NULL,
-  `idmenutype` int(11) NOT NULL,
   `iditem` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -957,7 +951,6 @@ CREATE TABLE `payment` (
   `idpayment` int(11) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
   `payment_date` date NOT NULL,
-  `idorder` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1058,7 +1051,7 @@ CREATE TABLE `tbladmin` (
 --
 
 INSERT INTO `tbladmin` (`idadmin`, `admin_full_name`, `contact`, `email_address`, `admin_password`) VALUES
-(1, 'jesse zagi', '08146984351', 'jessezagi7@gmail.com', '641ec878aacb88fbdc8037c56c61ae76');
+(1, 'Jesse Zagi', '08146984351', 'jessezagi7@gmail.com', 'idkman');
 
 -- --------------------------------------------------------
 
@@ -1067,12 +1060,13 @@ INSERT INTO `tbladmin` (`idadmin`, `admin_full_name`, `contact`, `email_address`
 --
 
 CREATE TABLE `vendor` (
-  `idvendor` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `vendor_name` varchar(45) NOT NULL,
   `description` varchar(100) NOT NULL,
   `contact` int(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `vendor_address` varchar(45) NOT NULL,
+  `vendor_password` varchar(255) NOT NULL,
   `last_updated` datetime NOT NULL,
   `idcity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1081,8 +1075,8 @@ CREATE TABLE `vendor` (
 -- Dumping data for table `vendor`
 --
 
-INSERT INTO `vendor` (`idvendor`, `vendor_name`, `description`, `contact`, `email`, `vendor_address`, `last_updated`, `idcity`) VALUES
-(4, 'ewrtew', 'wqtae  gwergvtwrhb t hehf b rwGRWGTWRYTGWRS', 1123445555, 'gvekraywfwao@gmI.com', '3qwrgeewwwwwwwwwwwwwwwwERWeweRWFW', '2022-04-05 15:32:47', 8);
+INSERT INTO `vendor` (`id`, `vendor_name`, `description`, `contact`, `email`, `vendor_address`, `vendor_password`, `last_updated`, `idcity`) VALUES
+(4, 'ewrtew', 'wqtae  gwergvtwrhb t hehf b rwGRWGTWRYTGWRS', 1123445555, 'gvekraywfwao@gmI.com', '3qwrgeewwwwwwwwwwwwwwwwERWeweRWFW', '', '2022-04-05 15:32:47', 8);
 
 --
 -- Indexes for dumped tables
@@ -1107,7 +1101,8 @@ ALTER TABLE `favorites`
 -- Indexes for table `item`
 --
 ALTER TABLE `item`
-  ADD PRIMARY KEY (`iditem`);
+  ADD PRIMARY KEY (`iditem`),
+  ADD KEY `idvendor` (`idvendor`);
 
 --
 -- Indexes for table `local_governments`
@@ -1138,31 +1133,19 @@ ALTER TABLE `menutype`
   ADD PRIMARY KEY (`idmenutype`);
 
 --
--- Indexes for table `order`
---
-ALTER TABLE `order`
-  ADD PRIMARY KEY (`idorder`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `processed_by` (`processed_by`);
-
---
 -- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
-  ADD PRIMARY KEY (`id_order_details`),
-  ADD KEY `idmenutype` (`idmenutype`),
-  ADD KEY `idmenu` (`idmenu`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `iditem` (`iditem`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `idorder` (`idorder`);
+  ADD KEY `customer_id` (`customer_id`);
 
 --
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`idpayment`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `idorder` (`idorder`);
+  ADD KEY `customer_id` (`customer_id`);
 
 --
 -- Indexes for table `ratings`
@@ -1196,7 +1179,7 @@ ALTER TABLE `tbladmin`
 -- Indexes for table `vendor`
 --
 ALTER TABLE `vendor`
-  ADD PRIMARY KEY (`idvendor`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `vendor_ibfk_1` (`idcity`);
 
 --
@@ -1219,7 +1202,7 @@ ALTER TABLE `favorites`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `iditem` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iditem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `local_governments`
@@ -1246,16 +1229,10 @@ ALTER TABLE `menutype`
   MODIFY `idmenutype` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `order`
---
-ALTER TABLE `order`
-  MODIFY `idorder` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id_order_details` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -1285,7 +1262,7 @@ ALTER TABLE `tbladmin`
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
-  MODIFY `idvendor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -1318,34 +1295,16 @@ ALTER TABLE `menu`
   ADD CONSTRAINT `menu_ibfk_3` FOREIGN KEY (`idmenutype`) REFERENCES `menutype` (`idmenutype`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `order`
---
-ALTER TABLE `order`
-  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`idcustomer`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`processed_by`) REFERENCES `tbladmin` (`idadmin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `order_details`
---
-ALTER TABLE `order_details`
-  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`idorder`) REFERENCES `order` (`idorder`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`idcustomer`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `order_details_ibfk_3` FOREIGN KEY (`idmenu`) REFERENCES `menu` (`idmenu`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `order_details_ibfk_4` FOREIGN KEY (`idmenutype`) REFERENCES `menutype` (`idmenutype`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `order_details_ibfk_5` FOREIGN KEY (`iditem`) REFERENCES `item` (`iditem`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Constraints for table `payment`
 --
 ALTER TABLE `payment`
-  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`idorder`) REFERENCES `order` (`idorder`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`idcustomer`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`idcustomer`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `ratings`
 --
 ALTER TABLE `ratings`
-  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`idmenu`) REFERENCES `menu` (`idmenu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`idmenu`) REFERENCES `menu` (`idmenu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `vendor`
