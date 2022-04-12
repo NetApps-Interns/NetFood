@@ -107,9 +107,9 @@ include '../components/vendor_header.php';
           
        
         <td colspan="2">
-            <a type="button" action="submit" class="btn-edit" href="../pages/edit.php<?= $item['id']; ?>">EDIT</a>
-            <a type="button" action="submit" class="btn-delete" href="../api/delete.php<?=$item['id']; ?>">DELETE</a>
-            <a type="button" action="submit" class="btn-preview" href="menu.php<?= $item['id']; ?>" value="preview">PREVIEW</a>
+            <a type="button" action="submit" class="btn-edit" href="pages/edit.php $item['id']; ?>">EDIT</a>
+            <a type="button" action="submit" class="btn-delete" href="api/delete.php?id=<?=$item['id']; ?>">DELETE</a>
+            <a type="button" action="submit" class="btn-preview" href="../../pages/menu.php" value="preview">PREVIEW</a>
         </td>
       <?php endforeach; ?>
     </tr>
