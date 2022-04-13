@@ -141,6 +141,7 @@ $('#searchInput').on('change keyup', async function(e){
 	search = $('#searchInput').val();
 	pattern = /[a-z]{2,}/i
 
+
 	if (pattern.test(search)){
 		res = await $.get(
 			'/api/search.php', 
@@ -156,7 +157,7 @@ $('#searchInput').on('change keyup', async function(e){
 			menuBody += `
 			<div class="menu-item">
 				<div class="menu-image">
-					<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src="<?=ITEM_IMG_DIR?>${item.pix}" alt="${item.itemName}"/>
+					<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src= "${IMG+item.pix}" alt="${item.itemName}"/>
 				</div>
 
 				<b><p class="menu-about">${item.itemName}</p></b>

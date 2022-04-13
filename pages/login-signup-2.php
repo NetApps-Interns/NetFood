@@ -47,12 +47,6 @@
 		<!-- LOG IN -->
 		<div id="log-in-tab" class="tabcontent">
 
-			
-		
-		<?php
-			// include "api\user-login.php";
-			// echo $error?>
-
 			<form id="loginForm" action="" method="post" class="login-request">
 			
 				<div class="row">
