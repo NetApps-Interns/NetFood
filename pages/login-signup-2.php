@@ -47,12 +47,6 @@
 		<!-- LOG IN -->
 		<div id="log-in-tab" class="tabcontent">
 
-			
-		
-		<?php
-			// include "api\user-login.php";
-			// echo $error?>
-
 			<form id="loginForm" action="" method="post" class="login-request">
 			
 				<div class="row">
@@ -106,15 +100,15 @@
 
 				Toast.fire({
 				icon: 'success',
-				title: res.msg
+				title: res.msg[0]
 				})
 
 				location.href = '/?page=menu';
 
 			}else{
 				Swal.fire(
-					res.msg,
-					'Let\'s try something else!',
+					res.msg[0],
+					res.msg[1],
 					'error'
 				)
 			}

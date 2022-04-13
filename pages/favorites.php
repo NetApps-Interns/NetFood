@@ -3,15 +3,19 @@
         header('Location: index.php?page=login-signup');
         exit;
     }
+
+    $userID=$_SESSION["userid"];
     
-    $statement = $pdo->prepare('SELECT * FROM favorite where idcustomer= userid');
+    $statement = $pdo->prepare('SELECT i.item_name FROM '.TBL_FAV.' f JOIN '.TBL_ITEM.' i where f.idcustomer= "$userID"');
     $statement->execute();
     $items=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 
+
+
 ?>
 
-<section class="image-background menu-page">
+<section class="image-background">
 	<div class="search-request">
 		<div>
 			<ion-icon name="search-outline"></ion-icon>
@@ -26,6 +30,8 @@
 <div class="center-con">
 	
 	<?php foreach  ($items as $item): ?>
+
+
         <div class="menu-item">
             <div class="menu-image">
                 <img src="<?php echo $item['photo'] ?>" alt="food image"/>
@@ -35,8 +41,8 @@
             <span class="meal-price"><span>&#8358;</span><?php echo $item['price'] ?></span>
 
 			<div>
-				<span class="btn-fav"><ion-icon name="heart-outline"></ion-icon></span>
-				<span class="btn-add"><ion-icon name="add-outline"></ion-icon></span>
+				<a class="btn-fav"><ion-icon name="heart-outline"></ion-icon></a>
+				<a onclick="addToCart(<?= $item['iditem']?>)" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
 			</div>
         </div>
     <?php endforeach; ?>

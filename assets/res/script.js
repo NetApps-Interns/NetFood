@@ -1,3 +1,5 @@
+
+
 // Mobile View Link icon display
 $(".js--nav-icon").click(function () {
 	var nav = $(".main-nav");
@@ -18,6 +20,50 @@ function stickify() {
 }
 
 window.addEventListener("scroll", stickify);
+
+// CART
+jQuery(document).ready(function($){
+	
+	var $cart_trigger = $('#cd-cart-trigger'),
+		$lateral_cart = $('#cd-cart'),
+		$shadow_layer = $('#cd-shadow-layer');
+
+
+	//open cart
+	$cart_trigger.on('click', function(event){
+		event.preventDefault();
+		toggle_panel_visibility($lateral_cart, $shadow_layer, $('body'));
+	});
+
+	//close lateral cart or lateral menu
+	$shadow_layer.on('click', function(){
+		$shadow_layer.removeClass('is-visible');
+		// firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
+		if( $lateral_cart.hasClass('speed-in') ) {
+			$lateral_cart.removeClass('speed-in').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+				$('body').removeClass('overflow-hidden');
+			});
+		} else {
+			$lateral_cart.removeClass('speed-in');
+		}
+	});
+});
+
+function toggle_panel_visibility ($lateral_panel, $background_layer, $body) {
+	if( $lateral_panel.hasClass('speed-in') ) {
+		// firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
+		$lateral_panel.removeClass('speed-in').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+			$body.removeClass('overflow-hidden');
+		});
+		$background_layer.removeClass('is-visible');
+
+	} else {
+		$lateral_panel.addClass('speed-in').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+			$body.addClass('overflow-hidden');
+		});
+		$background_layer.addClass('is-visible');
+	}
+}
 
 
 // 
@@ -89,6 +135,65 @@ function logout() {
 	
 }
 
+$('#searchInput').on('change keyup', async function(e){
+	e.stopPropagation()
+	e.preventDefault();
+	search = $('#searchInput').val();
+	pattern = /[a-z]{2,}/i
+
+
+	if (pattern.test(search)){
+		res = await $.get(
+			'/api/search.php', 
+			{ search: search }
+		)
+
+		if (res.flag){
+
+			data = res.data;
+
+			let menuBody = '';
+			for (let item of data) {
+			menuBody += `
+			<div class="menu-item">
+				<div class="menu-image">
+					<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src= "${IMG+item.pix}" alt="${item.itemName}"/>
+				</div>
+
+				<b><p class="menu-about">${item.itemName}</p></b>
+				<p class="menu-about">${item.itemDescription}</p>
+				<span class="meal-price"><span>&#8358;</span>${item.itemPrice}</span>
+
+				<div>
+					<a class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
+					<a onclick="addToCart(${item.id})" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
+				</div>
+			</div>
+			`
+			}
+			$(".center-con").html(menuBody)
+		}else{
+			const Toast = Swal.mixin({
+				toast: true,
+				position: 'top',
+				showConfirmButton: false,
+				timer: 10000,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+				})
+
+				Toast.fire({
+				icon: 'error',
+				title: res.msg[0]
+				})
+		}
+	}
+			
+			
+})
 
 
 // // prevent form submit and page reload

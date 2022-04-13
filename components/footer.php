@@ -29,6 +29,9 @@
                 <p>Copyright&copy; 2022 by NETFood. All rights reserved.</p>
             </div>
         </footer>
+        <script>
+            const IMG = '<?= ITEM_IMG_DIR ?>'
+        </script>
         
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 	<script src="assets/res/script.js"></script>
