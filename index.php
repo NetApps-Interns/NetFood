@@ -43,12 +43,12 @@ switch ($page) {
     
     case 'become-a-vendor':
         # code...
-        require 'pages/vendour/vendor-registration.php';
+        require 'pages/vendor/vendor-registration.php';
         break;
     
-    case '#':
+    case 'aaa':
         # code...
-        require 'pages/#.php';
+        require 'pages/admin/admin-login.php';
         break;
     
     case '#':

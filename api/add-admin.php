@@ -12,7 +12,7 @@
         $name = $_POST['name'];
         $email = $_POST['email'];
         $contact = $_POST['contact'];
-        $password = md5($_POST['password']);
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
        
         if($query = $db->prepare ("SELECT * FROM tbladmin WHERE email_address = ?")) {
             $error = '';

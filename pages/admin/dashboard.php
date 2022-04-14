@@ -1,5 +1,4 @@
-<?php include_once '../CORE/config/init.php';
-include '../components/admin_header.php';?>
+
 <h1> DASHBOARD</h1>
 <section class="image-background">
 
@@ -25,5 +24,3 @@ include '../components/admin_header.php';?>
 
 </section>
 
-
-<?php include '../components/footer.php';?>

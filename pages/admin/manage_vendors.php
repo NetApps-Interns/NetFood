@@ -1,19 +1,16 @@
-<?php include_once '../CORE/config/init.php';
-include '../components/admin_header.php';?>
- <head>
-       <title> Admin Page</title>
-   </head>
-   <section class="image-background">
-       <h1>Orders</h1>
-       <br> <br>
-       <a href="#" class="btn-new">Add Admin</a>
+
+
+
+<section class="image-background">
+       <h1>Vendors</h1>
+      
        <br><br>
        <table class="tbl-full">
           <tr>
               <th>S/N</th>
               <th>Name</th>
-              <th>Email</th>
               <th>Contact</th>
+              <th>Email</th>
           </tr> 
           <?php 
                 $sql = "SELECT * FROM vendor";
@@ -36,8 +33,7 @@ include '../components/admin_header.php';?>
                 <td><?php echo $contact; ?></td>
                 <td> <?php echo $email; ?></td>
                 <td colspan="2">
-                    <button type="button" data-id="<?= $id ?>" class="btn-new">Update Order</button>
-                    <button type="button" data-id="<?= $id ?>" class="btn-delete">Delete Order</button>
+                    <button type="button" data-id="<?= $id ?>" class="btn-delete">Delete Vendor</button>
                 </td>
               </td>
           </tr>
@@ -87,10 +83,5 @@ include '../components/admin_header.php';?>
           });
   
       </script>
-   </section>
-
-
-
-
-
-<?php include '../components/footer.php';?>
+   
+   

@@ -1,10 +1,8 @@
-<?php include_once '../CORE/config/init.php';
-include '../components/admin_header.php';?>
 
    <head>
        <title> Admin Page</title>
    </head>
-<section class="image-background">
+<section class="image-background" >
    
        <h1>Admin Panel</h1>
        <br> <br>
@@ -86,4 +84,3 @@ include '../components/admin_header.php';?>
           });
   
       </script>
-<?php include '../components/footer.php';?>

@@ -1,20 +1,19 @@
-<?php include_once '../CORE/config/init.php';
-include '../components/admin_header.php';?>
 
-
-<section class="image-background">
-       <h1>Vendors</h1>
-      
+ <head>
+       <title> Admin Page</title>
+   </head>
+   <section class="image-background">
+       <h1>Manage Riders</h1>
        <br><br>
        <table class="tbl-full">
           <tr>
               <th>S/N</th>
               <th>Name</th>
-              <th>Contact</th>
               <th>Email</th>
+              <th>Contact</th>
           </tr> 
           <?php 
-                $sql = "SELECT * FROM vendor";
+                $sql = "SELECT * FROM logistics";
                 $res = mysqli_query($db, $sql);
                 if($res==TRUE){
                     $count = mysqli_num_rows($res);
@@ -22,12 +21,11 @@ include '../components/admin_header.php';?>
                     $sn=1;
                     if($count>0){
                         while($rows=mysqli_fetch_assoc($res)){
-                            $id=$rows['id'];
-                            $name=$rows['vendor_name'];
+                            $id=$rows['logistics_id'];
+                            $name=$rows['name'];
                             $contact=$rows['contact'];
                                 $email=$rows['email'];
             ?>
-        
           <tr>
           <td><?php echo $sn++; ?></td>
                 <td><?php echo $name; ?></td>
@@ -38,11 +36,9 @@ include '../components/admin_header.php';?>
                 </td>
               </td>
           </tr>
-      <?php }}} ?>
-          
-       
+          <?php }}} ?>
        </table>
-</section>
+   </section>
        <script>
 		
         $('.btn-delete').on('click', async function(e){
@@ -56,7 +52,7 @@ include '../components/admin_header.php';?>
                   }
                   console.log(data);
               res = await $.post(
-                  '/api/delete-vendor.php', 
+                  '/api/delete-rider.php', 
                   data
               )
 
@@ -84,5 +80,9 @@ include '../components/admin_header.php';?>
           });
   
       </script>
-   
-   <?php include '../components/footer.php';?>
+  
+
+
+
+
+

@@ -1,5 +1,4 @@
-<?php include_once '../CORE/config/init.php';
-include '../components/admin_header.php';?>
+
 <head>
       <style>
          .error {color: crimson;}
@@ -145,4 +144,3 @@ include '../components/admin_header.php';?>
 
 
 
-<?php include '../components/footer.php';?>

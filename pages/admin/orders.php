@@ -1,10 +1,11 @@
-<?php include_once '../CORE/config/init.php';
-include '../components/admin_header.php';?>
+
  <head>
        <title> Admin Page</title>
    </head>
    <section class="image-background">
-       <h1>Manage Riders</h1>
+       <h1>Orders</h1>
+       <br> <br>
+       <a href="#" class="btn-new">Add Admin</a>
        <br><br>
        <table class="tbl-full">
           <tr>
@@ -14,7 +15,7 @@ include '../components/admin_header.php';?>
               <th>Contact</th>
           </tr> 
           <?php 
-                $sql = "SELECT * FROM logistics";
+                $sql = "SELECT * FROM vendor";
                 $res = mysqli_query($db, $sql);
                 if($res==TRUE){
                     $count = mysqli_num_rows($res);
@@ -22,24 +23,28 @@ include '../components/admin_header.php';?>
                     $sn=1;
                     if($count>0){
                         while($rows=mysqli_fetch_assoc($res)){
-                            $id=$rows['logistics_id'];
-                            $name=$rows['name'];
+                            $id=$rows['id'];
+                            $name=$rows['vendor_name'];
                             $contact=$rows['contact'];
                                 $email=$rows['email'];
             ?>
+        
           <tr>
           <td><?php echo $sn++; ?></td>
                 <td><?php echo $name; ?></td>
                 <td><?php echo $contact; ?></td>
                 <td> <?php echo $email; ?></td>
                 <td colspan="2">
-                    <button type="button" data-id="<?= $id ?>" class="btn-delete">Delete Vendor</button>
+                    <button type="button" data-id="<?= $id ?>" class="btn-new">Update Order</button>
+                    <button type="button" data-id="<?= $id ?>" class="btn-delete">Delete Order</button>
                 </td>
               </td>
           </tr>
-          <?php }}} ?>
+      <?php }}} ?>
+          
+       
        </table>
-   </section>
+</section>
        <script>
 		
         $('.btn-delete').on('click', async function(e){
@@ -53,7 +58,7 @@ include '../components/admin_header.php';?>
                   }
                   console.log(data);
               res = await $.post(
-                  '/api/delete-rider.php', 
+                  '/api/delete-vendor.php', 
                   data
               )
 
@@ -81,10 +86,9 @@ include '../components/admin_header.php';?>
           });
   
       </script>
-  
+   </section>
 
 
 
 
 
-<?php include '../components/footer.php';?>
