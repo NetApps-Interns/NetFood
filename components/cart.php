@@ -48,7 +48,6 @@ $cartObj = $cartObj->getCart();
 
   #cd-cart {
     position: fixed;
-    top: 63px;
     height: calc(90vh - 73px);
     width: 260px;
     /* header height */
