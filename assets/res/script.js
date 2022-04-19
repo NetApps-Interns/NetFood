@@ -98,6 +98,55 @@ togglePassword.forEach(e=>{
 	});
 })
 
+//
+//
+addToFav = async function(itemId, itemName){
+	let res = await $.post( "/api/addToFav.php",{
+		itemId: itemId,
+		itemName: itemName
+	})
+
+
+	if (res.flag){
+		const Toast = Swal.mixin({
+			toast: true,
+			position: 'top',
+			showConfirmButton: false,
+			timer: 1000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+			})
+	
+		Toast.fire({
+		icon: 'success',
+		title: res.msg[0]
+		})
+
+	}else{
+		const Toast = Swal.mixin({
+			toast: true,
+			position: 'top',
+			showConfirmButton: false,
+			timer: 1000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+			})
+	
+		Toast.fire({
+			icon: 'warning',
+			title: res.msg[0]
+			})
+	
+	}
+
+}
+
 
 function logout() {
 	
@@ -106,8 +155,8 @@ function logout() {
 		title: 'Are you sure you want to logout?',
 		icon: 'warning',
 		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
-		cancelButtonColor: '#d33',
+		confirmButtonColor: '#e4a804',
+		cancelButtonColor: '#e82d00',
 		confirmButtonText: 'Yes, log out!'
 	}).then((result) => {
 		if (result.isConfirmed) {
@@ -135,6 +184,7 @@ function logout() {
 	
 }
 
+// Search function
 $('#searchInput').on('change keyup', async function(e){
 	e.stopPropagation()
 	e.preventDefault();

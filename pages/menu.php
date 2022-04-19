@@ -32,8 +32,8 @@
             <span class="meal-price"><span>&#8358;</span><?= $item['price'] ?></span>
 
 			<div>
-				<a class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
-				<a onclick="addToCart(<?= $item['iditem']?>)" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
+				<a onclick="addToFav(<?= $item['iditem']?>, '<?= $item['item_name'] ?>')" class="btn-fav" >f<ion-icon name="heart-outline"></ion-icon></a>
+				<a onclick="addToCart(<?= $item['iditem']?>)" class="btn-add">a<ion-icon name="add-outline"></ion-icon></a>
 			</div>
         </div>
     <?php endforeach; ?>

@@ -35,6 +35,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $error .='<p>Password too short</p>';
             die(output_json(["This Password is too short!","Kindly make it longer than 6 characters."], 0));
             }
+
+            // $check = [];
+            // if (!preg_match("/[a-z]+/", $password)) {
+            //     $check[] = "lowercase";
+            // }
+            // if (!preg_match("/[A-Z]+/", $password)) {
+            //     $check[] = "uppercase";
+            // }
+            // if (!preg_match("/\d/", $password)) {
+            //     $check[] = "number";
+            // }
+            // if (!preg_match("/[^a-z0-9]/i", $password)) {
+            //     $check[] = "special character";
+            // }
+
+
+
+            // if (!empty($check)){
+            //     $msg = "Password must contain at least a ".implode(", ", $check);
+            //     die(output_json(['Password format invalid',$msg], 0));
+            // }
+
             // Check phone number
             if (!$phone_number) {
             $error .='<p>Phone number incorrect</p>';

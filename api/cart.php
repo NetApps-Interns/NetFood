@@ -11,10 +11,10 @@ $res = $db->query("SELECT price, item_name, photo from ".TBL_ITEM." WHERE iditem
 $res = $res->fetch_all(MYSQLI_ASSOC);
 
 $price = $res[0]['price'];
-        $extra = [
-            'name' => $res[0]['item_name'],
-            'image' => $res[0]['photo'],
-        ];
+$extra = [
+    'name' => $res[0]['item_name'],
+    'image' => $res[0]['photo'],
+];
 
 
 switch (strtolower($_POST["action"])) {
@@ -28,7 +28,7 @@ switch (strtolower($_POST["action"])) {
         }
         
         if ($cartObj->addItem($itemID, $price, $extra)) {
-            die(output_json([$extra["name"].' addded to cart'], 1, $cartObj->getCart()));
+            die(output_json([$extra["name"].' added to cart'], 1, $cartObj->getCart()));
         }
         die(output_json(['Error adding '.$extra["name"].' to cart'], 0));
     
