@@ -22,6 +22,19 @@ body {
 	overflow-x: hidden;
 	/* margin: 5px; */
 }
+
+/* A background through out the webiste with netfood logo */
+.background {
+    background-image: url(img/bg2.png);
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* overflow-y: scroll; */
+	min-height: 77vh;
+}
+
 #OpeningParallexImage {
 	background-image: linear-gradient(
 			rgba(14, 5, 5, 0.486),
@@ -48,11 +61,10 @@ header {
 	/* border-top-left-radius: 7px;
 	border-top-right-radius: 7px; */
 	padding: 1.4em;
-	z-index: 10;
 }
 
 section {
-	height: 77vh;
+	/* min-height: 77vh; */
 	padding: 25px;
 	margin: 0 auto;
 }
@@ -160,24 +172,30 @@ nav li {
 	.mobile-nav-icon {
 		display: inline-block;
 	}
-
+	
 	.main-nav {
 		display: none;
 	}
-
+	
 	.main-nav li a {
 		display: block;
 		margin: 4px;
 		border: 0;
 	}
-
+	
 	.address-request input,
-.search-request input,
-.login-request input  {
-	max-width: 250px;
+	.search-request input,
+	.login-request input  {
+		max-width: 250px;
 	}
 }
 
+@media only screen and (max-width: 767px) {
+	.hover-tab {
+		width: 94%;
+		margin: 5% 3%;
+	}
+}
 
 /* --------------------- */
 /* --------------------- */
@@ -346,14 +364,10 @@ nav li {
 /* SIGN UP AND LOG IN PAGE----------------- */
 
 .hover-tab{
-	position: absolute;
-	top: 50%;
-	left: 47%;
-	transform: translate(-50%, -50%);
 	background-color: #e82e009d;
-	width:70%;
-	margin: 5% 3%;
-	border-radius: 1.25rem;
+    width: 70%;
+	margin: 17% 15%;
+    border-radius: 1.25rem;
 }
 /* Style tab links */
 .tablink {
