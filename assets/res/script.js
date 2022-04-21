@@ -190,6 +190,15 @@ $('#searchInput').on('change keyup', async function(e){
 	pattern = /[a-z]{2,}/i
 
 
+	if (!search){
+		res = await $.get(
+			'/api/search.php', 
+			{ search: search }
+		)
+		$(".center-con").html(buildBody(res.data))
+
+	}
+
 	if (pattern.test(search)){
 		res = await $.get(
 			'/api/search.php', 
@@ -198,34 +207,16 @@ $('#searchInput').on('change keyup', async function(e){
 
 		if (res.flag){
 
-			data = res.data;
+			// data = res.data;
 
-			let menuBody = '';
-			for (let item of data) {
-			menuBody += `
-			<div class="menu-item">
-				<div class="menu-image">
-					<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src= "${IMG+item.pix}" alt="${item.itemName}"/>
-				</div>
-
-				<b><p class="menu-about">${item.itemName}</p></b>
-				<p class="menu-about">${item.itemDescription}</p>
-				<span class="meal-price"><span>&#8358;</span>${item.itemPrice}</span>
-
-				<div>
-					<a class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
-					<a onclick="addToCart(${item.id})" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
-				</div>
-			</div>
-			`
-			}
-			$(".center-con").html(menuBody)
+			
+			$(".center-con").html(buildBody(res.data))
 		}else{
 			const Toast = Swal.mixin({
 				toast: true,
 				position: 'top',
 				showConfirmButton: false,
-				timer: 10000,
+				timer: 2000,
 				timerProgressBar: true,
 				didOpen: (toast) => {
 					toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -243,6 +234,30 @@ $('#searchInput').on('change keyup', async function(e){
 			
 })
 
+
+function buildBody(data){
+	let menuBody = '';
+
+	for (let item of data) {
+		menuBody += `
+		<div class="menu-item">
+			<div class="menu-image">
+				<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src= "${IMG+item.pix}" alt="${item.itemName}"/>
+			</div>
+
+			<b><p class="menu-about">${item.itemName}</p></b>
+			by <em class="menu-about">${item.vendorName}</em>
+			<span class="meal-price"><span>&#8358;</span>${item.itemPrice}</span>
+
+			<div>
+				<a class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
+				<a onclick="addToCart(${item.id})" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
+			</div>
+		</div>
+		`
+		}
+		return menuBody;
+}
 
 // // prevent form submit and page reload
 // const form = document.querySelector("form");
