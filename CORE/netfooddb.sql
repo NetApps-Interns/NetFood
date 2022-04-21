@@ -887,6 +887,7 @@ CREATE TABLE `logistics` (
   `contact` int(11) NOT NULL,
   `email` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
+   `status` int(10) NOT NULL DEFAULT '0',
   `idcity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1067,6 +1068,7 @@ CREATE TABLE `vendor` (
   `email` varchar(30) NOT NULL,
   `vendor_address` varchar(45) NOT NULL,
   `vendor_password` varchar(255) NOT NULL,
+ `status` int(10) NOT NULL DEFAULT '0',
   `last_updated` datetime NOT NULL,
   `idcity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
