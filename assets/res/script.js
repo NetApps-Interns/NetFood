@@ -183,10 +183,10 @@ function logout() {
 }
 
 // Search function
-$('#searchInput').on('change keyup', async function(e){
+$('#searchInput').on('input', async function(e){
 	e.stopPropagation()
 	e.preventDefault();
-	search = $('#searchInput').val();
+	search = $(this).val();
 	pattern = /[a-z]{2,}/i
 
 
@@ -212,7 +212,8 @@ $('#searchInput').on('change keyup', async function(e){
 			
 			$(".center-con").html(buildBody(res.data))
 		}else{
-			const Toast = Swal.mixin({
+			$(".center-con").html('<h1>Items not found.</h1>')
+			/* const Toast = Swal.mixin({
 				toast: true,
 				position: 'top',
 				showConfirmButton: false,
@@ -227,7 +228,7 @@ $('#searchInput').on('change keyup', async function(e){
 				Toast.fire({
 				icon: 'error',
 				title: res.msg[0]
-				})
+				}) */
 		}
 	}
 			

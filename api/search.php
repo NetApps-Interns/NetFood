@@ -11,9 +11,9 @@ $user_input = $_GET["search"] ?? "";
 $SQL= "SELECT i.iditem id, i.photo pix, i.item_name itemName, i.description itemDescription, i.price itemPrice , v.vendor_name vendorName FROM item i JOIN vendor v ON i.idvendor = v.idvendor";
 
 if ($user_input !==''){
-    $SQL .= " WHERE item_name LIKE ?";
+    $SQL .= " WHERE item_name LIKE ? OR v.vendor_name LIKE ?";
     $statement = $pdo->prepare($SQL);
-    $statement->execute(['%'.$user_input.'%']); 
+    $statement->execute(['%'.$user_input.'%', "%$user_input%"]); 
 }else {
     $statement = $pdo->prepare($SQL);
     $statement->execute(); 

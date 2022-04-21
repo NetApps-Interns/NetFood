@@ -69,7 +69,7 @@ switch ($page) {
         break;
     
     default:
-        # code...
+        require 'pages/landing.php';
         break;
 }
 ?>
