@@ -125,27 +125,29 @@
 
 			const check=[];
 
-			if (!(/[a-z]+/).test(password)) {
-				check.push("lowercase");
-			}
 			if (!(/[A-Z]+/).test(password)) {
-				check.push("uppercase");
+				check.push("n uppercase");
+			}
+			if (!(/[a-z]+/).test(password)) {
+				check.push(" lowercase");
 			}
 			if (!(/\d/).test(password)) {
-				check.push("number");
+				check.push(" number");
 			}
 			// if (!(/[^a-z0-9]/i).test(password)) {
 			// 	check.push("special character");
 			// }
 			if(!password.length < 6){
-				check.push(" be longer than 6 characters");
+				check.push(" length longer than 6");
 			}
 			
-			check[check.length-1] = "and "+check[check.length-1];
+			if (check.length > 1) {
+				check[check.length-1] = "and"+check[check.length-1];
+			}
 			// console.log(check);
 
 			if (check){
-				let msg = "Password must contain at least 1 "+ check.join(", ");
+				let msg = "Password must have at least a"+ check.join(", ");
 
 				Swal.fire(
 				'Password format invalid!',

@@ -11,7 +11,7 @@ $(".js--nav-icon").click(function () {
 });
 
 function stickify() {
-	if (document.documentElement.scrollTop >= 170) {
+	if (document.documentElement.scrollTop >= 120) {
 		$("header").addClass("sticky");
 	} else {
 		$("header").removeClass("sticky");
@@ -148,6 +148,7 @@ addToFav = async function(itemId, itemName){
 }
 
 
+
 function logout() {
 	
 	// alert(res.msg);
@@ -179,9 +180,6 @@ function logout() {
 		}
 	});
 		
-
-
-	
 }
 
 // Search function

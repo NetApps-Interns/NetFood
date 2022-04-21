@@ -17,7 +17,9 @@ $page = $_GET['page'] ?? '';
 // }else {
 //     $page='';
 // }
-
+?>
+<div class="background">
+<?php
 switch ($page) {
     
     case '':
@@ -70,7 +72,9 @@ switch ($page) {
         # code...
         break;
 }
-
+?>
+</div>
+<?php
 
 
 include 'components/footer.php';

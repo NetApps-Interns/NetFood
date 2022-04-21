@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2022 at 12:13 PM
+-- Generation Time: Apr 19, 2022 at 04:01 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -61,7 +61,17 @@ CREATE TABLE `favorites` (
 --
 
 INSERT INTO `favorites` (`id`, `item_id`, `idcustomer`) VALUES
-(1, 1, 42);
+(42, 4, 1),
+(43, 5, 1),
+(44, 6, 1),
+(45, 1, 1),
+(46, 1, 0),
+(47, 3, 1),
+(48, 2, 1),
+(49, 3, 0),
+(50, 2, 0),
+(51, 4, 0),
+(52, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -84,174 +94,12 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`iditem`, `item_name`, `ingredients`, `description`, `price`, `photo`, `idvendor`) VALUES
-(1, 'Banana Fish', 'Banana, Fish and a lil bit of spice', 'Delicious', '2500', 'brownies.jpg', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `logistics`
---
-
-CREATE TABLE `logistics` (
-  `logistics_id` int(11) NOT NULL,
-  `location` varchar(200) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `idcity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menu`
---
-
-CREATE TABLE `menu` (
-  `idmenu` int(11) NOT NULL,
-  `menu_name` varchar(100) NOT NULL,
-  `menu_image` blob NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `menu_status` int(1) NOT NULL,
-  `idmenutype` int(11) NOT NULL,
-  `iditem` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menutype`
---
-
-CREATE TABLE `menutype` (
-  `idmenutype` int(11) NOT NULL,
-  `type_name` varchar(45) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `order`
---
-
-CREATE TABLE `order` (
-  `idorder` int(11) NOT NULL,
-  `order_date` date NOT NULL,
-  `total_amount` decimal(10,0) NOT NULL,
-  `order_status` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `processed_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `order_details`
---
-
-CREATE TABLE `order_details` (
-  `id_order_details` int(11) NOT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `no_of_items` int(11) NOT NULL,
-  `total_amount` decimal(10,0) NOT NULL,
-  `idorder` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `idmenu` int(11) NOT NULL,
-  `idmenutype` int(11) NOT NULL,
-  `iditem` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `payment`
---
-
-CREATE TABLE `payment` (
-  `idpayment` int(11) NOT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `payment_date` date NOT NULL,
-  `idorder` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ratings`
---
-
-CREATE TABLE `ratings` (
-  `idratings` int(11) NOT NULL,
-  `score` int(11) DEFAULT NULL,
-  `remarks` varchar(100) DEFAULT NULL,
-  `ratings_date` date DEFAULT NULL,
-  `idmenu` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbladdress`
---
-
-CREATE TABLE `tbladdress` (
-  `idaddress` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `state`
---
-
-CREATE TABLE `state` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COMMENT='States in Nigeria.';
-
---
--- Dumping data for table `state`
---
-
-INSERT INTO `state` (`id`, `name`) VALUES
-(1, 'Abia'),
-(2, 'Adamawa'),
-(3, 'Akwa Ibom'),
-(4, 'Anambra'),
-(5, 'Bauchi'),
-(6, 'Bayelsa'),
-(7, 'Benue'),
-(8, 'Borno'),
-(9, 'Cross River'),
-(10, 'Delta'),
-(11, 'Ebonyi'),
-(12, 'Edo'),
-(13, 'Ekiti'),
-(14, 'Enugu'),
-(15, 'FCT'),
-(16, 'Gombe'),
-(17, 'Imo'),
-(18, 'Jigawa'),
-(19, 'Kaduna'),
-(20, 'Kano'),
-(21, 'Katsina'),
-(22, 'Kebbi'),
-(23, 'Kogi'),
-(24, 'Kwara'),
-(25, 'Lagos'),
-(26, 'Nasarawa'),
-(27, 'Niger'),
-(28, 'Ogun'),
-(29, 'Ondo'),
-(30, 'Osun'),
-(31, 'Oyo'),
-(32, 'Plateau'),
-(33, 'Rivers'),
-(34, 'Sokoto'),
-(35, 'Taraba'),
-(36, 'Yobe'),
-(37, 'Zamfara');
+(1, 'Banana Fish', 'Banana, Fish and a lil bit of spice', 'Delicious', '2500', 'brownies.jpg', 1),
+(2, 'Feast', 'rice, steak, and a whole lot more', 'Meaty', '500', 'feast.jpg', 1),
+(3, 'Masa', 'rice cake', 'Delicious', '500', 'feast.jpg', 1),
+(4, 'Pizza', 'Perronoi', 'TAstys', '5000', 'pizza.jpg', 1),
+(5, 'Burger', 'Veggie', 'Nice', '1700', 'burger.jpg', 1),
+(6, 'Chicken', 'Chicken', 'Delicious, TAsty, everything', '7500', 'chicken.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -1048,6 +896,173 @@ INSERT INTO `local_governments` (`id`, `state_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `logistics`
+--
+
+CREATE TABLE `logistics` (
+  `logistics_id` int(11) NOT NULL,
+  `location` varchar(200) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `idcity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu`
+--
+
+CREATE TABLE `menu` (
+  `idmenu` int(11) NOT NULL,
+  `menu_name` varchar(100) NOT NULL,
+  `menu_image` blob NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `menu_status` int(1) NOT NULL,
+  `idmenutype` int(11) NOT NULL,
+  `iditem` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menutype`
+--
+
+CREATE TABLE `menutype` (
+  `idmenutype` int(11) NOT NULL,
+  `type_name` varchar(45) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `idorder` int(11) NOT NULL,
+  `order_date` date NOT NULL,
+  `total_amount` decimal(10,0) NOT NULL,
+  `order_status` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `processed_by` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id_order_details` int(11) NOT NULL,
+  `amount` decimal(10,0) NOT NULL,
+  `no_of_items` int(11) NOT NULL,
+  `total_amount` decimal(10,0) NOT NULL,
+  `idorder` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `idmenu` int(11) NOT NULL,
+  `idmenutype` int(11) NOT NULL,
+  `iditem` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `idpayment` int(11) NOT NULL,
+  `amount` decimal(10,0) NOT NULL,
+  `payment_date` date NOT NULL,
+  `idorder` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ratings`
+--
+
+CREATE TABLE `ratings` (
+  `idratings` int(11) NOT NULL,
+  `score` int(11) DEFAULT NULL,
+  `remarks` varchar(100) DEFAULT NULL,
+  `ratings_date` date DEFAULT NULL,
+  `idmenu` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `state`
+--
+
+CREATE TABLE `state` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COMMENT='States in Nigeria.';
+
+--
+-- Dumping data for table `state`
+--
+
+INSERT INTO `state` (`id`, `name`) VALUES
+(1, 'Abia'),
+(2, 'Adamawa'),
+(3, 'Akwa Ibom'),
+(4, 'Anambra'),
+(5, 'Bauchi'),
+(6, 'Bayelsa'),
+(7, 'Benue'),
+(8, 'Borno'),
+(9, 'Cross River'),
+(10, 'Delta'),
+(11, 'Ebonyi'),
+(12, 'Edo'),
+(13, 'Ekiti'),
+(14, 'Enugu'),
+(15, 'FCT'),
+(16, 'Gombe'),
+(17, 'Imo'),
+(18, 'Jigawa'),
+(19, 'Kaduna'),
+(20, 'Kano'),
+(21, 'Katsina'),
+(22, 'Kebbi'),
+(23, 'Kogi'),
+(24, 'Kwara'),
+(25, 'Lagos'),
+(26, 'Nasarawa'),
+(27, 'Niger'),
+(28, 'Ogun'),
+(29, 'Ondo'),
+(30, 'Osun'),
+(31, 'Oyo'),
+(32, 'Plateau'),
+(33, 'Rivers'),
+(34, 'Sokoto'),
+(35, 'Taraba'),
+(36, 'Yobe'),
+(37, 'Zamfara');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbladdress`
+--
+
+CREATE TABLE `tbladdress` (
+  `idaddress` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbladmin`
 --
 
@@ -1076,7 +1091,7 @@ CREATE TABLE `vendor` (
   `idvendor` int(11) NOT NULL,
   `vendor_name` varchar(45) NOT NULL,
   `description` varchar(100) NOT NULL,
-  `contact_info` varchar(30) NOT NULL,
+  `contact` varchar(30) NOT NULL,
   `vendor_address` varchar(45) NOT NULL,
   `last_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1085,7 +1100,7 @@ CREATE TABLE `vendor` (
 -- Dumping data for table `vendor`
 --
 
-INSERT INTO `vendor` (`idvendor`, `vendor_name`, `description`, `contact_info`, `vendor_address`, `last_updated`) VALUES
+INSERT INTO `vendor` (`idvendor`, `vendor_name`, `description`, `contact`, `vendor_address`, `last_updated`) VALUES
 (1, 'Foodie Hive', 'Making Delicacies that keep you wanting more', '07088973780', '4 Kenema Cl, Off Sakono Street, Wuse 2', '2022-03-25 10:25:59');
 
 --
@@ -1093,17 +1108,10 @@ INSERT INTO `vendor` (`idvendor`, `vendor_name`, `description`, `contact_info`, 
 --
 
 --
--- Indexes for table `city`
---
-ALTER TABLE `city`
-  ADD PRIMARY KEY (`idcity`);
-
---
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`idcustomer`),
-  ADD UNIQUE KEY `customer_email` (`customer_email`),
   ADD KEY `idcity` (`idcity`);
 
 --
@@ -1202,28 +1210,22 @@ ALTER TABLE `vendor`
 --
 
 --
--- AUTO_INCREMENT for table `city`
---
-ALTER TABLE `city`
-  MODIFY `idcity` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `idcustomer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `idcustomer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `iditem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `iditem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `logistics`
@@ -1248,115 +1250,6 @@ ALTER TABLE `menutype`
 --
 ALTER TABLE `order`
   MODIFY `idorder` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_details`
---
-ALTER TABLE `order_details`
-  MODIFY `id_order_details` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment`
---
-ALTER TABLE `payment`
-  MODIFY `idpayment` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ratings`
---
-ALTER TABLE `ratings`
-  MODIFY `idratings` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbladdress`
---
-ALTER TABLE `tbladdress`
-  MODIFY `idaddress` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbladmin`
---
-ALTER TABLE `tbladmin`
-  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT for table `vendor`
---
-ALTER TABLE `vendor`
-  MODIFY `idvendor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `city`
---
-ALTER TABLE `city`
-  ADD CONSTRAINT `city_ibfk_1` FOREIGN KEY (`idcity`) REFERENCES `vendor` (`idvendor`);
-
---
--- Constraints for table `customer`
---
-ALTER TABLE `customer`
-  ADD CONSTRAINT `fk_customer_city1` FOREIGN KEY (`idcity`) REFERENCES `city` (`idcity`);
-
---
--- Constraints for table `favorites`
---
-ALTER TABLE `favorites`
-  ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`iditem`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`idcustomer`) REFERENCES `customer` (`idcustomer`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `item`
---
-ALTER TABLE `item`
-  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`idvendor`) REFERENCES `vendor` (`idvendor`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `logistics`
---
-ALTER TABLE `logistics`
-  ADD CONSTRAINT `logistics_ibfk_1` FOREIGN KEY (`idcity`) REFERENCES `city` (`idcity`);
-
---
--- Constraints for table `menu`
---
-ALTER TABLE `menu`
-  ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`idmenu`) REFERENCES `ratings` (`idratings`),
-  ADD CONSTRAINT `menu_ibfk_2` FOREIGN KEY (`iditem`) REFERENCES `item` (`iditem`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `menu_ibfk_3` FOREIGN KEY (`idmenutype`) REFERENCES `menutype` (`idmenutype`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `order`
---
-ALTER TABLE `order`
-  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`idcustomer`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`processed_by`) REFERENCES `tbladmin` (`idadmin`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `order_details`
---
-ALTER TABLE `order_details`
-  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`idorder`) REFERENCES `order` (`idorder`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`idcustomer`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_details_ibfk_3` FOREIGN KEY (`idmenu`) REFERENCES `menu` (`idmenu`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_details_ibfk_4` FOREIGN KEY (`idmenutype`) REFERENCES `menutype` (`idmenutype`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_details_ibfk_5` FOREIGN KEY (`iditem`) REFERENCES `item` (`iditem`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `payment`
---
-ALTER TABLE `payment`
-  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`idorder`) REFERENCES `order` (`idorder`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`idcustomer`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `ratings`
---
-ALTER TABLE `ratings`
-  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`idmenu`) REFERENCES `menu` (`idmenu`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
