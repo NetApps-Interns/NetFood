@@ -1,7 +1,7 @@
 <?php
     define('DBSERVER', 'localhost'); //DB server
     define('DBUSERNAME', 'root'); //DB Username
-    define('DBPASSWORD', 'root'); //DB password
+    define('DBPASSWORD', ''); //DB password
     define('DBNAME', 'netfood-db'); //DB Name
 
     // connect to MySQL DB
@@ -12,7 +12,7 @@
         die("Error: Connection Error.". mysqli_connect_error());
     }
 
-    $pdo = new PDO('mysql:host=localhost;port=3306=;dbname=netfood-db', 'root', 'root');
+    $pdo = new PDO('mysql:host=localhost;port=3306=;dbname=netfood-db', 'root', '');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     const ITEM_IMG_DIR = "uploads/img/item/";

@@ -146,54 +146,7 @@ addToFav = async function(itemId, itemName){
 	}
 
 }
-//
-//
-removeFromFav = async function(itemId, itemName){
-	let res = await $.post( "/api/removeFromFav.php",{
-		itemId: itemId,
-		itemName: itemName
-	})
 
-
-	if (res.flag){
-		const Toast = Swal.mixin({
-			toast: true,
-			position: 'top',
-			showConfirmButton: false,
-			timer: 1000,
-			timerProgressBar: true,
-			didOpen: (toast) => {
-				toast.addEventListener('mouseenter', Swal.stopTimer)
-				toast.addEventListener('mouseleave', Swal.resumeTimer)
-			}
-			})
-	
-		Toast.fire({
-		icon: 'success',
-		title: res.msg[0]
-		})
-
-	}else{
-		const Toast = Swal.mixin({
-			toast: true,
-			position: 'top',
-			showConfirmButton: false,
-			timer: 1000,
-			timerProgressBar: true,
-			didOpen: (toast) => {
-				toast.addEventListener('mouseenter', Swal.stopTimer)
-				toast.addEventListener('mouseleave', Swal.resumeTimer)
-			}
-			})
-	
-		Toast.fire({
-			icon: 'warning',
-			title: res.msg[0]
-			})
-	
-	}
-
-}
 
 
 function logout() {
