@@ -295,7 +295,9 @@ nav li {
 	padding:.2rem;
 }
 
-.center-con{
+#center-con,
+#result-con
+{
 	display: flex;
     justify-content: center;
     align-items: center;

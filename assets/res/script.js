@@ -13,8 +13,11 @@ $(".js--nav-icon").click(function () {
 function stickify() {
 	if (document.documentElement.scrollTop >= 120) {
 		$("header").addClass("sticky");
+		$("#cd-cart").addClass("sticky");
 	} else {
 		$("header").removeClass("sticky");
+		$("#cd-cart").removeClass("sticky");
+
 
 	}
 }
@@ -33,6 +36,7 @@ jQuery(document).ready(function($){
 	$cart_trigger.on('click', function(event){
 		event.preventDefault();
 		toggle_panel_visibility($lateral_cart, $shadow_layer, $('body'));
+		$(".main-nav").slideUp(300);
 	});
 
 	//close lateral cart or lateral menu
@@ -106,43 +110,29 @@ addToFav = async function(itemId, itemName){
 		itemName: itemName
 	})
 
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top',
+		showConfirmButton: false,
+		timer: 1000,
+		timerProgressBar: true,
+		didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+		}
+		})
 
 	if (res.flag){
-		const Toast = Swal.mixin({
-			toast: true,
-			position: 'top',
-			showConfirmButton: false,
-			timer: 1000,
-			timerProgressBar: true,
-			didOpen: (toast) => {
-				toast.addEventListener('mouseenter', Swal.stopTimer)
-				toast.addEventListener('mouseleave', Swal.resumeTimer)
-			}
-			})
-	
+
 		Toast.fire({
 		icon: 'success',
 		title: res.msg[0]
 		})
-
-	}else{
-		const Toast = Swal.mixin({
-			toast: true,
-			position: 'top',
-			showConfirmButton: false,
-			timer: 1000,
-			timerProgressBar: true,
-			didOpen: (toast) => {
-				toast.addEventListener('mouseenter', Swal.stopTimer)
-				toast.addEventListener('mouseleave', Swal.resumeTimer)
-			}
-			})
-	
+	}else{	
 		Toast.fire({
 			icon: 'warning',
 			title: res.msg[0]
-			})
-	
+		})
 	}
 
 }
@@ -186,50 +176,34 @@ function logout() {
 $('#searchInput').on('input', async function(e){
 	e.stopPropagation()
 	e.preventDefault();
-	search = $(this).val();
+	let search = $(this).val();
+	let isItFavPage = ($(this).attr("name") == "fav-request") ? 1 : 0;
 	pattern = /[a-z]{2,}/i
 
-
+	// alert(isItFavPage);
+	// return
+	document.getElementById("center-con").style.display="none";
+	// document.getElementsByClassName("center-con").style.display="none";
 	if (!search){
-		res = await $.get(
-			'/api/search.php', 
-			{ search: search }
-		)
-		$(".center-con").html(buildBody(res.data))
+		document.getElementById("result-con").style.display="none";
+		document.getElementById("center-con").style.display="flex";
+		$("#result-con").html('');
 
 	}
 
 	if (pattern.test(search)){
 		res = await $.get(
 			'/api/search.php', 
-			{ search: search }
-		)
-
-		if (res.flag){
-
-			// data = res.data;
-
-			
-			$(".center-con").html(buildBody(res.data))
-		}else{
-			$(".center-con").html('<h1>Items not found.</h1>')
-			/* const Toast = Swal.mixin({
-				toast: true,
-				position: 'top',
-				showConfirmButton: false,
-				timer: 2000,
-				timerProgressBar: true,
-				didOpen: (toast) => {
-					toast.addEventListener('mouseenter', Swal.stopTimer)
-					toast.addEventListener('mouseleave', Swal.resumeTimer)
+			{ search: search,
+				isItFavPage: isItFavPage }
+				)
+				
+				if (res.flag){			
+					$("#result-con").html(buildBody(res.data))
+				}else{
+					$("#result-con").html('<br><br><br><h1>Items not found.</h1>')
 				}
-				})
-
-				Toast.fire({
-				icon: 'error',
-				title: res.msg[0]
-				}) */
-		}
+		document.getElementById("result-con").style.display="flex";
 	}
 			
 			

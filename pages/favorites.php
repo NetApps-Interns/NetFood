@@ -31,17 +31,21 @@
 			<ion-icon name="search-outline"></ion-icon>
 			<input
 				placeholder="Search favorites"
-				name="meal-request"
+				name="fav-request"
 				class="input"
+				id="searchInput"
 			/>
 		</div>
 	</div>
 
-<div class="center-con">
+<div id="center-con">
 	
 	<?php foreach  ($items as $item): 
         include 'components/menu_item.php';
      endforeach; ?>
+
+</div>
+<div id="result-con">
 
 </div>
 </section>

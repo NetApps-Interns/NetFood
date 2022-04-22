@@ -16,7 +16,7 @@ $cartObj = $cartObj->getCart();
 			<div>
         <p class="cd-qty"><?= $item['qty'] ?>x</p> 
         <?= $item['extra']['name'] ?>
-        <p class="cd-price"><span>&#8358;</span><?= $unitPrice ?></p>
+        <p class="cd-price">&#8358;<?= $unitPrice ?></p>
       </div>
 			<a onclick="removeFromCart(<?= $item['itemID'] ?>, <?= $item['qty'] ?>)" class="cd-item-remove cd-img-replace">Remove</a>
 		</li>
@@ -48,14 +48,30 @@ $cartObj = $cartObj->getCart();
 
   #cd-cart {
     position: fixed;
-    height: calc(90vh - 73px);
+    /* max-height: 90vh; */
     width: 260px;
-    /* header height */
-    padding-top: 75px;
+    padding-top: 10px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     z-index: 2;
+    background: #2a2a2a;
+    display: none;
+    
+  }
+
+  #cd-cart {
+    right: -100%;
+    -webkit-transition: right 0.3s;
+    -moz-transition: right 0.3s;
+    transition: right 2s, display .5s;
+  }
+
+  #cd-cart.speed-in.sticky {
+    padding-top: 90px;
+    left: auto;
+    right: 0;
+    top: auto;
   }
   @media only screen and (min-width: 768px) {
     #cd-cart {
@@ -68,15 +84,11 @@ $cartObj = $cartObj->getCart();
     }
   }
 
-  #cd-cart {
-    right: -100%;
-    background: black;
-    -webkit-transition: right 0.3s;
-    -moz-transition: right 0.3s;
-    transition: right 0.3s;
-  }
+ 
   #cd-cart.speed-in {
     right: 0;
+    display: block;
+
   }
   #cd-cart > * {
     padding: 0 1em;
@@ -137,7 +149,8 @@ $cartObj = $cartObj->getCart();
     /* width: 100%; */
     height: 60px;
     line-height: 60px;
-    background: #7dcf85;
+	border-bottom: 2px solid #e4a804;
+    background: #e4a804;
     color: #FFF;
     text-align: center;
   }
@@ -167,7 +180,6 @@ $cartObj = $cartObj->getCart();
     position: fixed;
     min-height: 100%;
     width: 100%;
-    top: 80;
     left: 0;
     background: rgba(0,0,0, 0.6);
     cursor: pointer;
@@ -230,11 +242,12 @@ $cartObj = $cartObj->getCart();
         <p class="cd-price"><span>&#8358;</span>${unitPrice}</p>
       </div>
 			<a onclick="removeFromCart(${item.itemID}, ${item.qty})" class="cd-item-remove cd-img-replace">Remove</a>
-		</li>
+	  	</li>
       `
     }
-$("#cartBody").html(cartBody)
-$("#cartTotal").html("<span>&#8358;</span>"+data.total)
+
+    $("#cartBody").html(cartBody)
+    $("#cartTotal").html("<span>&#8358;</span>"+data.total)
   }
 
   addToCart = async function(itemId, qty = 1){
@@ -269,6 +282,7 @@ $("#cartTotal").html("<span>&#8358;</span>"+data.total)
       }
       updateCart(res.data)
   }
+
   removeFromCart = async function(itemId, qty=1){
     let res = await $.post("/api/cart.php", {
       action: "remove",
