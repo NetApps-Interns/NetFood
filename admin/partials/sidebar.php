@@ -17,10 +17,7 @@
       <li class="nav-item">
       <a class="nav-link content-link" href="dashboard.php?cat=contact&subcat=contact-us-message">Contact Message</a>
     </li>
-      <li class="nav-item">
-      <a class="nav-link content-link" href="dashboard.php?cat=contact&subcat=contact-email">Contact Email</a>
-    </li>
-
+    
 </ul>
 </li>
 
@@ -46,6 +43,9 @@
     </li>
     <li class="nav-item">
       <a class="nav-link content-link" href="dashboard.php?cat=pages&subcat=riders">Riders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link content-link" href="dashboard.php?cat=pages&subcat=orders">Orders</a>
     </li>
 </ul>
 </li>

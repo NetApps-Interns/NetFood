@@ -176,3 +176,23 @@ border: 0px;
    position: absolute;
     top: 6px;
     right: -47px;}
+
+    .badge {
+      border-radius: 20px;
+      font-size: 12px;
+      line-height: 1;
+      padding: .375rem .5625rem;
+      font-weight: normal;
+    }
+    .badge-opacity-warning {
+      background: #fff2d6;
+      color: #cc8c00;
+    }
+    .badge-opacity-new {
+      background: #b8c4eb;
+      color: rgb(96, 96, 224);
+    }    
+    .badge-opacity-danger {
+      background: white;
+      color: #f73122;
+    }

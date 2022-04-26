@@ -1,7 +1,7 @@
 <?php
     $id=$_GET['id'];
 
-    $sql="SELECT * FROM tbladmin WHERE idadmin=$id";
+    $sql="SELECT * FROM tbladmin WHERE id=$id";
 
     $res=mysqli_query($db, $sql);
 
@@ -25,7 +25,7 @@
          admin_full_name='$name',
             email_address='$email',
             contact='$contact'
-            WHERE idadmin='$id'
+            WHERE id='$id'
         ";
 
         $res = mysqli_query($db, $sql);

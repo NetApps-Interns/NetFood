@@ -42,7 +42,7 @@ if(!empty($_GET['id']) && !empty($_GET['name']) && $_GET['name']=='color_setting
 if( !empty($_GET['id']) && !empty($_GET['tableName']) && $_GET['role']=='admin'){
    $id=legal_input($_GET['id']);
    $tableName=legal_input($_GET['tableName']);
-   $query="SELECT status FROM tbladmin WHERE idadmin=$id";
+   $query="SELECT status FROM tbladmin WHERE id=$id";
    $res= $db->query($query);
    $role=$res->fetch_assoc();
    if($role['status']==1)

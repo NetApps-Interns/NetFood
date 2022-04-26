@@ -4,8 +4,8 @@ header("Content-type: application/json");
 
     $id = $_POST['id'];
 
-    $sql =  "DELETE FROM tbladmin WHERE idadmin=$id";
-    $res = mysqli_query($db, $sql);
+    $sql =  "DELETE FROM tbladmin WHERE id=$id";
+    $res = mysqli_query($conn, $sql);
 
     if ($res){
         die(output_json(['complete', 'yes'], 1));

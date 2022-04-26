@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2022 at 11:40 AM
+-- Generation Time: Apr 25, 2022 at 01:12 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -24,16 +24,105 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `color_setting`
+--
+
+CREATE TABLE `color_setting` (
+  `id` int(10) NOT NULL,
+  `navbar_background` varchar(255) NOT NULL,
+  `sidebar_background` varchar(255) NOT NULL,
+  `text_color` varchar(255) NOT NULL,
+  `save_button_color` varchar(255) NOT NULL,
+  `edit_button_color` varchar(255) NOT NULL,
+  `delete_button_color` varchar(255) NOT NULL,
+  `view_button_color` varchar(255) NOT NULL,
+  `label_text_color` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `color_setting`
+--
+
+INSERT INTO `color_setting` (`id`, `navbar_background`, `sidebar_background`, `text_color`, `save_button_color`, `edit_button_color`, `delete_button_color`, `view_button_color`, `label_text_color`) VALUES
+(1, '#2175ca', '#0f40b3', '#dad7d7', '#049a2a', '#202722', '#c60c0c', '#6c6a6a', '#434242');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(10) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_details`
+--
+
+CREATE TABLE `contact_details` (
+  `id` int(10) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `google_map` text NOT NULL,
+  `facebook` varchar(255) NOT NULL,
+  `google_plus` varchar(255) NOT NULL,
+  `twitter` varchar(255) NOT NULL,
+  `linkedin` varchar(255) NOT NULL,
+  `youtube` varchar(255) NOT NULL,
+  `instagram` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contact_details`
+--
+
+INSERT INTO `contact_details` (`id`, `email`, `mobile`, `address`, `google_map`, `facebook`, `google_plus`, `twitter`, `linkedin`, `youtube`, `instagram`) VALUES
+(1, 'youremailaddress@gmail.com', '1234567890', 'Noida, Uttar Pradesh, India', 'Enter You Google Map Code', '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_form_email`
+--
+
+CREATE TABLE `contact_form_email` (
+  `id` int(10) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contact_form_email`
+--
+
+INSERT INTO `contact_form_email` (`id`, `email`) VALUES
+(1, 'youremail@gmail.com');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
-  `idcustomer` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `customer_name` varchar(45) NOT NULL,
   `customer_address` varchar(100) NOT NULL,
   `customer_email` varchar(100) DEFAULT NULL,
-  `customer_phone_number` varchar(20) NOT NULL,
+  `customer_contact` varchar(20) NOT NULL,
   `customer_password` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` date NOT NULL,
+  `last_login` date NOT NULL,
   `idcity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -41,14 +130,11 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`idcustomer`, `customer_name`, `customer_address`, `customer_email`, `customer_phone_number`, `customer_password`, `idcity`) VALUES
-(30, 'Charles O', '', 'charles@gmail.com', '08022222222', '$2y$10$tY2ZGBIaXx9Ytzi3yRAZIu9yDV6hc73oJCW8IJdACQvG96mAsyP3e', NULL),
-(31, 'Emmanuel Gbinije', '', 'princeemmanuel05@gmail.com', '08091371709', '$2y$10$pdUpFmNxr30.zxGwkZQvP.uRKK36H.hS.nAdN6M1Zt4LnoSPv7h7y', NULL),
-(33, 'Jesse Zagi', '', 'jessezagi7@gmail.com', '12345678', '$2y$10$bAPaQ.ICA8sVGpGW2OY2T.GAxRbMdSPCZoyHueWZTIdxTSBQ8pM3O', NULL),
-(34, 'Jewrry daniel', '', 'ayafa@netapps.com', 'iuoiuououo', '$2y$10$qw2UZa/av9N8kV8Hxg3a6uy3F7ieZoE5pDb1M1gXlsZ.tVSLX5uzu', NULL);
+
+INSERT INTO `customer` (`id`, `customer_name`, `customer_address`, `customer_email`, `customer_phone_number`, `customer_password`, `idcity`) VALUES
+(1, 'Emmanuel Imoh Gbinije', '', 'princeemmanuel05@gmail.com', '+2348091371709', '$2y$10$9ylUYwRmMBSjiiHuSjBYjeuOLxrCyIhd7ylkIabNnXYtkb7RdP.gC', NULL);
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `favorites`
 --
@@ -59,6 +145,14 @@ CREATE TABLE `favorites` (
   `idcustomer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+INSERT INTO `favorites` (`id`, `item_id`, `idcustomer`) VALUES
+(42, 4, 1),
+(44, 6, 1),
+(53, 5, 1),
+(54, 7, 1),
+(55, 4, 0),
+(56, 1, 0);
 -- --------------------------------------------------------
 
 --
@@ -66,7 +160,7 @@ CREATE TABLE `favorites` (
 --
 
 CREATE TABLE `item` (
-  `iditem` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `item_name` varchar(60) NOT NULL,
   `ingredients` varchar(500) NOT NULL,
   `description` varchar(500) NOT NULL,
@@ -80,7 +174,13 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`iditem`, `item_name`, `ingredients`, `description`, `price`, `photo`, `idvendor`) VALUES
-(1, 'Banana Fish', 'Banana, Fish and a lil bit of spice', 'Delicious', '2500', 'brownies.jpg', 1);
+(1, 'Banana Fish', 'Banana, Fish and a lil bit of spice', 'Delicious', '2500', 'brownies.jpg', 1),
+(2, 'Feast', 'rice, steak, and a whole lot more', 'Meaty', '500', 'feast.jpg', 1),
+(3, 'Masa', 'rice cake', 'Delicious', '500', 'feast.jpg', 1),
+(4, 'Pizza', 'Perronoi', 'TAstys', '5000', 'pizza.jpg', 1),
+(5, 'Burger', 'Veggie', 'Nice', '1700', 'burger.jpg', 1),
+(6, 'Chicken', 'Chicken', 'Delicious, TAsty, everything', '7500', 'chicken.jpg', 1),
+(7, 'ChickWizz', 'Bread, Tomatos, Cheese, Chicken, Lettuces', 'Fire!!!', '1900', 'feast.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -881,22 +981,15 @@ INSERT INTO `local_governments` (`id`, `state_id`, `name`) VALUES
 --
 
 CREATE TABLE `logistics` (
-  `logistics_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `location` varchar(200) NOT NULL,
   `name` varchar(50) NOT NULL,
   `contact` int(11) NOT NULL,
   `email` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
-   `status` int(10) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT 0,
   `idcity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `logistics`
---
-
-INSERT INTO `logistics` (`logistics_id`, `location`, `name`, `contact`, `email`, `password`, `idcity`) VALUES
-(1, '5eujthdjnhaedx v hetrrwjhytjedgxnhdfghzd httf jnthethrwsh', 'hgfrhgtg rshgteh', 21546431, 'enew@gma.com', 'ewgrgghzhtha', 3);
 
 -- --------------------------------------------------------
 
@@ -905,7 +998,7 @@ INSERT INTO `logistics` (`logistics_id`, `location`, `name`, `contact`, `email`,
 --
 
 CREATE TABLE `menu` (
-  `idmenu` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `menu_name` varchar(100) NOT NULL,
   `menu_image` blob NOT NULL,
   `description` varchar(500) NOT NULL,
@@ -921,7 +1014,7 @@ CREATE TABLE `menu` (
 --
 
 CREATE TABLE `menutype` (
-  `idmenutype` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `type_name` varchar(45) DEFAULT NULL,
   `description` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -937,10 +1030,23 @@ CREATE TABLE `order_details` (
   `amount` decimal(10,0) NOT NULL,
   `no_of_items` int(11) NOT NULL,
   `total_amount` decimal(10,0) NOT NULL,
-  `idorder` int(11) NOT NULL,
+  `old_status` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `customer_id` int(11) NOT NULL,
   `iditem` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_status`
+--
+
+CREATE TABLE `order_status` (
+  `id` int(11) NOT NULL,
+  `new_status` enum('pending','processing','delivering','completed') NOT NULL,
+  `completed_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -949,7 +1055,7 @@ CREATE TABLE `order_details` (
 --
 
 CREATE TABLE `payment` (
-  `idpayment` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
   `payment_date` date NOT NULL,
   `customer_id` int(11) NOT NULL
@@ -962,7 +1068,7 @@ CREATE TABLE `payment` (
 --
 
 CREATE TABLE `ratings` (
-  `idratings` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `score` int(11) DEFAULT NULL,
   `remarks` varchar(100) DEFAULT NULL,
   `ratings_date` date DEFAULT NULL,
@@ -1040,19 +1146,52 @@ CREATE TABLE `tbladdress` (
 --
 
 CREATE TABLE `tbladmin` (
-  `idadmin` int(11) NOT NULL,
-  `admin_full_name` varchar(100) NOT NULL,
-  `contact` varchar(30) NOT NULL,
-  `email_address` varchar(50) NOT NULL,
-  `admin_password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(10) NOT NULL,
+  `admin_full_name` varchar(255) NOT NULL,
+  `email_address` varchar(255) NOT NULL,
+  `contact` varchar(255) NOT NULL,
+  `admin_password` varchar(255) NOT NULL,
+  `status` int(10) NOT NULL DEFAULT 1,
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbladmin`
 --
 
-INSERT INTO `tbladmin` (`idadmin`, `admin_full_name`, `contact`, `email_address`, `admin_password`) VALUES
-(1, 'Jesse Zagi', '08146984351', 'jessezagi7@gmail.com', 'idkman');
+INSERT INTO `tbladmin` (`id`, `admin_full_name`, `email_address`, `contact`, `admin_password`, `status`, `created_at`) VALUES
+(13, 'Imoh Gbinije', 'princeemmanuel05@gmail.com', '08091371709', 'd8578edf8458ce06fbc5bb76a58c5ca4', 1, '2022-04-14 14:38:57.805426'),
+(14, 'Jesse Zagi', 'jessezagi7@gmail.com', '08146984351', '386678a1b9f26e84cacf72d98f864029', 1, '2022-04-21 15:49:40.869066'),
+(15, 'Okorie Jude Ifeanyi', 'jude58005@gamil.com', '08128837847', '3486263bed2450678444a874579438d7', 1, '2022-04-21 15:51:54.077032');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `theme_setting`
+--
+
+CREATE TABLE `theme_setting` (
+  `id` int(10) NOT NULL,
+  `header_background` varchar(255) NOT NULL,
+  `footer_background` varchar(255) NOT NULL,
+  `downloader_box_background` varchar(255) NOT NULL,
+  `downloader_box_button` varchar(255) NOT NULL,
+  `first_title` varchar(255) NOT NULL,
+  `second_title` varchar(255) NOT NULL,
+  `third_title` varchar(255) NOT NULL,
+  `footer_menu_link` varchar(255) NOT NULL,
+  `header_menu_link` varchar(255) NOT NULL,
+  `icon` varchar(255) NOT NULL,
+  `paragraph` varchar(255) NOT NULL,
+  `logo_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `theme_setting`
+--
+
+INSERT INTO `theme_setting` (`id`, `header_background`, `footer_background`, `downloader_box_background`, `downloader_box_button`, `first_title`, `second_title`, `third_title`, `footer_menu_link`, `header_menu_link`, `icon`, `paragraph`, `logo_name`) VALUES
+(1, '#0a570d', '#c2c52b', '#a61c1c', '#8a7575', '#d53030', '#4d1f1f', '#1917a6', '#75c5c7', '#6ff316', '#4f24eb', '#ff0000', '#f50000');
 
 -- --------------------------------------------------------
 
@@ -1068,17 +1207,10 @@ CREATE TABLE `vendor` (
   `email` varchar(30) NOT NULL,
   `vendor_address` varchar(45) NOT NULL,
   `vendor_password` varchar(255) NOT NULL,
- `status` int(10) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT 0,
   `last_updated` datetime NOT NULL,
   `idcity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `vendor`
---
-
-INSERT INTO `vendor` (`id`, `vendor_name`, `description`, `contact`, `email`, `vendor_address`, `vendor_password`, `last_updated`, `idcity`) VALUES
-(4, 'ewrtew', 'wqtae  gwergvtwrhb t hehf b rwGRWGTWRYTGWRS', 1123445555, 'gvekraywfwao@gmI.com', '3qwrgeewwwwwwwwwwwwwwwwERWeweRWFW', '', '2022-04-05 15:32:47', 8);
 
 --
 -- Indexes for dumped tables
@@ -1088,7 +1220,9 @@ INSERT INTO `vendor` (`id`, `vendor_name`, `description`, `contact`, `email`, `v
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`idcustomer`),
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `customer_phone_number` (`customer_phone_number`),
+  ADD UNIQUE KEY `customer_email` (`customer_email`),
   ADD KEY `idcity` (`idcity`);
 
 --
@@ -1103,7 +1237,7 @@ ALTER TABLE `favorites`
 -- Indexes for table `item`
 --
 ALTER TABLE `item`
-  ADD PRIMARY KEY (`iditem`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `idvendor` (`idvendor`);
 
 --
@@ -1117,14 +1251,13 @@ ALTER TABLE `local_governments`
 -- Indexes for table `logistics`
 --
 ALTER TABLE `logistics`
-  ADD PRIMARY KEY (`logistics_id`),
-  ADD KEY `idcity` (`idcity`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
-  ADD PRIMARY KEY (`idmenu`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `iditem` (`iditem`),
   ADD KEY `idmenutype` (`idmenutype`);
 
@@ -1132,7 +1265,7 @@ ALTER TABLE `menu`
 -- Indexes for table `menutype`
 --
 ALTER TABLE `menutype`
-  ADD PRIMARY KEY (`idmenutype`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `order_details`
@@ -1143,17 +1276,23 @@ ALTER TABLE `order_details`
   ADD KEY `customer_id` (`customer_id`);
 
 --
+-- Indexes for table `order_status`
+--
+ALTER TABLE `order_status`
+  ADD KEY `id` (`id`);
+
+--
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
-  ADD PRIMARY KEY (`idpayment`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `customer_id` (`customer_id`);
 
 --
 -- Indexes for table `ratings`
 --
 ALTER TABLE `ratings`
-  ADD PRIMARY KEY (`idratings`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `idmenu` (`idmenu`);
 
 --
@@ -1166,23 +1305,25 @@ ALTER TABLE `state`
 -- Indexes for table `tbladdress`
 --
 ALTER TABLE `tbladdress`
-  ADD PRIMARY KEY (`idaddress`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbladmin`
 --
 ALTER TABLE `tbladmin`
-  ADD PRIMARY KEY (`idadmin`),
-  ADD UNIQUE KEY `admin_full_name` (`admin_full_name`),
-  ADD UNIQUE KEY `contact` (`contact`),
-  ADD UNIQUE KEY `email_address` (`email_address`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `theme_setting`
+--
+ALTER TABLE `theme_setting`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `vendor`
 --
 ALTER TABLE `vendor`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `vendor_ibfk_1` (`idcity`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1192,7 +1333,7 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `idcustomer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `favorites`
@@ -1216,7 +1357,7 @@ ALTER TABLE `local_governments`
 -- AUTO_INCREMENT for table `logistics`
 --
 ALTER TABLE `logistics`
-  MODIFY `logistics_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -1258,7 +1399,13 @@ ALTER TABLE `tbladdress`
 -- AUTO_INCREMENT for table `tbladmin`
 --
 ALTER TABLE `tbladmin`
-  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `theme_setting`
+--
+ALTER TABLE `theme_setting`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `vendor`
@@ -1283,12 +1430,6 @@ ALTER TABLE `local_governments`
   ADD CONSTRAINT `FK` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `logistics`
---
-ALTER TABLE `logistics`
-  ADD CONSTRAINT `logistics_ibfk_1` FOREIGN KEY (`idcity`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Constraints for table `menu`
 --
 ALTER TABLE `menu`
@@ -1300,19 +1441,13 @@ ALTER TABLE `menu`
 -- Constraints for table `payment`
 --
 ALTER TABLE `payment`
-  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`idcustomer`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `ratings`
 --
 ALTER TABLE `ratings`
-  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`idmenu`) REFERENCES `menu` (`idmenu`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `vendor`
---
-ALTER TABLE `vendor`
-  ADD CONSTRAINT `vendor_ibfk_1` FOREIGN KEY (`idcity`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`idmenu`) REFERENCES `menu` (`idmenu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

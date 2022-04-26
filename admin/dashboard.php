@@ -50,10 +50,7 @@ include('partials/header.php');
     
   
         
-        if(!empty($cat) && !empty($subcat)){
-          
-            
-            $sub=explode('-', $subcat);
+        if(!empty($cat) && !empty($subcat)){ $sub=explode('-', $subcat);
 if($sub[0]=='add')
 {
            $val=[];

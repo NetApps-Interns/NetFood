@@ -6,7 +6,7 @@ if($_GET['subcat']=='add-admin-profile'){
 	if(!empty($_GET['edit'])){
 
    $editId= $_GET['edit'];
-   $query="SELECT * FROM tbladmin WHERE idadmin=$editId";
+   $query="SELECT * FROM tbladmin WHERE id=$editId";
    $res= $conn->query($query);
    $editData=$res->fetch_assoc();
    $fullName=$editData['admin_full_name'];
@@ -40,7 +40,7 @@ if($_GET['subcat']=='add-admin-profile'){
 		</div>
 	</div>
 <br>
-<form id="<?php echo $idAttr; ?>" rel="<?php echo $editId; ?>" name="admin_profile">
+<form id="<?php echo $idAttr; ?>" rel="<?php echo $editId; ?>" name="tbladmin">
 <div class="row">
 	<div class="col">
 		<div class="form-group">
@@ -95,10 +95,10 @@ if($_GET['subcat']=='add-admin-profile'){
 	<?php 
 
     $id= $_GET['view'];
-   $query="SELECT * FROM tbladmin WHERE idadmin=$id";
+   $query="SELECT * FROM tbladmin WHERE id=$id";
    $res= $conn->query($query);
    $viewData=$res->fetch_assoc();
-   $backId=$viewData['idadmin']-1;
+   $backId=$viewData['id']-1;
    $fullName=$viewData['admin_full_name'];
    $email=$viewData['email_address'];
    $mobile=$viewData['contact'];
@@ -123,9 +123,7 @@ if($_GET['subcat']=='add-admin-profile'){
 		<tr>
 			<th>Mobile Number -</th><td><?php echo $mobile; ?></td>
 		</tr>
-		<tr>
-			<th>Password -</th><td><?php echo $password; ?></td>
-		</tr>
+		
 	</table>
 </div>
    <?php
@@ -158,11 +156,10 @@ if($_GET['subcat']=='add-admin-profile'){
 				<th>Status</th>
 				<th>View</th>
 				<th>Edit</th>
-				<th>Delete</th>
 				
 			</tr>
 			<?php
-  $sql1="SELECT * FROM tbladmin ORDER BY idadmin DESC";
+  $sql1="SELECT * FROM tbladmin ORDER BY id DESC";
   $res1= $conn->query($sql1);
   if($res1->num_rows>0)
   {$i=1;
@@ -179,18 +176,17 @@ if($_GET['subcat']=='add-admin-profile'){
    			<?php
    			if($data['status']==0){
    			?>
-   			<a href="javascript:void(0)" name="admin_profile" class=" text-secondary adminRole"  rel="<?php echo $data['idadmin']; ?>">
+   			<a href="javascript:void(0)" name="tbladmin" class=" text-secondary adminRole"  rel="<?php echo $data['id']; ?>">
    			<i class='fas fa-user-alt-slash iconRole' ></i>
    		<?php } else{ ?>
-   			<a href="javascript:void(0)" name="admin_profile" class=" text-success adminRole"  rel="<?php echo $data['idadmin']; ?>">
+   			<a href="javascript:void(0)" name="tbladmin" class=" text-success adminRole"  rel="<?php echo $data['id']; ?>">
               <i class='fas fa-user-alt iconRole'></i>
    		<?php } ?>
    	
    		</a></td>
-   		<td><a  href="dashboard.php?cat=website-admin&subcat=admin-profile&view=<?php echo $data['idadmin']; ?>" class="text-secondary content-link"><i class='far fa-eye'></i></a></td>
-        <td><a href="dashboard.php?cat=website-admin&subcat=add-admin-profile&edit=<?php echo $data['idadmin']; ?>" class="text-success content-link"><i class=' far fa-edit'></i></a></td>
-        <td><a href="javascript:void(0)" class="text-danger delete"  name="admin_profile" id="<?php echo $data['idadmin']; ?>"><i class='far fa-trash-alt'></i></a></td>
-
+   		<td><a  href="dashboard.php?cat=website-admin&subcat=admin-profile&view=<?php echo $data['id']; ?>" class="text-secondary content-link"><i class='far fa-eye'></i></a></td>
+        <td><a href="dashboard.php?cat=website-admin&subcat=add-admin-profile&edit=<?php echo $data['id']; ?>" class="text-success content-link"><i class=' far fa-edit'></i></a></td>
+       
    	</tr>
    	<?php
    $i++;}

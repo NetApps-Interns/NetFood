@@ -49,7 +49,7 @@
 					<th>Delete</th>
 					</tr>
 <?php
-  $sql1="SELECT * FROM contact_email ORDER BY id DESC";
+  $sql1="SELECT * FROM contact_form_email ORDER BY id DESC";
   $res1= $conn->query($sql1);
   if($res1->num_rows>0)
   {$i=1;
