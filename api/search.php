@@ -10,11 +10,15 @@ $userID = $_SESSION['userid'] ?? '';
 //     die();
 // }
 
+// What I need from the DB
+$SQL = "SELECT i.iditem id, i.item_name itemName, i.description itemDescription, i.price itemPrice, i.photo pix, v.vendor_name vendorName";
+
+// Which table am I getting it from, depending on the current page
 if ($fave){
-    $SQL = "SELECT i.iditem id, i.item_name itemName, i.description itemDescription, i.price itemPrice, i.photo pix, v.vendor_name vendorName FROM favorites f JOIN item i ON f.item_id= i.iditem JOIN vendor v ON i.idvendor = v.idvendor WHERE f.idcustomer = $userID";
+    $SQL .= " FROM favorites f JOIN item i ON f.item_id= i.iditem JOIN vendor v ON i.idvendor = v.idvendor WHERE f.id = $userID";
 
 }else{
-    $SQL= "SELECT i.iditem id, i.photo pix, i.item_name itemName, i.description itemDescription, i.price itemPrice , v.vendor_name vendorName FROM item i JOIN vendor v ON i.idvendor = v.idvendor";
+    $SQL .= " FROM item i JOIN vendor v ON i.idvendor = v.idvendor";
 }
 
 if ($user_input !==''){

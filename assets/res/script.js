@@ -188,21 +188,15 @@ $('#searchInput').on('input', async function(e){
 	let isItFavPage = ($(this).attr("name") == "fav-request") ? 1 : 0;
 	pattern = /[a-z]{2,}/i
 	
-	// alert(isItFavPage);
-	// return
-	// document.getElementsByClassName("center-con").style.display="none";
 	if (!search){
-		// let isItLandingPage = ($(this).attr("name") == "landing-request") ? location.href= '/?page=menu' : 0;
-		// location.href = '/?page=menu&s='
-		document.getElementById("result-con").style.display="none";
-		document.getElementById("center-con").style.display="flex";
+
 		$("#result-con").html('');
+		document.getElementById("center-con").style.display="flex";
 
 	}
 
 	if (pattern.test(search)){
-		// let isItLandingPage = await ($(this).attr("name") == "landing-request") ? location.href= '/?page=menu' : 0;
-		//alert("We're in this");
+
 		document.getElementById("center-con").style.display="none";
 
 		res = await $.get(

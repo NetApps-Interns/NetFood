@@ -9,7 +9,7 @@
 
         $userID=$_SESSION["userid"];
         // echo $userID;
-        $SQL = "SELECT i.iditem, i.item_name, i.description, i.price, i.photo, v.vendor_name FROM favorites f JOIN item i ON f.item_id= i.iditem JOIN vendor v ON i.idvendor = v.idvendor where f.idcustomer='$userID'";
+        $SQL = "SELECT i.iditem id, i.item_name itemName, i.description itemDescription, i.price itemPrice, i.photo pix, v.vendor_name vendorName FROM favorites f JOIN item i ON f.item_id= i.iditem JOIN vendor v ON i.idvendor = v.idvendor where f.idcustomer='$userID'";
         $statement = $pdo->prepare($SQL);
         $statement->execute();
         $items=$statement->fetchAll(PDO::FETCH_ASSOC);

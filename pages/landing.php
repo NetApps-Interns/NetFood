@@ -17,7 +17,7 @@
 
 		<?php
 		
-			$statement = $pdo->prepare("SELECT i.iditem, i.item_name, i.description, i.price, i.photo, v.vendor_name FROM item i JOIN vendor v ON i.idvendor = v.idvendor");
+			$statement = $pdo->prepare("SELECT i.iditem id, i.item_name itemName, i.description itemDescription, i.price itemPrice, i.photo pix, v.vendor_name vendorName FROM item i JOIN vendor v ON i.idvendor = v.idvendor");
 
 			// $statement = $pdo->prepare('SELECT id_order_details, SUM(no_of_items) qty FROM order_details GROUP BY id_order_details ORDER BY qty DESC LIMIT 5;');
 			$statement->execute();
@@ -26,18 +26,21 @@
 
 		?>
 
-
 		<div class="popular-dishes image-background">
 			<h1>Popular Orders</h1>
 			<div class="splide">
 				<div class="splide__track">
-					<div class="container splide__list">
-					<?php 
-					foreach  ($items as $item): 
-						include 'components/menu_item.php';
-					endforeach; ?>
-
-					</div>
+					<ul class="container splide__list">
+						<?php 
+						foreach  ($items as $item): ?>
+							<li class="splide__slide">
+							<?php
+							include 'components/menu_item.php';?>
+							</li>
+							<?php
+						endforeach; ?>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -51,7 +54,7 @@
 		<script>
 		var splide = new Splide( '.splide', {
 			type    : 'loop',
-			perPage : 4,
+			perPage : 5,
 			autoplay: true,
 			focus  : 'center',
   			gap    : '3rem',

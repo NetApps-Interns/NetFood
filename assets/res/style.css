@@ -246,7 +246,6 @@ nav li {
 .menu-item {
 	min-height: 200px;
 	max-height: 285px;
-	/* height: 250px; */
 	width: 130px;
 	background-color: #c1c1c1;
 	padding: 10px;
@@ -258,12 +257,18 @@ nav li {
 	margin: 2rem;
 	float: left;
 }
+@media only screen and (max-width:425px) {
+	.menu-item{
+		margin:1rem;
+	}
+	
+}
 
 .menu-image {
 	/* box-shadow: 1px 1px 20px #e4e3e1; */
 	/* background-color: #e4a804; */
 	height: 120px;
-	width: 120px;
+	width: inherit;
 	margin: 12px auto;
 	border-radius: inherit;
 	overflow: hidden;
@@ -329,27 +334,32 @@ nav li {
 	height: 130px;
 	width: 100%;
 	border-radius: inherit;
+}	
+
+.menu-btn{
+	display:flex;
+	justify-content: space-around;
 }
 
-
-.btn-add, .btn-fav {
-	/* display: flex; */
-	justify-content: center;
-	padding-top: 3px;
-	margin-left: 0.5em;
-	/* border-radius: 10px; */
+.menu-btn div{
+	display: inline-block;
+	justify-content:center;
+	align-items:center;
+	padding:5px;
+	width:20px;
+	height:20px;
+	font-size:16px;
+	border-radius:45px;
+	background-color:#777;
+	cursor:pointer;
 	font-size: 130%;
 	transition: font-size .5s;
-	color: black;
-
 }
 
-.btn-add:hover,
-.btn-fav:hover{
-	/* font-size: 150%; */
-	color:rgb(228, 168, 4);
-	
+.menu-btn div:hover{
+	background-color:rgb(228, 168, 4);
 }
+
 
 .image-background {	
 	background-image: url('img/bg2.png') ;
