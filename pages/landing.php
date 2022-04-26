@@ -8,6 +8,7 @@
 					<input
 						id="landingSearchInput"
 						class="input"
+						name="landing-request"
 					/>
 				</div>
 			</div>

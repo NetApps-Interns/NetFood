@@ -173,18 +173,27 @@ function logout() {
 }
 
 // Search function
+$('#landingSearchInput').on('keyup', async function(e){
+	if(e.keyCode == 13)
+	{
+		location.href = '/?page=menu&s='+$(this).val()
+	}
+})
+
+
 $('#searchInput').on('input', async function(e){
 	e.stopPropagation()
 	e.preventDefault();
 	let search = $(this).val();
 	let isItFavPage = ($(this).attr("name") == "fav-request") ? 1 : 0;
 	pattern = /[a-z]{2,}/i
-
+	
 	// alert(isItFavPage);
 	// return
-	document.getElementById("center-con").style.display="none";
 	// document.getElementsByClassName("center-con").style.display="none";
 	if (!search){
+		// let isItLandingPage = ($(this).attr("name") == "landing-request") ? location.href= '/?page=menu' : 0;
+		// location.href = '/?page=menu&s='
 		document.getElementById("result-con").style.display="none";
 		document.getElementById("center-con").style.display="flex";
 		$("#result-con").html('');
@@ -192,20 +201,24 @@ $('#searchInput').on('input', async function(e){
 	}
 
 	if (pattern.test(search)){
+		// let isItLandingPage = await ($(this).attr("name") == "landing-request") ? location.href= '/?page=menu' : 0;
+		//alert("We're in this");
+		document.getElementById("center-con").style.display="none";
+
 		res = await $.get(
 			'/api/search.php', 
 			{ search: search,
 				isItFavPage: isItFavPage }
 				)
 				
-				if (res.flag){			
-					$("#result-con").html(buildBody(res.data))
-				}else{
-					$("#result-con").html('<br><br><br><h1>Items not found.</h1>')
-				}
+		if (res.flag){			
+			$("#result-con").html(buildBody(res.data))
+		}else{
+			$("#result-con").html('<br><br><br><h1>Items not found.</h1>')
+		}
 		document.getElementById("result-con").style.display="flex";
 	}
-			
+	
 			
 })
 

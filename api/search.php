@@ -4,7 +4,7 @@ header("Content-type: application/json");
 
 $user_input = $_GET["search"] ?? "";
 $fave = $_GET["isItFavPage"];
-$userID = $_SESSION['userid'];
+$userID = $_SESSION['userid'] ?? '';
 // die($user_input);
 // if (!$user_input && !preg_match("/[a-z]{2,}/i", $user_input)){
 //     die();
