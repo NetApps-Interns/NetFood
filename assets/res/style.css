@@ -22,6 +22,19 @@ body {
 	overflow-x: hidden;
 	/* margin: 5px; */
 }
+
+/* A background through out the webiste with netfood logo */
+.background {
+    background-image: url(img/bg2.png);
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* overflow-y: scroll; */
+	min-height: 77vh;
+}
+
 #OpeningParallexImage {
 	background-image: linear-gradient(
 			rgba(14, 5, 5, 0.486),
@@ -48,11 +61,10 @@ header {
 	/* border-top-left-radius: 7px;
 	border-top-right-radius: 7px; */
 	padding: 1.4em;
-	z-index: 10;
 }
 
 section {
-	height: 77vh;
+	min-height: inherit;
 	padding: 25px;
 	margin: 0 auto;
 }
@@ -160,24 +172,30 @@ nav li {
 	.mobile-nav-icon {
 		display: inline-block;
 	}
-
+	
 	.main-nav {
 		display: none;
 	}
-
+	
 	.main-nav li a {
 		display: block;
 		margin: 4px;
 		border: 0;
 	}
-
+	
 	.address-request input,
-.search-request input,
-.login-request input  {
-	max-width: 250px;
+	.search-request input,
+	.login-request input  {
+		max-width: 250px;
 	}
 }
 
+@media only screen and (max-width: 767px) {
+	.hover-tab {
+		width: 94%;
+		margin: 5% 3%;
+	}
+}
 
 /* --------------------- */
 /* --------------------- */
@@ -228,7 +246,6 @@ nav li {
 .menu-item {
 	min-height: 200px;
 	max-height: 285px;
-	/* height: 250px; */
 	width: 130px;
 	background-color: #c1c1c1;
 	padding: 10px;
@@ -240,12 +257,18 @@ nav li {
 	margin: 2rem;
 	float: left;
 }
+@media only screen and (max-width:425px) {
+	.menu-item{
+		margin:1rem;
+	}
+	
+}
 
 .menu-image {
 	/* box-shadow: 1px 1px 20px #e4e3e1; */
 	/* background-color: #e4a804; */
 	height: 120px;
-	width: 120px;
+	width: inherit;
 	margin: 12px auto;
 	border-radius: inherit;
 	overflow: hidden;
@@ -277,7 +300,9 @@ nav li {
 	padding:.2rem;
 }
 
-.center-con{
+#center-con,
+#result-con
+{
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -324,27 +349,32 @@ nav li {
 	height: 130px;
 	width: 100%;
 	border-radius: inherit;
+}	
+
+.menu-btn{
+	display:flex;
+	justify-content: space-around;
 }
 
-
-.btn-add, .btn-fav {
-	/* display: flex; */
-	justify-content: center;
-	padding-top: 3px;
-	margin-left: 0.5em;
-	/* border-radius: 10px; */
+.menu-btn div{
+	display: inline-block;
+	justify-content:center;
+	align-items:center;
+	padding:5px;
+	width:20px;
+	height:20px;
+	font-size:16px;
+	border-radius:45px;
+	background-color:#777;
+	cursor:pointer;
 	font-size: 130%;
 	transition: font-size .5s;
-	color: black;
-
 }
 
-.btn-add:hover,
-.btn-fav:hover{
-	/* font-size: 150%; */
-	color:rgb(228, 168, 4);
-	
+.menu-btn div:hover{
+	background-color:rgb(228, 168, 4);
 }
+
 
 .image-background {	
 	background-image: url('img/bg2.png') ;
@@ -361,14 +391,10 @@ nav li {
 /* SIGN UP AND LOG IN PAGE----------------- */
 
 .hover-tab{
-	position: absolute;
-	top: 50%;
-	left: 47%;
-	transform: translate(-50%, -50%);
 	background-color: #e82e009d;
-	width:70%;
-	margin: 5% 3%;
-	border-radius: 1.25rem;
+    width: 70%;
+	margin: 10% 15%;
+    border-radius: 1.25rem;
 }
 /* Style tab links */
 .tablink {

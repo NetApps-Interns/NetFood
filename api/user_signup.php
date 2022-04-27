@@ -16,7 +16,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $password_hash = password_hash ($password, PASSWORD_BCRYPT);
 
 
+<<<<<<< HEAD
     if($query = $db->prepare ("SELECT * FROM customer WHERE customer_email = ?")) {
+=======
+    
+    if($query = $db->prepare ("SELECT * FROM ".TBL_CUSTOMER." WHERE customer_email = ?")) {
+>>>>>>> 19ee2e58d75077522322ed13f245322451f57732
         $error = '';
        
         //Bind parameters (s string, i = int, b = blob, etc), in our case the = username is a string so we use "s" 
@@ -35,6 +40,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $error .='<p>Password too short</p>';
             die(output_json(["This Password is too short!","Kindly make it longer than 6 characters."], 0));
             }
+
+            // $check = [];
+            // if (!preg_match("/[a-z]+/", $password)) {
+            //     $check[] = "lowercase";
+            // }
+            // if (!preg_match("/[A-Z]+/", $password)) {
+            //     $check[] = "uppercase";
+            // }
+            // if (!preg_match("/\d/", $password)) {
+            //     $check[] = "number";
+            // }
+            // if (!preg_match("/[^a-z0-9]/i", $password)) {
+            //     $check[] = "special character";
+            // }
+
+
+
+            // if (!empty($check)){
+            //     $msg = "Password must contain at least a ".implode(", ", $check);
+            //     die(output_json(['Password format invalid',$msg], 0));
+            // }
+
             // Check phone number
             if (!$phone_number) {
             $error .='<p>Phone number incorrect</p>';
@@ -44,7 +71,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         } 
       
         if (empty($error) ) {
+<<<<<<< HEAD
             $insertQuery = $db->prepare("INSERT INTO customer (customer_name, customer_email, customer_phone_number, customer_password) VALUES (?, ?, ?, ?)");
+=======
+        
+            $insertQuery = $db->prepare("INSERT INTO ".TBL_CUSTOMER." (customer_name, customer_email, customer_phone_number, customer_password) VALUES (?, ?, ?, ?)");
+>>>>>>> 19ee2e58d75077522322ed13f245322451f57732
             $insertQuery->bind_param("ssss", $fullname, $email, $phone_number, $password_hash);
             $result = $insertQuery->execute();
 

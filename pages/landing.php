@@ -8,6 +8,7 @@
 					<input
 						id="landingSearchInput"
 						class="input"
+						name="landing-request"
 					/>
 				</div>
 			</div>
@@ -15,8 +16,9 @@
 		</div>
 
 		<?php
+		
+			$statement = $pdo->prepare("SELECT i.id itemId, i.item_name itemName, i.description itemDescription, i.price itemPrice, i.photo pix, v.vendor_name vendorName FROM ".TBL_ITEM." i JOIN ".TBL_VENDOR." v ON i.idvendor = v.id");
 
-			$statement = $pdo->prepare('SELECT * FROM item');
 			// $statement = $pdo->prepare('SELECT id_order_details, SUM(no_of_items) qty FROM order_details GROUP BY id_order_details ORDER BY qty DESC LIMIT 5;');
 			$statement->execute();
 			$items=$statement->fetchAll(PDO::FETCH_ASSOC);
@@ -24,31 +26,21 @@
 
 		?>
 
-
 		<div class="popular-dishes image-background">
 			<h1>Popular Orders</h1>
 			<div class="splide">
 				<div class="splide__track">
-					<div class="container splide__list">
-					<?php foreach  ($items as $item): ?>
-						
-						<div class="menu-item  splide__slide">
-							<div class="menu-image">
-								<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src="<?= ITEM_IMG_DIR.$item['photo'] ?>" alt="<?= $item['item_name'] ?>"/>
-							</div> 
-							
-							<b><p class="menu-about"> <?= $item['item_name'] ?> </p></b>
-							<p class="menu-about"> <?= $item['description'] ?> </p>
-							<span class="meal-price"><span>&#8358;</span><?= $item['price'] ?></span>
-
-							<div>
-								<a class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
-								<a onclick="addToCart(<?= $item['iditem']?>)" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
-							</div>
-						</div>
-					<?php endforeach; ?>
-
-					</div>
+					<ul class="container splide__list">
+						<?php 
+						foreach  ($items as $item): ?>
+							<li class="splide__slide">
+							<?php
+							include 'components/menu_item.php';?>
+							</li>
+							<?php
+						endforeach; ?>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -62,7 +54,7 @@
 		<script>
 		var splide = new Splide( '.splide', {
 			type    : 'loop',
-			perPage : 4,
+			perPage : 5,
 			autoplay: true,
 			focus  : 'center',
   			gap    : '3rem',

@@ -29,11 +29,42 @@
                 <p>Copyright&copy; 2022 by NETFood. All rights reserved.</p>
             </div>
         </footer>
+        <script>
+            const IMG = '<?= ITEM_IMG_DIR ?>'
+        </script>
         
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 	<script src="assets/res/script.js"></script>
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    </body>
+    
+<?php
+@session_start();
+if(isset($_SESSION['error_msg'])){
+    ?>
+    <script>
+  
+        Swal.fire({
+            title: '<?= $_SESSION['error_msg']; ?>',
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#e4a804',
+            cancelButtonColor: '#e82d00',
+            confirmButtonText: 'Yes, log in or sign up!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.href= '/?page=login-signup';
+            }else{
+                location.href= '/?page=menu';
+            }
+        });
+
+     </script>
+    <?php
+    unset($_SESSION['error_msg']);
+}
+
+?>
+</body>
 
 </html>

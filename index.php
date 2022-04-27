@@ -17,7 +17,9 @@ $page = $_GET['page'] ?? '';
 // }else {
 //     $page='';
 // }
-
+?>
+<div class="background">
+<?php
 switch ($page) {
     
     case '':
@@ -41,9 +43,9 @@ switch ($page) {
         require 'pages/login-signup-2.php';
         break;
     
-    case 'become-a-vendor':
+    case 'profile':
         # code...
-        require 'pages/vendor/vendor-registration.php';
+        require 'pages/profile.php';
         break;
     
     case 'aaa':
@@ -67,10 +69,12 @@ switch ($page) {
         break;
     
     default:
-        # code...
+        require 'pages/landing.php';
         break;
 }
-
+?>
+</div>
+<?php
 
 
 include 'components/footer.php';

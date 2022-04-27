@@ -47,12 +47,6 @@
 		<!-- LOG IN -->
 		<div id="log-in-tab" class="tabcontent">
 
-			
-		
-		<?php
-			// include "api\user-login.php";
-			// echo $error?>
-
 			<form id="loginForm" action="" method="post" class="login-request">
 			
 				<div class="row">
@@ -128,6 +122,40 @@
 			email = $('#email').val();
 			phone_number = $('#phone_number').val();
 			password = $('#signupPassword').val();
+
+			const check=[];
+
+			if (!(/[A-Z]+/).test(password)) {
+				check.push("n uppercase");
+			}
+			if (!(/[a-z]+/).test(password)) {
+				check.push(" lowercase");
+			}
+			if (!(/\d/).test(password)) {
+				check.push(" number");
+			}
+			// if (!(/[^a-z0-9]/i).test(password)) {
+			// 	check.push("special character");
+			// }
+			if(!password.length < 6){
+				check.push(" length longer than 6");
+			}
+			
+			if (check.length > 1) {
+				check[check.length-1] = "and"+check[check.length-1];
+			}
+			// console.log(check);
+
+			if (check){
+				let msg = "Password must have at least a"+ check.join(", ");
+
+				Swal.fire(
+				'Password format invalid!',
+				msg,
+				'info');
+				return;
+			}
+
 			
 			data= { 
 					fname: fname,
@@ -152,6 +180,8 @@
 					res.msg[1],
 					'success'
 				)
+				location.href = '/?page=login-signup';
+
 			}else{
 				Swal.fire(
 				res.msg[0],
