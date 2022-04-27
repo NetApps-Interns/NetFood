@@ -43,9 +43,9 @@ switch ($page) {
         require 'pages/login-signup-2.php';
         break;
     
-    case '#':
+    case 'about-us':
         # code...
-        require 'pages/#.php';
+        require 'pages/about-us.php';
         break;
     
     case '#':
