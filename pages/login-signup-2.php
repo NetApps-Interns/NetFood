@@ -165,6 +165,7 @@
 					password: password 
 				}
 				console.log(data);
+				console.log("efdshbtrsfer");
 			res = await $.post(
 				'/api/user_signup.php', 
 				data

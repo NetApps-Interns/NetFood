@@ -46,11 +46,14 @@ switch ($page) {
     case 'about-us':
         # code...
         require 'pages/about-us.php';
+    case 'profile':
+        # code...
+        require 'pages/profile.php';
         break;
     
-    case '#':
+    case 'aaa':
         # code...
-        require 'pages/#.php';
+        require 'pages/admin/admin-login.php';
         break;
     
     case '#':
@@ -69,7 +72,7 @@ switch ($page) {
         break;
     
     default:
-        # code...
+        require 'pages/landing.php';
         break;
 }
 ?>

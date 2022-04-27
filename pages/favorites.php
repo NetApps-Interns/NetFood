@@ -9,10 +9,13 @@
 
         $userID=$_SESSION["userid"];
         // echo $userID;
-        $SQL = "SELECT i.iditem, i.item_name, i.description, i.price, i.photo FROM favorites f JOIN item i ON f.item_id= i.iditem where f.idcustomer='$userID'";
+        $SQL = "SELECT i.id itemId, i.item_name itemName, i.description itemDescription, i.price itemPrice, i.photo pix, v.vendor_name vendorName FROM ".TBL_FAV." f JOIN ".TBL_ITEM." i ON f.item_id= i.id JOIN ".TBL_VENDOR." v ON i.idvendor = v.id where f.idcustomer='$userID'";
         $statement = $pdo->prepare($SQL);
         $statement->execute();
         $items=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+		// var_dump($items);
+		// exit;
 
     }else{
 
@@ -28,29 +31,21 @@
 			<ion-icon name="search-outline"></ion-icon>
 			<input
 				placeholder="Search favorites"
-				name="meal-request"
+				name="fav-request"
 				class="input"
+				id="searchInput"
 			/>
 		</div>
 	</div>
 
-<div class="center-con">
+<div id="center-con">
 	
-	<?php foreach  ($items as $item): ?>
-        <div class="menu-item">
-            <div class="menu-image">
-				<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src="<?= ITEM_IMG_DIR.$item['photo'] ?>" alt="<?= $item['item_name'] ?>"/>
-            </div>
-			<b><p class="menu-about"> <?= $item['item_name'] ?> </p></b>
-            <p class="menu-about"> <?= $item['description'] ?> </p>
-            <span class="meal-price"><span>&#8358;</span><?= $item['price'] ?></span>
+	<?php foreach  ($items as $item): 
+        include 'components/menu_item.php';
+     endforeach; ?>
 
-			<div>
-				<a onclick="removeFromFav(<?= $item['iditem']?>, '<?= $item['item_name'] ?>')" class="btn-fav" >r<ion-icon name="heart-dislike-outline"></ion-icon></a>
-				<a onclick="addToCart(<?= $item['iditem']?>)" class="btn-add">a<ion-icon name="add-outline"></ion-icon></a>
-			</div>
-        </div>
-    <?php endforeach; ?>
+</div>
+<div id="result-con">
 
 </div>
 </section>
@@ -83,7 +78,7 @@ removeFromFav = async function(itemId, itemName){
 		icon: 'success',
 		title: res.msg[0]
 		})
-        location.href = "/?page=favorites";
+        $("#center-con").html(buildFavBody(res.data))
 
 	}else{
 		const Toast = Swal.mixin({
