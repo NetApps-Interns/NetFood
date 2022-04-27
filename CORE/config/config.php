@@ -53,3 +53,5 @@
 
     const TBL_FAV = 'favorites';
     const TBL_ITEM = 'item';
+    const TBL_VENDOR = 'vendor';
+    const TBL_CUSTOMER = 'customer';

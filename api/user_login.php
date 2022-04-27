@@ -9,15 +9,16 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 	$email = email($_POST['username']); 
 	$password = trim($_POST['password']);
 	// die($password);
+	$SQL ="SELECT c.id customerId, c.customer_password customerPassword FROM ".TBL_CUSTOMER." c WHERE customer_email = '$email'";
 	
-	$query = $db->query("SELECT * FROM customer WHERE customer_email = '$email'");
+	$query = $db->query($SQL);
 	
 	$row = $query->fetch_all(MYSQLI_ASSOC);
 	
 	if ($row) {
 		$row=$row[0];
-		if (password_verify($password, $row['customer_password'])) {
-			$_SESSION["userid"] = $row["idcustomer"]; 
+		if (password_verify($password, $row['customerPassword'])) {
+			$_SESSION["userid"] = $row["customerId"]; 
 			$_SESSION["user"] = $row;
 			session_regenerate_id();
 

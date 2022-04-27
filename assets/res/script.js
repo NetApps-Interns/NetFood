@@ -14,9 +14,11 @@ function stickify() {
 	if (document.documentElement.scrollTop >= 120) {
 		$("header").addClass("sticky");
 		$("#cd-cart").addClass("sticky");
+		$(".main-nav").addClass("nowSticky");
 	} else {
 		$("header").removeClass("sticky");
 		$("#cd-cart").removeClass("sticky");
+		$(".main-nav").removeClass("nowSticky");
 
 
 	}
@@ -29,14 +31,14 @@ jQuery(document).ready(function($){
 	
 	var $cart_trigger = $('#cd-cart-trigger'),
 		$lateral_cart = $('#cd-cart'),
-		$shadow_layer = $('#cd-shadow-layer');
+		$shadow_layer = $('.cart-close-trigger');
 
 
 	//open cart
 	$cart_trigger.on('click', function(event){
 		event.preventDefault();
 		toggle_panel_visibility($lateral_cart, $shadow_layer, $('body'));
-		$(".main-nav").slideUp(300);
+		$(".main-nav.nowSticky").slideUp(300);
 	});
 
 	//close lateral cart or lateral menu
@@ -227,13 +229,46 @@ function buildBody(data){
 				<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src= "${IMG+item.pix}" alt="${item.itemName}"/>
 			</div>
 
-			<b><p class="menu-about">${item.itemName}</p></b>
+			<strong><p class="menu-about">${item.itemName}</p></stromg>
+			<p>by <em class="menu-about">${item.vendorName}</em></p>
+			<span class="meal-price"><span>&#8358;</span>${item.itemPrice}</span>
+
+			<div class = "menu-btn">
+				<div>
+					<a onclick="addToFav(${item.itemId}, '${item.itemName}')" class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
+				</div>
+				<div>
+					<a onclick="addToCart(${item.itemId})" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
+				</div>
+			</div>
+		</div>
+		`
+		}
+		return menuBody;
+}
+
+
+function buildFavBody(data){
+	let menuBody = '';
+
+	for (let item of data) {
+		menuBody += `
+		<div class="menu-item">
+			<div class="menu-image">
+				<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src= "${IMG+item.pix}" alt="${item.itemName}"/>
+			</div>
+
+			<strong><p class="menu-about">${item.itemName}</p></strong>
 			by <em class="menu-about">${item.vendorName}</em>
 			<span class="meal-price"><span>&#8358;</span>${item.itemPrice}</span>
 
-			<div>
-				<a class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
-				<a onclick="addToCart(${item.id})" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
+			<div class = "menu-btn">
+				<div>
+					<a onclick="removeFromFav(${item.itemId}, '${item.itemName}')" class="btn-fav" ><ion-icon name="heart-dislike-outline"></ion-icon></a>
+				</div>
+				<div>
+					<a onclick="addToCart(${item.itemId})" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
+				</div>
 			</div>
 		</div>
 		`

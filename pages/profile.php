@@ -20,6 +20,10 @@
 </div>
 
 <style>
+    .profile-con{
+        
+    }
+    
     div.profile-con{
         float: left;
         /* background-color: purple; */

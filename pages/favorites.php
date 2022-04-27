@@ -9,7 +9,7 @@
 
         $userID=$_SESSION["userid"];
         // echo $userID;
-        $SQL = "SELECT i.iditem id, i.item_name itemName, i.description itemDescription, i.price itemPrice, i.photo pix, v.vendor_name vendorName FROM favorites f JOIN item i ON f.item_id= i.iditem JOIN vendor v ON i.idvendor = v.idvendor where f.idcustomer='$userID'";
+        $SQL = "SELECT i.id itemId, i.item_name itemName, i.description itemDescription, i.price itemPrice, i.photo pix, v.vendor_name vendorName FROM ".TBL_FAV." f JOIN ".TBL_ITEM." i ON f.item_id= i.id JOIN ".TBL_VENDOR." v ON i.idvendor = v.id where f.idcustomer='$userID'";
         $statement = $pdo->prepare($SQL);
         $statement->execute();
         $items=$statement->fetchAll(PDO::FETCH_ASSOC);
@@ -78,7 +78,7 @@ removeFromFav = async function(itemId, itemName){
 		icon: 'success',
 		title: res.msg[0]
 		})
-        location.href = "/?page=favorites";
+        $("#center-con").html(buildFavBody(res.data))
 
 	}else{
 		const Toast = Swal.mixin({

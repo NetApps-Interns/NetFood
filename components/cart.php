@@ -3,10 +3,13 @@ $cartObj = new CartStore_Session();
 $cartObj = $cartObj->getCart();
 ?>
 
-<div id="cd-shadow-layer"></div>
+<div id="cd-shadow-layer" class="cart-close-trigger"></div>
 
 <div id="cd-cart">
-	<h2>Cart</h2>
+  <div class="cart_header">
+    <span><h2 style="display: inline-block;">Cart</h2></span>
+    <span class="cart-close-trigger" style="font-size: 200%;"><ion-icon name="close-circle-outline"></ion-icon></span>
+  </div>
 	<ul class="cd-cart-items" id="cartBody">
     <?php
     foreach($cartObj['items'] as $item){
@@ -93,13 +96,16 @@ $cartObj = $cartObj->getCart();
   #cd-cart > * {
     padding: 0 1em;
   }
-  #cd-cart h2 {
+  #cd-cart .cart_header{
     font-size: 14px;
     font-size: 0.875rem;
     font-weight: bold;
     text-transform: uppercase;
     margin: 1em 0;
+    display: flex;
+    justify-content: space-between;
   }
+
   #cd-cart .cd-cart-items {
     padding: 0;
   }

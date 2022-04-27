@@ -64,7 +64,7 @@ header {
 }
 
 section {
-	/* min-height: 77vh; */
+	min-height: inherit;
 	padding: 25px;
 	margin: 0 auto;
 }
