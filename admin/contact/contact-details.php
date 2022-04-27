@@ -70,8 +70,6 @@
 				<input type="text" name="facebook" class="form-control" value="<?php echo $facebook; ?>">
 			</div>
 		</div>
-	</div>
-		<div class="row">
 		<div class="col">
 			<div class="form-group">
 				<label>Google Plus</label>
@@ -79,6 +77,7 @@
 			</div>
 		</div>
 	</div>
+		
 
 		<div class="row">
 		<div class="col">
@@ -87,9 +86,6 @@
 				<input type="text" name="twitter" class="form-control" value="<?php echo $twitter; ?>">
 			</div>
 		</div>
-	</div>
-
-	<div class="row">
 		<div class="col">
 			<div class="form-group">
 				<label>LinkedIn Account URL</label>
@@ -98,23 +94,9 @@
 		</div>
 	</div>
 
-		<div class="row">
-		<div class="col">
-			<div class="form-group">
-				<label>YouTube Channel URL</label>
-				<input type="text" name="youtube" class="form-control" value="<?php echo $youtube; ?>">
-			</div>
-		</div>
-	</div>
+	
 
-	<div class="row">
-		<div class="col">
-			<div class="form-group">
-				<label>Instagram Account URL</label>
-				<input type="text" name="instagram" class="form-control" value="<?php echo $instagram; ?>">
-			</div>
-		</div>
-	</div>
+		
 		<div class="row">
 		<div class="col">
 			<div class="form-group">

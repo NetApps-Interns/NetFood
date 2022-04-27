@@ -20,8 +20,8 @@
 				<th>email</th>
                 <th>Contact</th>
 				<th>Status</th>
-				<th>View</th>
-				<th>Delete</th>
+				
+				
 				
 			</tr>
 			<?php
@@ -43,18 +43,17 @@
    			<?php
    			if($data['status']==0){
    			?>
-   			<a href="javascript:void(0)" name="admin_profile" class=" text-secondary adminRole"  rel="<?php echo $data['id']; ?>">
+   			<a href="javascript:void(0)" name="logistics" class=" text-secondary adminRole"  rel="<?php echo $data['id']; ?>">
    			<i class='fas fa-user-alt-slash iconRole' ></i>
    		<?php } else{ ?>
-   			<a href="javascript:void(0)" name="admin_profile" class=" text-success adminRole"  rel="<?php echo $data['id']; ?>">
+   			<a href="javascript:void(0)" name="logistics" class=" text-success adminRole"  rel="<?php echo $data['id']; ?>">
               <i class='fas fa-user-alt iconRole'></i>
    		<?php } ?>
    	
    		</a></td>
-   		<td><a  href="dashboard.php?cat=website-admin&subcat=admin-profile&view=<?php echo $data['id']; ?>" class="text-secondary content-link"><i class='far fa-eye'></i></a></td>
-        <td><a href="javascript:void(0)" class="text-danger delete"  name="admin_profile" id="<?php echo $data['id']; ?>"><i class='far fa-trash-alt'></i></a></td>
+   		<td><a  href="dashboard.php?cat=pages&subcat=riders&view=<?php echo $data['id']; ?>" class="text-secondary content-link"><i class='far fa-eye'></i></a></td>
 
-   	</tr>
+	</tr>
    	<?php
    $i++;}
 }else{

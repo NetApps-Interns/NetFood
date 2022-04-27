@@ -1,3 +1,50 @@
+<?php if (!empty($_GET['view'])) {?>
+	
+	<?php 
+
+    $id= $_GET['view'];
+   $query="SELECT order_details.id, customer.customer_name, order_details.created_at, customer.customer_phone_number, order_details.status, customer.customer_email
+   FROM order_details
+   INNER JOIN customer ON order_details.customer_id=customer.id WHERE order_details.id=$id";
+   $res= $conn->query($query);
+   $viewData=$res->fetch_assoc();
+   $backId=$viewData['id']-1;
+   $fullName=$viewData['customer_name'];
+   $email=$viewData['customer_email'];
+   $mobile=$viewData['customer_phone_number'];
+   ?>
+   <br> <br> <br>
+<div class="row">
+	<div class="col">
+	</div>
+	<div class="col text-right">
+		<a href="dashboard.php?cat=pages&subcat=orders" class="btn btn-secondary content-link">Back</a>
+	</div>
+</div>
+<br>
+
+<div class="table-responsive">
+	<table class="table">
+	   	<tr>
+			<th>Order ID -</th><td><?php echo $id; ?></td>
+		</tr>
+		<tr>
+			<th>Customer's Name -</th><td><?php echo $fullName; ?></td>
+		</tr>
+		<tr>
+			<th>Email -</th><td><?php echo $email; ?></td>
+		</tr>
+		<tr>
+			<th>Mobile Number -</th><td><?php echo $mobile; ?></td>
+		</tr>
+		
+	</table>
+</div>
+   <?php
+   
+	
+
+ }else {?>
 <br><br>
 
 <!-----=================table content start=================-->
@@ -46,7 +93,7 @@ INNER JOIN customer ON order_details.customer_id=customer.id";
    			    switch($data['status']){
 				   case 'new':
 					?>
-						<div class="badge badge-opacity-new">New</div>
+						<div class="badge badge-opacity-primary">New</div>
 					<?php 
 					break; 
 					case 'processing'
@@ -56,20 +103,20 @@ INNER JOIN customer ON order_details.customer_id=customer.id";
 					break;
 					case 'pending'
 					?>
-						<div class="badge badge-opacity-new">Pending</div>
+						<div class="badge badge-opacity-dark">Pending</div>
 					<?php 
 					break;
 					case 'completed'
 					?>
-						<div class="badge badge-opacity-new">New</div>
+						<div class="badge badge-opacity-success">Completed</div>
 					<?php 
 					break;
 					case 'cancelled'
 					?>
-						<div class="badge badge-opacity-new">New</div>
+						<div class="badge badge-opacity-danger">Cancelled</div>
 					<?php 
 					break;
-				   }?>1
+				   }?>
 						
 
 
@@ -77,7 +124,7 @@ INNER JOIN customer ON order_details.customer_id=customer.id";
    		
    	
    		</td>
-   		<td><a  href="dashboard.php?cat=website-admin&subcat=admin-profile&view=<?php echo $data['id']; ?>" class="text-secondary content-link"><i class='far fa-eye'></i></a></td>
+   		<td><a href="dashboard.php?cat=pages&subcat=orders&view=<?php echo $data['id']; ?>" class="text-secondary content-link"><i class='far fa-eye'></i></a></td>
        
    	</tr>
    	<?php
@@ -98,3 +145,4 @@ INNER JOIN customer ON order_details.customer_id=customer.id";
 
 
 </div>
+<?php } ?>

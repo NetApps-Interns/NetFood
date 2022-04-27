@@ -188,11 +188,30 @@ border: 0px;
       background: #fff2d6;
       color: #cc8c00;
     }
-    .badge-opacity-new {
-      background: #b8c4eb;
-      color: rgb(96, 96, 224);
-    }    
+   
     .badge-opacity-danger {
       background: white;
       color: #f73122;
+    }
+    .badge-opacity-success {
+      background: #cbf0ee;
+      color: #288a84;
+    }
+    .badge-opacity-primary {
+      background: #b6c1f2;
+      color: #172d88;
+    }
+    
+    .badge-opacity-secondary {
+      background: white;
+      color: #d8d8d8;
+    }
+    .badge-opacity-light {
+      background: white;
+      color: #e2e2e2;
+    }
+    
+    .badge-opacity-dark {
+      background: #768cbb;
+      color: #0d121b;
     }

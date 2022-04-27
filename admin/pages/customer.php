@@ -21,7 +21,7 @@
 				<th>email</th>
                 <th>Contact</th>
 				<th>Status</th>
-				<th>View</th>
+				
 			
 				
 			</tr>
@@ -52,7 +52,7 @@
    		<?php } ?>
    	
    		</a></td>
-   		<td><a  href="dashboard.php?cat=website-admin&subcat=admin-profile&view=<?php echo $data['id']; ?>" class="text-secondary content-link"><i class='far fa-eye'></i></a></td>
+   		
        
    	</tr>
    	<?php

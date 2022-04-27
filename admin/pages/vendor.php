@@ -1,3 +1,48 @@
+<?php if (!empty($_GET['view'])) {?>
+	
+	<?php 
+
+    $id= $_GET['view'];
+   $query="SELECT * FROM vendor WHERE id=$id";
+   $res= $conn->query($query);
+   $viewData=$res->fetch_assoc();
+   $backId=$viewData['id']-1;
+   $fullName=$viewData['vendor_name'];
+   $email=$viewData['email'];
+   $mobile=$viewData['contact'];
+   $address=$viewData['vendor_address'];
+
+   ?>
+    <br> <br> <br>
+<div class="row">
+	<div class="col">
+	</div>
+	<div class="col text-right">
+		<a href="dashboard.php?cat=pages&subcat=vendor" class="btn btn-secondary content-link">Back</a>
+	</div>
+</div>
+<br>
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<th>Full Name -</th><td><?php echo $fullName; ?></td>
+		</tr>
+		<tr>
+			<th>Email -</th><td><?php echo $email; ?></td>
+		</tr>
+		<tr>
+			<th>Mobile Number -</th><td><?php echo $mobile; ?></td>
+		</tr>
+		<tr>
+			<th>Address -</th><td><?php echo $address; ?></td>
+		</tr>
+	</table>
+</div>
+   <?php
+   
+	
+
+ }else {?>
 <br><br>
 
 <!-----=================table content start=================-->
@@ -21,7 +66,7 @@
                 <th>Contact</th>
 				<th>Status</th>
 				<th>View</th>
-				<th>Delete</th>
+				
 				
 			</tr>
 			<?php
@@ -41,18 +86,20 @@
    		<td>
    			
    			<?php
-   			if($data['status']==0){
-   			?>
-   			<a href="javascript:void(0)" name="admin_profile" class=" text-secondary adminRole"  rel="<?php echo $data['id']; ?>">
-   			<i class='fas fa-user-alt-slash iconRole' ></i>
-   		<?php } else{ ?>
-   			<a href="javascript:void(0)" name="admin_profile" class=" text-success adminRole"  rel="<?php echo $data['id']; ?>">
+   			switch($data['status']){
+				   case 0:
+   				?>
+   				<a href="javascript:void(0)" name="vendor" class=" text-secondary adminRole"  rel="<?php echo $data['id']; ?>">
+   				<i class='fas fa-user-alt-slash iconRole' ></i>
+   				<?php break;
+		   		case 1:
+		   ?>
+   			<a href="javascript:void(0)" name="vendor" class=" text-success adminRole"  rel="<?php echo $data['id']; ?>">
               <i class='fas fa-user-alt iconRole'></i>
-   		<?php } ?>
+   		<?php break; } ?>
    	
    		</a></td>
-   		<td><a  href="dashboard.php?cat=website-admin&subcat=admin-profile&view=<?php echo $data['id']; ?>" class="text-secondary content-link"><i class='far fa-eye'></i></a></td>
-        <td><a href="javascript:void(0)" class="text-danger delete"  name="admin_profile" id="<?php echo $data['id']; ?>"><i class='far fa-trash-alt'></i></a></td>
+   		<td><a  href="dashboard.php?cat=pages&subcat=vendor&view=<?php echo $data['id']; ?>" class="text-secondary content-link"><i class='far fa-eye'></i></a></td>
 
    	</tr>
    	<?php
@@ -73,3 +120,4 @@
 
 
 </div>
+<?php } ?>

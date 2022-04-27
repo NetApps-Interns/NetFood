@@ -102,7 +102,7 @@ if($_GET['subcat']=='add-admin-profile'){
    $fullName=$viewData['admin_full_name'];
    $email=$viewData['email_address'];
    $mobile=$viewData['contact'];
-   $password=$viewData['admin_password'];
+
    ?>
 <div class="row">
 	<div class="col">
