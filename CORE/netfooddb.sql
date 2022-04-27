@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2022 at 01:12 PM
+-- Generation Time: Apr 27, 2022 at 02:05 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -118,7 +118,7 @@ CREATE TABLE `customer` (
   `customer_name` varchar(45) NOT NULL,
   `customer_address` varchar(100) NOT NULL,
   `customer_email` varchar(100) DEFAULT NULL,
-  `customer_contact` varchar(20) NOT NULL,
+  `customer_phone_number` varchar(20) NOT NULL,
   `customer_password` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` date NOT NULL,
@@ -130,29 +130,28 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-
-INSERT INTO `customer` (`id`, `customer_name`, `customer_address`, `customer_email`, `customer_phone_number`, `customer_password`, `idcity`) VALUES
-(1, 'Emmanuel Imoh Gbinije', '', 'princeemmanuel05@gmail.com', '+2348091371709', '$2y$10$9ylUYwRmMBSjiiHuSjBYjeuOLxrCyIhd7ylkIabNnXYtkb7RdP.gC', NULL);
+INSERT INTO `customer` (`id`, `customer_name`, `customer_address`, `customer_email`, `customer_phone_number`, `customer_password`, `status`, `created_at`, `last_login`, `idcity`) VALUES
+(1, 'Emmanuel Imoh Gbinije', '', 'princeemmanuel05@gmail.com', '+2348091371709', '$2y$10$9ylUYwRmMBSjiiHuSjBYjeuOLxrCyIhd7ylkIabNnXYtkb7RdP.gC', 1, '0000-00-00', '0000-00-00', NULL);
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `favorites`
 --
 
 CREATE TABLE `favorites` (
-  `id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `idcustomer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `favorites`
+--
 
-INSERT INTO `favorites` (`id`, `item_id`, `idcustomer`) VALUES
-(42, 4, 1),
-(44, 6, 1),
-(53, 5, 1),
-(54, 7, 1),
-(55, 4, 0),
-(56, 1, 0);
+INSERT INTO `favorites` (`item_id`, `idcustomer`) VALUES
+(4, 0),
+(3, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -166,6 +165,7 @@ CREATE TABLE `item` (
   `description` varchar(500) NOT NULL,
   `price` decimal(10,0) NOT NULL,
   `photo` varchar(255) NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `idvendor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -173,14 +173,14 @@ CREATE TABLE `item` (
 -- Dumping data for table `item`
 --
 
-INSERT INTO `item` (`iditem`, `item_name`, `ingredients`, `description`, `price`, `photo`, `idvendor`) VALUES
-(1, 'Banana Fish', 'Banana, Fish and a lil bit of spice', 'Delicious', '2500', 'brownies.jpg', 1),
-(2, 'Feast', 'rice, steak, and a whole lot more', 'Meaty', '500', 'feast.jpg', 1),
-(3, 'Masa', 'rice cake', 'Delicious', '500', 'feast.jpg', 1),
-(4, 'Pizza', 'Perronoi', 'TAstys', '5000', 'pizza.jpg', 1),
-(5, 'Burger', 'Veggie', 'Nice', '1700', 'burger.jpg', 1),
-(6, 'Chicken', 'Chicken', 'Delicious, TAsty, everything', '7500', 'chicken.jpg', 1),
-(7, 'ChickWizz', 'Bread, Tomatos, Cheese, Chicken, Lettuces', 'Fire!!!', '1900', 'feast.jpg', 2);
+INSERT INTO `item` (`id`, `item_name`, `ingredients`, `description`, `price`, `photo`, `create_date`, `idvendor`) VALUES
+(1, 'Banana Fish', 'Banana, Fish and a lil bit of spice', 'Delicious', '2500', 'brownies.jpg', '2022-04-27 09:52:40', 1),
+(2, 'Feast', 'rice, steak, and a whole lot more', 'Meaty', '500', 'feast.jpg', '2022-04-27 09:52:40', 1),
+(3, 'Masa', 'rice cake', 'Delicious', '500', 'feast.jpg', '2022-04-27 09:52:40', 1),
+(4, 'Pizza', 'Perronoi', 'TAstys', '5000', 'pizza.jpg', '2022-04-27 09:52:40', 1),
+(5, 'Burger', 'Veggie', 'Nice', '1700', 'burger.jpg', '2022-04-27 09:52:40', 1),
+(6, 'Chicken', 'Chicken', 'Delicious, TAsty, everything', '7500', 'chicken.jpg', '2022-04-27 09:52:40', 1),
+(7, 'ChickWizz', 'Bread, Tomatos, Cheese, Chicken, Lettuces', 'Fire!!!', '1900', 'feast.jpg', '2022-04-27 09:52:40', 2);
 
 -- --------------------------------------------------------
 
@@ -994,72 +994,25 @@ CREATE TABLE `logistics` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu`
---
-
-CREATE TABLE `menu` (
-  `id` int(11) NOT NULL,
-  `menu_name` varchar(100) NOT NULL,
-  `menu_image` blob NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `menu_status` int(1) NOT NULL,
-  `idmenutype` int(11) NOT NULL,
-  `iditem` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menutype`
---
-
-CREATE TABLE `menutype` (
-  `id` int(11) NOT NULL,
-  `type_name` varchar(45) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `order_details`
 --
 
 CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `no_of_items` int(11) NOT NULL,
   `total_amount` decimal(10,0) NOT NULL,
-  `old_status` tinyint(1) DEFAULT 1,
+  `status` enum('new','processing','pending','completed','cancelled') DEFAULT 'new',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `customer_id` int(11) NOT NULL,
-  `iditem` int(11) NOT NULL
+  `iditem` int(11) NOT NULL,
+  `idvendor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `order_status`
+-- Dumping data for table `order_details`
 --
 
-CREATE TABLE `order_status` (
-  `id` int(11) NOT NULL,
-  `new_status` enum('pending','processing','delivering','completed') NOT NULL,
-  `completed_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `payment`
---
-
-CREATE TABLE `payment` (
-  `id` int(11) NOT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `payment_date` date NOT NULL,
-  `customer_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `order_details` (`id`, `total_amount`, `status`, `created_at`, `customer_id`, `iditem`, `idvendor`) VALUES
+(1, '54536', 'new', '2022-04-27 10:04:13', 1, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -1068,11 +1021,10 @@ CREATE TABLE `payment` (
 --
 
 CREATE TABLE `ratings` (
-  `id` int(11) NOT NULL,
+  `idratings` int(11) NOT NULL,
   `score` int(11) DEFAULT NULL,
   `remarks` varchar(100) DEFAULT NULL,
-  `ratings_date` date DEFAULT NULL,
-  `idmenu` int(11) NOT NULL
+  `ratings_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1209,8 +1161,18 @@ CREATE TABLE `vendor` (
   `vendor_password` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `last_updated` datetime NOT NULL,
-  `idcity` int(11) NOT NULL
+  `idcity` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `vendor`
+--
+
+INSERT INTO `vendor` (`id`, `vendor_name`, `description`, `contact`, `email`, `vendor_address`, `vendor_password`, `status`, `last_updated`, `idcity`) VALUES
+(1, 'Foodie Hive', 'Making Delicacies that keep you wanting more', 2147483647, 'foodiehive@gmail.com', '4 Kenema Cl, Off Sakono Street, Wuse 2', '', 1, '2022-03-25 10:25:59', '0'),
+(2, 'Chicken Republic', 'Tasty chicken', 2147483, 'chickenrepublic@gmail.com', 'Aminu Kano Cres, Wuse 2', '', 1, '2022-04-21 16:21:17', '0'),
+(3, 'H-Medix', 'Everything you need in one place', 2147481, 'hmedix@yahoo.com', '155 Aminu Kano Cres, Wuse 2', '', 1, '2022-04-27 16:21:17', '0'),
+(7, '', '', 0, 'charles@gmail.com', '', '$2y$10$XtAoZDSoPH8cyVsnocRIT.yWYH6ObFbRkEJ.IuXS9f3gzxAw10SIa', 1, '0000-00-00 00:00:00', '0');
 
 --
 -- Indexes for dumped tables
@@ -1229,7 +1191,6 @@ ALTER TABLE `customer`
 -- Indexes for table `favorites`
 --
 ALTER TABLE `favorites`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `item_id` (`item_id`),
   ADD KEY `idcustomer` (`idcustomer`);
 
@@ -1254,46 +1215,19 @@ ALTER TABLE `logistics`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `iditem` (`iditem`),
-  ADD KEY `idmenutype` (`idmenutype`);
-
---
--- Indexes for table `menutype`
---
-ALTER TABLE `menutype`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `iditem` (`iditem`),
-  ADD KEY `customer_id` (`customer_id`);
-
---
--- Indexes for table `order_status`
---
-ALTER TABLE `order_status`
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `payment`
---
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `customer_id` (`customer_id`);
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `idvendor` (`idvendor`);
 
 --
 -- Indexes for table `ratings`
 --
 ALTER TABLE `ratings`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idmenu` (`idmenu`);
+  ADD PRIMARY KEY (`idratings`);
 
 --
 -- Indexes for table `state`
@@ -1305,7 +1239,7 @@ ALTER TABLE `state`
 -- Indexes for table `tbladdress`
 --
 ALTER TABLE `tbladdress`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idaddress`);
 
 --
 -- Indexes for table `tbladmin`
@@ -1336,16 +1270,10 @@ ALTER TABLE `customer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `favorites`
---
-ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `iditem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `local_governments`
@@ -1360,28 +1288,10 @@ ALTER TABLE `logistics`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `menu`
---
-ALTER TABLE `menu`
-  MODIFY `idmenu` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `menutype`
---
-ALTER TABLE `menutype`
-  MODIFY `idmenutype` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment`
---
-ALTER TABLE `payment`
-  MODIFY `idpayment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ratings`
@@ -1411,7 +1321,7 @@ ALTER TABLE `theme_setting`
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -1428,26 +1338,6 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `local_governments`
   ADD CONSTRAINT `FK` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `menu`
---
-ALTER TABLE `menu`
-  ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`idmenu`) REFERENCES `ratings` (`idratings`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `menu_ibfk_2` FOREIGN KEY (`iditem`) REFERENCES `item` (`iditem`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `menu_ibfk_3` FOREIGN KEY (`idmenutype`) REFERENCES `menutype` (`idmenutype`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `payment`
---
-ALTER TABLE `payment`
-  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `ratings`
---
-ALTER TABLE `ratings`
-  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`idmenu`) REFERENCES `menu` (`idmenu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
