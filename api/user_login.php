@@ -17,13 +17,8 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 	
 	if ($row) {
 		$row=$row[0];
-<<<<<<< HEAD
-		if (password_verify($password, $row['customer_password'])) {
-			$_SESSION["userid"] = $row["id"]; 
-=======
 		if (password_verify($password, $row['customerPassword'])) {
 			$_SESSION["userid"] = $row["customerId"]; 
->>>>>>> 19ee2e58d75077522322ed13f245322451f57732
 			$_SESSION["user"] = $row;
 			session_regenerate_id();
 

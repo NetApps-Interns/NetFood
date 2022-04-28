@@ -22,13 +22,13 @@ header("Content-type: application/json");
 							$_SESSION["user"] = $row;
 							session_regenerate_id();
 
-							die(output_json('Login Successful', 1));
+							die(output_json(['Login Successful'], 1));
 						} 
 				
 					} 
 			
 				}
-				die(output_json('Email or Password Incorrect', 0));
+				die(output_json(['Email or Password Incorrect'], 0));
 
 				// $query->close();
 				// Close connection

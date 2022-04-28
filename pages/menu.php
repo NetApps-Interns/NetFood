@@ -34,30 +34,11 @@
 
 <div id="center-con" style="<?= $divCtrlOrig ?>">
 	
-<<<<<<< HEAD
-	<?php foreach  ($items as $item): ?>
-
-        <div class="menu-item">
-            <div class="menu-image">
-				<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src="<?= ITEM_IMG_DIR.$item['photo'] ?>" alt="<?= $item['item_name'] ?>"/>
-            </div>
-			<b><p class="menu-about"> <?= $item['item_name'] ?> </p></b>
-            <p class="menu-about"> <?= $item['description'] ?> </p>
-            <span class="meal-price"><span>&#8358;</span><?= $item['price'] ?></span>
-
-			<div>
-				<a class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
-				<a onclick="addToCart(<?= $item['iditem']?>)" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
-			</div>
-        </div>
-    <?php endforeach; ?>
-=======
 <?php 
 	foreach  ($items as $item): 
 		include 'components/menu_item.php';
 	endforeach; 
 ?>
->>>>>>> 19ee2e58d75077522322ed13f245322451f57732
 	
 </div>
 

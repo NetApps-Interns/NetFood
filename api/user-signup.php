@@ -28,11 +28,11 @@ header("Content-type: application/json");
             // Store the result so we can check if the account exists in the database.
             $query->store_result();
             if ($query->num_rows > 0) {
-                output_json("This email address is already registered!", 0);
+                output_json(["This email address is already registered!"], 0);
             } else {
                 // Validate password
                 if (strlen($password ) < 6) {
-                output_json("This Password is too short!\nKindly make it loneger than 6 characters.", 0);
+                output_json(["This Password is too short!\nKindly make it loneger than 6 characters."], 0);
                 }
             } 
 
@@ -44,9 +44,9 @@ header("Content-type: application/json");
                 // die($insertQuery->error);
 
                 if ($result) { 
-                    output_json("Your registration was successful!", 1);
+                    output_json(["Your registration was successful!"], 1);
                 } else {
-                    output_json("Something went wrong!!", 0);
+                    output_json(["Something went wrong!!"], 0);
                 }
                 
                 $query->close();
