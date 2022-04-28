@@ -1,3 +1,7 @@
+<?php
+$_SESSION = [];
+// session_destroy();
+?>
 <section class="image-background">
     <div class="hover-tab">
 		

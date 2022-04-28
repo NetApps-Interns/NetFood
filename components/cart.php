@@ -13,11 +13,17 @@ $cartObj = $cartObj->getCart();
 	<ul class="cd-cart-items" id="cartBody">
     <?php
     foreach($cartObj['items'] as $item){
-      $unitPrice = $item['price'] / $item['qty'];
+      $unitPrice = $item['price'];
       ?>
  <li>
 			<div>
-        <p class="cd-qty"><?= $item['qty'] ?>x</p> 
+        <div class="cd-qty">
+          <div class="number-input">
+            <button onclick=" removeFromCart(<?= $item['itemID']?>); this.parentNode.querySelector('input[type=number]').stepDown();" class="cd_quantity_btn minus"><ion-icon name="chevron-down-circle-outline"></ion-icon></button>
+            <input id="cd_quantity" class="quantity" min="1" name="quantity" value="<?= $item['qty'] ?>" type="number">
+            <button onclick="addToCart(<?= $item['itemID']?>); this.parentNode.querySelector('input[type=number]').stepUp(); " class="cd_quantity_btn plus"><ion-icon name="chevron-up-circle-outline"></ion-icon></button>
+          </div> 
+        </div>
         <?= $item['extra']['name'] ?>
         <p class="cd-price">&#8358;<?= $unitPrice ?></p>
       </div>
@@ -123,6 +129,67 @@ $cartObj = $cartObj->getCart();
   #cd-cart .cd-qty, #cd-cart .cd-price {
     color: #a5aebc;
   }
+
+  /* .cd-qty input{
+	  background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #e4a804;
+    outline-style: none;
+    color: #e4a804;
+  } */
+  input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  background-color: transparent;
+
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .number-input {
+    display: inline-flex;
+  }
+
+  .number-input,
+  .number-input * {
+    box-sizing: border-box;
+  }
+
+  .number-input button {
+    outline: none;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    position: relative;
+    font-size:115%;
+    padding: 0.1rem 0.2rem;
+
+  }
+
+  .number-input button:after {
+    display: inline-block;
+    position: absolute;
+  }
+  .number-input button.plus:after {
+    /* transform: translate(-50%, -50%) rotate(0deg); */
+  }
+
+  .number-input input[type=number] {
+    max-width: 1.5rem;
+    /* border: solid #ddd; */
+    /* border-width: 0 2px; */
+    text-align: center;
+    color: #e4a804;
+    border:none;
+    padding-bottom: 0.4rem;
+  }
+
+  
   #cd-cart .cd-price {
     margin-top: .4em;
   }
@@ -239,11 +306,17 @@ $cartObj = $cartObj->getCart();
   updateCart = async function(data){
     let cartBody = '';
     for (let [key, item] of Object.entries(data.items)) {
-      let unitPrice = item.price / item.qty;
+      let unitPrice = item.price;
       cartBody += `
       <li>
 			<div>
-        <p class="cd-qty">${item.qty}x</p> 
+        <div class="cd-qty">
+          <div class="number-input">
+            <button onclick="removeFromCart(${item.itemID}); this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"><ion-icon name="chevron-down-circle-outline"></ion-icon></button>
+            <input class="quantity" min="1" name="quantity" value="${item.qty}" type="number">
+            <button onclick="addToCart(${item.itemID}); this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"><ion-icon name="chevron-up-circle-outline"></ion-icon></button>
+          </div>
+        </div> 
         ${item.extra.name}
         <p class="cd-price"><span>&#8358;</span>${unitPrice}</p>
       </div>

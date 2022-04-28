@@ -190,9 +190,8 @@ $('#searchInput').on('input', async function(e){
 	let isItFavPage = ($(this).attr("name") == "fav-request") ? 1 : 0;
 	pattern = /[a-z]{2,}/i
 	
-	if (!search){
-
-		$("#result-con").html('');
+	if (!search.length){
+		$("#result-con").html('&nbsp; empty result con js');
 		document.getElementById("center-con").style.display="flex";
 
 	}
@@ -209,8 +208,9 @@ $('#searchInput').on('input', async function(e){
 				
 		if (res.flag){			
 			$("#result-con").html(buildBody(res.data))
-		}else{
-			$("#result-con").html('<br><br><br><h1>Items not found.</h1>')
+		}
+		else{
+			$("#result-con").html('<br><br><br><h1>Items not found.<br>js</h1>')
 		}
 		document.getElementById("result-con").style.display="flex";
 	}
@@ -229,7 +229,7 @@ function buildBody(data){
 				<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src= "${IMG+item.pix}" alt="${item.itemName}"/>
 			</div>
 
-			<strong><p class="menu-about">${item.itemName}</p></stromg>
+			<strong><p class="menu-about">${item.itemName}</p></strong>
 			<p>by <em class="menu-about">${item.vendorName}</em></p>
 			<span class="meal-price"><span>&#8358;</span>${item.itemPrice}</span>
 

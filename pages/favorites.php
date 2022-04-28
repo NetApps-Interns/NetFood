@@ -14,8 +14,13 @@
         $statement->execute();
         $items=$statement->fetchAll(PDO::FETCH_ASSOC);
 
-		// var_dump($items);
-		// exit;
+		if (!$items){
+			$_SESSION['go_to_menu'] = 1;
+
+			"You don't have any favorites!";
+			"Go back to the menu to add items to your favourites";
+
+		}
 
     }else{
 

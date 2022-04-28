@@ -63,6 +63,26 @@ if(isset($_SESSION['error_msg'])){
     <?php
     unset($_SESSION['error_msg']);
 }
+if(isset($_SESSION['go_to_menu'])){
+    ?>
+    <script>
+  
+        Swal.fire(
+            "You don't have any favorites!",
+            "Go back to the menu to add items to your favorites",
+            'warning'
+            // confirmButtonColor: '#e4a804',
+            // confirmButtonText: 'OK!'
+        ).then((result) => {
+            if (result.isConfirmed) {
+                location.href= '/?page=menu';
+            }
+        });
+
+     </script>
+    <?php
+    unset($_SESSION['go_to_menu']);
+}
 
 ?>
 </body>

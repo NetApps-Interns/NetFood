@@ -37,7 +37,7 @@
 <?php 
 	foreach  ($items as $item): 
 		include 'components/menu_item.php';
-	endforeach; 
+	endforeach;
 ?>
 	
 </div>
@@ -45,18 +45,16 @@
 <div id="result-con" style="<?= $divCtrlSearch ?>">
 	<?php	
 		if($searchItems){
+			
 			foreach  ($searchItems as $item): 
 				include 'components/menu_item.php';
 			endforeach; 
 		} else{
 			?>
-<br><br><br><h1>Items not found.</h1>
+<br><br><br><h1>Items not found.hml.</h1>
 			<?php
 		}
 	?>
 </div>
 
 </section>
-<?php
-$search = '';
-?>
