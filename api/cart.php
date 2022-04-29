@@ -7,13 +7,15 @@ $cartObj = new CartStore_Session();
 $itemID= (int)($_POST['item_id'] ?? 0);
 $qty= (int)($_POST['qty'] ?? 0);
 
-$res = $db->query("SELECT price, item_name, photo from ".TBL_ITEM." WHERE iditem ='$itemID'");
+$SQL= "SELECT i.price itemPrice, i.item_name itemName, i.photo pix from ".TBL_ITEM." i WHERE id='$itemID'";
+
+$res = $db->query($SQL);
 $res = $res->fetch_all(MYSQLI_ASSOC);
 
-$price = $res[0]['price'];
+$price = $res[0]['itemPrice'];
 $extra = [
-    'name' => $res[0]['item_name'],
-    'image' => $res[0]['photo'],
+    'name' => $res[0]['itemName'],
+    'image' => $res[0]['pix'],
 ];
 
 

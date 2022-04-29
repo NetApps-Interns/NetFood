@@ -43,9 +43,9 @@ switch ($page) {
         require 'pages/login-signup-2.php';
         break;
     
-    case '#':
+    case 'profile':
         # code...
-        require 'pages/#.php';
+        require 'pages/profile.php';
         break;
     
     case '#':
@@ -69,7 +69,7 @@ switch ($page) {
         break;
     
     default:
-        # code...
+        require 'pages/landing.php';
         break;
 }
 ?>

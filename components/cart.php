@@ -3,22 +3,31 @@ $cartObj = new CartStore_Session();
 $cartObj = $cartObj->getCart();
 ?>
 
-<div id="cd-shadow-layer"></div>
+<div id="cd-shadow-layer" class="cart-close-trigger"></div>
 
 <div id="cd-cart">
-	<h2>Cart</h2>
+  <div class="cart_header">
+    <span><h2 style="display: inline-block;">Cart</h2></span>
+    <span class="cart-close-trigger" style="font-size: 200%;"><ion-icon name="close-circle-outline"></ion-icon></span>
+  </div>
 	<ul class="cd-cart-items" id="cartBody">
     <?php
     foreach($cartObj['items'] as $item){
-      $unitPrice = $item['price'] / $item['qty'];
+      $unitPrice = $item['price'];
       ?>
  <li>
 			<div>
-        <p class="cd-qty"><?= $item['qty'] ?>x</p> 
+        <div class="cd-qty">
+            <div class="number-input">
+              <button onclick=" removeFromCart(<?= $item['itemID']?>, 0); this.parentNode.querySelector('input[type=number]').stepDown();" class="cd_quantity_btn minus"><ion-icon name="chevron-down-circle-outline"></ion-icon></button>
+              <input id="cd_quantity" class="quantity" min="1" name="quantity" value="<?= $item['qty'] ?>" type="number">
+              <button onclick="addToCart(<?= $item['itemID']?>, 0); this.parentNode.querySelector('input[type=number]').stepUp(); " class="cd_quantity_btn plus"><ion-icon name="chevron-up-circle-outline"></ion-icon></button>
+            </div> 
+          </div>
         <?= $item['extra']['name'] ?>
-        <p class="cd-price"><span>&#8358;</span><?= $unitPrice ?></p>
+        <p class="cd-price">&#8358;<?= $unitPrice ?></p>
       </div>
-			<a onclick="removeFromCart(<?= $item['itemID'] ?>, <?= $item['qty'] ?>)" class="cd-item-remove cd-img-replace">Remove</a>
+			<a onclick="removeFromCart(<?= $item['itemID'] ?>, 1, <?= $item['qty'] ?>)" class="cd-item-remove cd-img-replace">Remove</a>
 		</li>
       <?php
     }
@@ -48,14 +57,30 @@ $cartObj = $cartObj->getCart();
 
   #cd-cart {
     position: fixed;
-    height: calc(90vh - 73px);
+    /* max-height: 90vh; */
     width: 260px;
-    /* header height */
-    padding-top: 75px;
+    padding-top: 10px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     z-index: 2;
+    background: #2a2a2a;
+    display: none;
+    
+  }
+
+  #cd-cart {
+    right: -100%;
+    -webkit-transition: right 0.3s;
+    -moz-transition: right 0.3s;
+    transition: right 2s, display .5s;
+  }
+
+  #cd-cart.speed-in.sticky {
+    padding-top: 90px;
+    left: auto;
+    right: 0;
+    top: auto;
   }
   @media only screen and (min-width: 768px) {
     #cd-cart {
@@ -68,26 +93,25 @@ $cartObj = $cartObj->getCart();
     }
   }
 
-  #cd-cart {
-    right: -100%;
-    background: black;
-    -webkit-transition: right 0.3s;
-    -moz-transition: right 0.3s;
-    transition: right 0.3s;
-  }
+ 
   #cd-cart.speed-in {
     right: 0;
+    display: block;
+
   }
   #cd-cart > * {
     padding: 0 1em;
   }
-  #cd-cart h2 {
+  #cd-cart .cart_header{
     font-size: 14px;
     font-size: 0.875rem;
     font-weight: bold;
     text-transform: uppercase;
     margin: 1em 0;
+    display: flex;
+    justify-content: space-between;
   }
+
   #cd-cart .cd-cart-items {
     padding: 0;
   }
@@ -105,6 +129,67 @@ $cartObj = $cartObj->getCart();
   #cd-cart .cd-qty, #cd-cart .cd-price {
     color: #a5aebc;
   }
+
+   /* .cd-qty input{
+	  background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #e4a804;
+    outline-style: none;
+    color: #e4a804;
+  } */
+
+  input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  background-color: transparent;
+
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .number-input {
+    display: inline-flex;
+  }
+
+  .number-input,
+  .number-input * {
+    box-sizing: border-box;
+  }
+
+  .number-input button {
+    outline: none;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    position: relative;
+    font-size:115%;
+    padding: 0.1rem 0.2rem;
+
+  }
+
+  .number-input button:after {
+    display: inline-block;
+    position: absolute;
+  }
+  .number-input button.plus:after {
+    /* transform: translate(-50%, -50%) rotate(0deg); */
+  }
+
+  .number-input input[type=number] {
+    max-width: 1.5rem;
+    /* border: solid #ddd; */
+    /* border-width: 0 2px; */
+    text-align: center;
+    color: #e4a804;
+    border:none;
+    padding-bottom: 0.4rem;
+  }
+
   #cd-cart .cd-price {
     margin-top: .4em;
   }
@@ -137,7 +222,8 @@ $cartObj = $cartObj->getCart();
     /* width: 100%; */
     height: 60px;
     line-height: 60px;
-    background: #7dcf85;
+	border-bottom: 2px solid #e4a804;
+    background: #e4a804;
     color: #FFF;
     text-align: center;
   }
@@ -167,7 +253,6 @@ $cartObj = $cartObj->getCart();
     position: fixed;
     min-height: 100%;
     width: 100%;
-    top: 80;
     left: 0;
     background: rgba(0,0,0, 0.6);
     cursor: pointer;
@@ -221,29 +306,37 @@ $cartObj = $cartObj->getCart();
   updateCart = async function(data){
     let cartBody = '';
     for (let [key, item] of Object.entries(data.items)) {
-      let unitPrice = item.price / item.qty;
+      let unitPrice = item.price;
       cartBody += `
       <li>
 			<div>
-        <p class="cd-qty">${item.qty}x</p> 
+        <div class="cd-qty">
+            <div class="number-input">
+              <button onclick="removeFromCart(${item.itemID}, 0); this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"><ion-icon name="chevron-down-circle-outline"></ion-icon></button>
+              <input class="quantity" min="1" name="quantity" value="${item.qty}" type="number">
+              <button onclick="addToCart(${item.itemID}, 0); this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"><ion-icon name="chevron-up-circle-outline"></ion-icon></button>
+            </div>
+          </div>
         ${item.extra.name}
         <p class="cd-price"><span>&#8358;</span>${unitPrice}</p>
       </div>
-			<a onclick="removeFromCart(${item.itemID}, ${item.qty})" class="cd-item-remove cd-img-replace">Remove</a>
-		</li>
+			<a onclick="removeFromCart(${item.itemID}, 1, ${item.qty})" class="cd-item-remove cd-img-replace">Remove</a>
+	  	</li>
       `
     }
-$("#cartBody").html(cartBody)
-$("#cartTotal").html("<span>&#8358;</span>"+data.total)
+
+    $("#cartBody").html(cartBody)
+    $("#cartTotal").html("&#8358;&nbsp;"+ data.total)
   }
 
-  addToCart = async function(itemId, qty = 1){
+  addToCart = async function(itemId, alat = 1, qty = 1){
     let res = await $.post("/api/cart.php", {
       action: "add",
       item_id: itemId,
       qty: qty
     })
-    if (res.flag){
+    
+    if (res.flag && alat){
       const Toast = Swal.mixin({
 				toast: true,
 				position: 'top-right',
@@ -263,13 +356,11 @@ $("#cartTotal").html("<span>&#8358;</span>"+data.total)
 
         
         
-      }else{
-        
-        
       }
       updateCart(res.data)
   }
-  removeFromCart = async function(itemId, qty=1){
+
+  removeFromCart = async function(itemId, alat = 1, qty=1){
     let res = await $.post("/api/cart.php", {
       action: "remove",
       item_id: itemId,

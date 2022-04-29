@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     
-    if($query = $db->prepare ("SELECT * FROM customer WHERE customer_email = ?")) {
+    if($query = $db->prepare ("SELECT * FROM ".TBL_CUSTOMER." WHERE customer_email = ?")) {
         $error = '';
 
         //Bind parameters (s string, i = int, b = blob, etc), in our case the = username is a string so we use "s" 
@@ -67,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if (empty($error) ) {
         
-            $insertQuery = $db->prepare("INSERT INTO customer (customer_name, customer_email, customer_phone_number, customer_password) VALUES (?, ?, ?, ?)");
+            $insertQuery = $db->prepare("INSERT INTO ".TBL_CUSTOMER." (customer_name, customer_email, customer_phone_number, customer_password) VALUES (?, ?, ?, ?)");
             $insertQuery->bind_param("ssss", $fullname, $email, $phone_number, $password_hash);
             $result = $insertQuery->execute();
 

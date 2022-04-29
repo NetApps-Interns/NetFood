@@ -35,7 +35,7 @@ if (isset($_POST['item_name'], $_POST['ingredients'], $_POST['price'], $_POST['d
     }
   }
 
-  $statement = $pdo->prepare("INSERT INTO items (item_name, ingredients,  price, image, description) 
+  $statement = $pdo->prepare("INSERT INTO ".TBL_ITEM." (item_name, ingredients,  price, image, description) 
                                       VALUES(:item_name, :ingredients, :price, :image, :description)");
 
   $statement->bindValue(':item_name', $item_name);

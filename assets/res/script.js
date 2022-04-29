@@ -13,8 +13,13 @@ $(".js--nav-icon").click(function () {
 function stickify() {
 	if (document.documentElement.scrollTop >= 120) {
 		$("header").addClass("sticky");
+		$("#cd-cart").addClass("sticky");
+		$(".main-nav").addClass("nowSticky");
 	} else {
 		$("header").removeClass("sticky");
+		$("#cd-cart").removeClass("sticky");
+		$(".main-nav").removeClass("nowSticky");
+
 
 	}
 }
@@ -26,13 +31,14 @@ jQuery(document).ready(function($){
 	
 	var $cart_trigger = $('#cd-cart-trigger'),
 		$lateral_cart = $('#cd-cart'),
-		$shadow_layer = $('#cd-shadow-layer');
+		$shadow_layer = $('.cart-close-trigger');
 
 
 	//open cart
 	$cart_trigger.on('click', function(event){
 		event.preventDefault();
 		toggle_panel_visibility($lateral_cart, $shadow_layer, $('body'));
+		$(".main-nav.nowSticky").slideUp(300);
 	});
 
 	//close lateral cart or lateral menu
@@ -106,43 +112,29 @@ addToFav = async function(itemId, itemName){
 		itemName: itemName
 	})
 
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top',
+		showConfirmButton: false,
+		timer: 1000,
+		timerProgressBar: true,
+		didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+		}
+		})
 
 	if (res.flag){
-		const Toast = Swal.mixin({
-			toast: true,
-			position: 'top',
-			showConfirmButton: false,
-			timer: 1000,
-			timerProgressBar: true,
-			didOpen: (toast) => {
-				toast.addEventListener('mouseenter', Swal.stopTimer)
-				toast.addEventListener('mouseleave', Swal.resumeTimer)
-			}
-			})
-	
+
 		Toast.fire({
 		icon: 'success',
 		title: res.msg[0]
 		})
-
-	}else{
-		const Toast = Swal.mixin({
-			toast: true,
-			position: 'top',
-			showConfirmButton: false,
-			timer: 1000,
-			timerProgressBar: true,
-			didOpen: (toast) => {
-				toast.addEventListener('mouseenter', Swal.stopTimer)
-				toast.addEventListener('mouseleave', Swal.resumeTimer)
-			}
-			})
-	
+	}else{	
 		Toast.fire({
 			icon: 'warning',
 			title: res.msg[0]
-			})
-	
+		})
 	}
 
 }
@@ -183,66 +175,106 @@ function logout() {
 }
 
 // Search function
-$('#searchInput').on('change keyup', async function(e){
+$('#landingSearchInput').on('keyup', async function(e){
+	if(e.keyCode == 13)
+	{
+		location.href = '/?page=menu&s='+$(this).val()
+	}
+})
+
+
+$('#searchInput').on('input', async function(e){
 	e.stopPropagation()
 	e.preventDefault();
-	search = $('#searchInput').val();
+	let search = $(this).val();
+	let isItFavPage = ($(this).attr("name") == "fav-request") ? 1 : 0;
 	pattern = /[a-z]{2,}/i
+	
+	if (!search){
 
+		$("#result-con").html('');
+		document.getElementById("center-con").style.display="flex";
+
+	}
 
 	if (pattern.test(search)){
+
+		document.getElementById("center-con").style.display="none";
+
 		res = await $.get(
 			'/api/search.php', 
-			{ search: search }
-		)
-
-		if (res.flag){
-
-			data = res.data;
-
-			let menuBody = '';
-			for (let item of data) {
-			menuBody += `
-			<div class="menu-item">
-				<div class="menu-image">
-					<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src= "${IMG+item.pix}" alt="${item.itemName}"/>
-				</div>
-
-				<b><p class="menu-about">${item.itemName}</p></b>
-				<p class="menu-about">${item.itemDescription}</p>
-				<span class="meal-price"><span>&#8358;</span>${item.itemPrice}</span>
-
-				<div>
-					<a class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
-					<a onclick="addToCart(${item.id})" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
-				</div>
-			</div>
-			`
-			}
-			$(".center-con").html(menuBody)
+			{ search: search,
+				isItFavPage: isItFavPage }
+				)
+				
+		if (res.flag){			
+			$("#result-con").html(buildBody(res.data))
 		}else{
-			const Toast = Swal.mixin({
-				toast: true,
-				position: 'top',
-				showConfirmButton: false,
-				timer: 10000,
-				timerProgressBar: true,
-				didOpen: (toast) => {
-					toast.addEventListener('mouseenter', Swal.stopTimer)
-					toast.addEventListener('mouseleave', Swal.resumeTimer)
-				}
-				})
-
-				Toast.fire({
-				icon: 'error',
-				title: res.msg[0]
-				})
+			$("#result-con").html('<br><br><br><h1>Items not found.</h1>')
 		}
+		document.getElementById("result-con").style.display="flex";
 	}
-			
+	
 			
 })
 
+
+function buildBody(data){
+	let menuBody = '';
+
+	for (let item of data) {
+		menuBody += `
+		<div class="menu-item">
+			<div class="menu-image">
+				<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src= "${IMG+item.pix}" alt="${item.itemName}"/>
+			</div>
+
+			<strong><p class="menu-about">${item.itemName}</p></stromg>
+			<p>by <em class="menu-about">${item.vendorName}</em></p>
+			<span class="meal-price"><span>&#8358;</span>${item.itemPrice}</span>
+
+			<div class = "menu-btn">
+				<div>
+					<a onclick="addToFav(${item.itemId}, '${item.itemName}')" class="btn-fav" ><ion-icon name="heart-outline"></ion-icon></a>
+				</div>
+				<div>
+					<a onclick="addToCart(${item.itemId})" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
+				</div>
+			</div>
+		</div>
+		`
+		}
+		return menuBody;
+}
+
+
+function buildFavBody(data){
+	let menuBody = '';
+
+	for (let item of data) {
+		menuBody += `
+		<div class="menu-item">
+			<div class="menu-image">
+				<img onerror="this.src = '/assets/res/img/food_placeholder.png'" src= "${IMG+item.pix}" alt="${item.itemName}"/>
+			</div>
+
+			<strong><p class="menu-about">${item.itemName}</p></strong>
+			by <em class="menu-about">${item.vendorName}</em>
+			<span class="meal-price"><span>&#8358;</span>${item.itemPrice}</span>
+
+			<div class = "menu-btn">
+				<div>
+					<a onclick="removeFromFav(${item.itemId}, '${item.itemName}')" class="btn-fav" ><ion-icon name="heart-dislike-outline"></ion-icon></a>
+				</div>
+				<div>
+					<a onclick="addToCart(${item.itemId})" class="btn-add"><ion-icon name="add-outline"></ion-icon></a>
+				</div>
+			</div>
+		</div>
+		`
+		}
+		return menuBody;
+}
 
 // // prevent form submit and page reload
 // const form = document.querySelector("form");
