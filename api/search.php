@@ -18,7 +18,7 @@ if ($fave){
     $SQL .= " FROM ".TBL_FAV." f JOIN ".TBL_ITEM." i ON f.item_id= i.id JOIN ".TBL_VENDOR." v ON i.idvendor = v.id WHERE f.idcustomer = $userID";
 
 }else{
-    $SQL .= " FROM ".TBL_ITEM."i JOIN ".TBL_VENDOR." v ON i.idvendor = v.id";
+    $SQL .= " FROM ".TBL_ITEM." i JOIN ".TBL_VENDOR." v ON i.idvendor = v.id";
 }
 
 if ($user_input !==''){
