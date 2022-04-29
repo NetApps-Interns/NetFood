@@ -1,17 +1,31 @@
-<!-- <?php
+<?php
+$userId = $_SESSION["userid"];
 
-// $SQL= "SELECT i.iditem id, i.photo pix, i.item_name itemName, i.description itemDescription, i.price itemPrice , v.vendor_name vendorName FROM item i JOIN vendor v ON i.idvendor = v.idvendor";
+    $SQL= "SELECT c.id idCustomer, c.customer_name customerName, c.customer_address customerAddress, c.customer_email customerEmail , c.customer_phone_number customerPhone FROM customer c WHERE  c.id = $userId";
 
-//     $statement = $pdo->prepare($SQL);
-//     $statement->execute();
-//     $customer=$statement->fetchAll(PDO::FETCH_ASSOC);
+    $statement = $pdo->prepare($SQL);
+    $statement->execute();
+    $customer=$statement->fetchAll(PDO::FETCH_ASSOC);
+    $customer=$customer[0];
 
-?> -->
+// print_r($_SESSION);
+?> 
 
 <div class="image-background">
     <div class="hover-tab">
-        <div class="profile-con">
+        <div class="tabcontent" style="display: block;">
+            <div id="center-con">
+                <div>
+                    <h1>PROFILE</h1>
+                </div>
 
+                <span class="profile-picture">
+                    <img src="/assets/res/img/food_placeholder.png" alt="">
+                </span>
+                <span class="login-request">
+                    <input type="text" value="<?= $customer['customerName']?>">
+                </span>
+            </div>
         </div>
 
     </div>

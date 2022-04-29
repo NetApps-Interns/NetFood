@@ -82,20 +82,13 @@ header::after{
 	display: table;
 	clear: both;
 }
-.logo {
+.logo{
 	height: 50px;
 	width: auto;
 	float: left;
 	margin: -13px 7px;
 }
 
-.profile-picture {
-	height: 50px;
-	width: 50px;
-	float: right;
-	margin: -13px 7px;
-	border-radius: 50%;
-}
 
 nav {
 	list-style: none;
@@ -410,8 +403,6 @@ nav li {
 	padding: 1.2em;
 	min-height: 40vh;
 	margin: 5%;
-	border-radius: 50%;
-	transition: display 22s;
 }
 
 .success-msg {
@@ -420,6 +411,15 @@ nav li {
 	text-align: center;
 }
 
+.profile-picture{
+	margin: 0;
+	border-radius: 50%;
+	height: 10rem;
+	width: auto;
+}
+.profile-picture img{
+	height: inherit;
+}
 /* .error{
 	border: 1px solid #000000;
 	border-radius: 1.25rem;
