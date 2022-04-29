@@ -370,8 +370,8 @@ nav li {
 
 .hover-tab{
 	background-color: #e82e009d;
-    width: 70%;
-	margin: 10% 15%;
+    width: 80%;
+	margin: 10% 10%;
     border-radius: 1.25rem;
 }
 /* Style tab links */
@@ -420,6 +420,8 @@ nav li {
 .profile-picture img{
 	height: inherit;
 }
+
+
 /* .error{
 	border: 1px solid #000000;
 	border-radius: 1.25rem;
