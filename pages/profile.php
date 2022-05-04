@@ -27,36 +27,47 @@ $userId = $_SESSION["userid"];
                     <div class="profile_rows">
 
                         <div class="profile_detail_tag">Name</div>
-                        <input type="text" value="<?= $customer['customerName']?>" class="profile_details">
+                        <input type="text" value="<?= $customer['customerName']?>" id="profile_details" readonly>
+                        <span class="editor"><ion-icon name="pencil-outline"></ion-icon></span>
 
                     </div>
                     <div class="profile_rows">
 
                         <div class="profile_detail_tag">Phone Number</div>
-                        <input type="text" value="<?= $customer['customerPhone']?>" class="profile_details">
+                        <input type="text" value="<?= $customer['customerPhone']?>" id="profile_details" readonly>
 
                     </div>
                     <div class="profile_rows">
 
                         <div class="profile_detail_tag">E-Mail</div>
-                        <input type="text" value="<?= $customer['customerEmail']?>" class="profile_details">
+                        <input type="text" value="<?= $customer['customerEmail']?>" id="profile_details" readonly>
 
                     </div>
                     <div class="profile_rows">
 
                         <div class="profile_detail_tag">Address</div>
-                        <input type="text" value="<?= $customer['customerAddress']?>" class="profile_details">
+                        <input type="text" value="<?= $customer['customerAddress']?>" id="profile_details" readonly>
 
                     </div>
                 </div>
 
                 <div class="half-the-con">
-                    <h1 style="margin: 0; margin-bottom:2rem;">ORDERS</h1>
-                    <div class="profile_row">
-                        <img src="/uploads/img/item/chicken.jpg" alt="" class="logo" style=" width:50px; height:50px; border-radius: 50%;background-size: cover;    background-attachment: fixed; overflow:hidden ;"> <span>iaxmak</span>
+                    <h1 style="margin: 0 26%;margin-bottom: 1rem;">ORDER HISTORY</h1>
+
+                    <div id="center-con" style="width: 100%; height: 325px; overflow: overlay;">
+                    <?php 
+	$SQL= "SELECT i.id itemId, i.photo pix, i.item_name itemName, i.description itemDescription, i.price itemPrice , v.vendor_name vendorName FROM ".TBL_ITEM." i JOIN ".TBL_VENDOR." v ON i.idvendor = v.id";
+
+    $statement = $pdo->prepare($SQL);
+    $statement->execute();
+    $items=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach  ($items as $item): 
+                            include 'components/menu_item.php';
+                        endforeach; 
+                    ?>
+	
                     </div>
-
-
 
                 </div>
             </div>   
@@ -67,13 +78,35 @@ $userId = $_SESSION["userid"];
 
 </div>
 
+<script>
+    $('#profile_details').click(function () {
+        $(this).removeAttr('readonly');
+        alert('editable');
+    })
+</script>
+
 <style>
+    .p-hover-tab .menu-item {
+        margin: 1rem;
+        /* min-height: 200px;
+        max-height: 240px; */
+        /* width: 130px; */
+        background-color: #c1c1c1;
+        padding: 10px;
+        /* overflow: hidden; */
+        border-radius: 15px;
+        box-shadow: 1px 1px 10px #e4e4e4;
+        color: black;
+        text-align: center;
+        float: left;
+    }
+
     .profile_rows{
         margin-bottom:.6rem;
         width:inherit;
     }
 
-    .profile_details{
+    #profile_details{
         height: 20px;
         width: 20rem;
         max-width: 200x;
@@ -82,8 +115,8 @@ $userId = $_SESSION["userid"];
         background-color: transparent;
         border: 2px solid #e4a804;
         outline-style: none;
-        color: #e4a804;
-            border-radius: 0.5rem;
+        border-radius: 0.5rem;
+        color: white;
     }
     .profile_detail_tag{
         background: #e4a804;
@@ -101,6 +134,10 @@ $userId = $_SESSION["userid"];
         z-index: 2;
         border-radius: 1.25rem;
         position: relative; 
+
+    }
+
+    .editor{
 
     }
 
@@ -139,8 +176,9 @@ $userId = $_SESSION["userid"];
         }
         
     }
+
     @media only screen and (max-width:425px){
-        .profile_details{
+        #profile_details{
             max-width:195px;
         }
     }

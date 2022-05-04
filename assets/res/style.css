@@ -123,7 +123,7 @@ nav li {
 	right: 0;
 	left: 0;
 	box-shadow: 0 2px 2px #e4a80483;
-	z-index: 5;
+	z-index: 6;
 	/* display: none; */
 }
 
@@ -402,7 +402,13 @@ nav li {
 	display: none;
 	padding: 1.2em;
 	min-height: 40vh;
-	margin: 5%;
+	margin: auto;
+}
+
+.tabcontent#log-in-tab,
+.tabcontent#sign-up-tab{
+	max-width: 600px;
+	padding-top: 8%;
 }
 
 .success-msg {

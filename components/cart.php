@@ -63,7 +63,7 @@ $cartObj = $cartObj->getCart();
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    z-index: 2;
+    z-index: 5;
     background: #2a2a2a;
     display: none;
     
@@ -256,7 +256,7 @@ $cartObj = $cartObj->getCart();
     left: 0;
     background: rgba(0,0,0, 0.6);
     cursor: pointer;
-    z-index: 2;
+    z-index: 3;
     display: none;
   }
   #cd-shadow-layer.is-visible {
