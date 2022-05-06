@@ -43,13 +43,13 @@ include('scripts/admin-login.php');
 </head>
 <body>
 
-<div class="container-fluid">
+<div class="container-fluid background">
  <div class="row">
    <div class="col-sm-4">
    </div>
    <div class="col-sm-4">
     
-    <!--====registration form====-->
+    <!--====loginform====-->
     <div class="registration-form">
       <h4 class="text-center">Admin Panel</h4>
       <p class="text-success text-center"><?php echo $call_login; ?></p>

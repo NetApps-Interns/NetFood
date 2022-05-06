@@ -1,10 +1,4 @@
 <?php
-<<<<<<< HEAD
-    define('DBSERVER', 'localhost'); //DB server
-    define('DBUSERNAME', 'root'); //DB Username
-    define('DBPASSWORD', ''); //DB password
-    define('DBNAME', 'netfood-db'); //DB password
-=======
     
     try {
     ////Connection to Local Server 
@@ -33,7 +27,6 @@
     define('DBUSERNAME', 'remote'); //DB Username
     define('DBPASSWORD', 'remote'); //DB password
     define('DBNAME', 'netfood-db'); //DB Name
->>>>>>> 19ee2e58d75077522322ed13f245322451f57732
 
     // connect to MySQL DB
     
@@ -60,8 +53,5 @@
 
     const TBL_FAV = 'favorites';
     const TBL_ITEM = 'item';
-<<<<<<< HEAD
-=======
     const TBL_VENDOR = 'vendor';
     const TBL_CUSTOMER = 'customer';
->>>>>>> 19ee2e58d75077522322ed13f245322451f57732

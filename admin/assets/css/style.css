@@ -215,3 +215,13 @@ border: 0px;
       background: #768cbb;
       color: #0d121b;
     }
+    .background {
+      background-image: url(img/bg2.png);
+      position: relative;
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      /* overflow-y: scroll; */
+    min-height: 77vh;
+  }

@@ -1007,4 +1007,13 @@ function check_unique_menu($tableName, $menuName){
 
 }
 
+header('Content-Type: application/json');
+$select = $db->prepare("SELECT `id`, `date_time` FROM `customer` ORDER BY `created_at`;");
+$select->execute();
+$data = array();
+while ($row = $select->fetch(PDO::FETCH_ASSOC)) {
+    $data[] = $row;
+}
+print json_encode($data);
+
 ?>
