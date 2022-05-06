@@ -38,7 +38,7 @@ $cartObj = $cartObj->getCart();
 		<p>Total <span id="cartTotal">&#8358; <?= $cartObj['total'] ?></span></p>
 	</div> <!-- cd-cart-total -->
 
-	<a class="checkout-btn">Checkout</a>
+	<a href="index.php?page=checkout" class="checkout-btn">Checkout</a>
 	
 </div> <!-- cd-cart -->
 
@@ -177,7 +177,7 @@ $cartObj = $cartObj->getCart();
     position: absolute;
   }
   .number-input button.plus:after {
-    /* transform: translate(-50%, -50%) rotate(0deg); */
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   .number-input input[type=number] {
@@ -393,7 +393,7 @@ $cartObj = $cartObj->getCart();
     let res = await $.post("/api/cart.php", {action: "clear"})
     if (res.flag){
       $("#cartBody").html('');
-      $("#cartTotal").html('#0')
+      $("#cartTotal").html('&#8358;0')
     }
     
   }

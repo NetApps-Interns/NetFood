@@ -48,9 +48,9 @@ switch ($page) {
         require 'pages/profile.php';
         break;
     
-    case '#':
+    case 'checkout':
         # code...
-        require 'pages/#.php';
+        require 'pages/checkout.php';
         break;
     
     case '#':

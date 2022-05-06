@@ -15,8 +15,14 @@ $userId = $_SESSION["userid"];
     $customer=$statement->fetchAll(PDO::FETCH_ASSOC);
     $customer=$customer[0];
 
-// print_r($_SESSION);
-?> 
+    $SQL= "SELECT i.id itemId, i.photo pix, i.item_name itemName, i.description itemDescription, i.price itemPrice , v.vendor_name vendorName FROM ".TBL_ITEM." i JOIN ".TBL_VENDOR." v ON i.idvendor = v.id";
+
+    $statement = $pdo->prepare($SQL);
+    $statement->execute();
+    $items=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>  
 
 <div class="image-background">
     <div class="p-hover-tab">
@@ -24,31 +30,39 @@ $userId = $_SESSION["userid"];
             <div class="profile-page">
                 <div class="half-the-con">
                     <h1 style="margin: 0; margin-bottom:1rem;">PROFILE</h1>
+                    <!-- <form id="updateForm"> -->
                     <div class="profile_rows">
 
                         <div class="profile_detail_tag">Name</div>
-                        <input type="text" value="<?= $customer['customerName']?>" id="profile_details" readonly>
-                        <span class="editor"><ion-icon name="pencil-outline"></ion-icon></span>
+                        <input id="name" type="text" value="<?= $customer['customerName']?>" class="profile_details" readonly>
+                       
 
                     </div>
                     <div class="profile_rows">
 
                         <div class="profile_detail_tag">Phone Number</div>
-                        <input type="text" value="<?= $customer['customerPhone']?>" id="profile_details" readonly>
+                        <input id="number" type="text" value="<?= $customer['customerPhone']?>" class="profile_details" readonly>
+                       
 
                     </div>
                     <div class="profile_rows">
 
                         <div class="profile_detail_tag">E-Mail</div>
-                        <input type="text" value="<?= $customer['customerEmail']?>" id="profile_details" readonly>
+                        <input id="email" value="<?= $customer['customerEmail']?>" class="profile_details" readonly>
+                       
 
                     </div>
                     <div class="profile_rows">
 
                         <div class="profile_detail_tag">Address</div>
-                        <input type="text" value="<?= $customer['customerAddress']?>" id="profile_details" readonly>
+                        <input id="address" type="text" value="<?= $customer['customerAddress']?>" class="profile_details" readonly>
+                       
 
                     </div>
+
+                    <button id="update-btn" style="width: 40%; border-radius: 20px;">Update</button>
+                    <!-- </form> -->
+                    
                 </div>
 
                 <div class="half-the-con">
@@ -56,15 +70,16 @@ $userId = $_SESSION["userid"];
 
                     <div id="center-con" style="width: 100%; height: 325px; overflow: overlay;">
                     <?php 
-	$SQL= "SELECT i.id itemId, i.photo pix, i.item_name itemName, i.description itemDescription, i.price itemPrice , v.vendor_name vendorName FROM ".TBL_ITEM." i JOIN ".TBL_VENDOR." v ON i.idvendor = v.id";
 
-    $statement = $pdo->prepare($SQL);
-    $statement->execute();
-    $items=$statement->fetchAll(PDO::FETCH_ASSOC);
-
+                    if ($items){
                         foreach  ($items as $item): 
                             include 'components/menu_item.php';
                         endforeach; 
+                    }else{
+                        ?>
+                        <br><br>You do not have any succesful orders
+                        <?php
+                    }
                     ?>
 	
                     </div>
@@ -79,9 +94,48 @@ $userId = $_SESSION["userid"];
 </div>
 
 <script>
-    $('#profile_details').click(function () {
-        $(this).removeAttr('readonly');
-        alert('editable');
+    $('input[type=text]').click(function () {
+        $('input[type=text]').removeAttr('readonly');
+    })
+//
+    $('#update-btn').on('click', async function(){
+        name = $('#name').val();
+        number = $('#number').val();
+        address = $('#address').val();
+        res = await $.post(
+            '/api/updateProfile.php', 
+            {   name :name ,
+                number:number,
+                address :address
+            }
+        )
+        const Toast = Swal.mixin({
+				toast: true,
+				position: 'top',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+				})
+
+        if (res.flag){
+
+				Toast.fire({
+				icon: 'success',
+				title: res.msg[0]
+				})
+
+        }
+        else {
+            Toast.fire({
+				icon: 'success',
+				title: res.msg[0]
+				})
+        }
+
     })
 </script>
 
@@ -106,10 +160,10 @@ $userId = $_SESSION["userid"];
         width:inherit;
     }
 
-    #profile_details{
+    .profile_details{
         height: 20px;
         width: 20rem;
-        max-width: 200x;
+        /* max-width: 200px; */
         padding: 0.875rem 1rem;
         margin-top: 10px;
         background-color: transparent;
@@ -138,7 +192,7 @@ $userId = $_SESSION["userid"];
     }
 
     .editor{
-
+        font-size: 135%;
     }
 
     .profile-page{
@@ -168,7 +222,6 @@ $userId = $_SESSION["userid"];
     @media only screen and (max-width:768px){
         .half-the-con{
             width: 100%;
-            
         }
         .tabcontent{
             padding: .2em;
@@ -178,7 +231,7 @@ $userId = $_SESSION["userid"];
     }
 
     @media only screen and (max-width:425px){
-        #profile_details{
+        .profile_details{
             max-width:195px;
         }
     }
