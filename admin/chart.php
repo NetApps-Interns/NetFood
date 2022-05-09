@@ -4,7 +4,7 @@
     <title>Chart</title>
     <link rel="stylesheet" href="https://write.corbpie.com/wp-content/litespeed/localres/aHR0cHM6Ly9jZG5qcy5jbG91ZGZsYXJlLmNvbS8=ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://write.corbpie.com/wp-content/litespeed/localres/aHR0cHM6Ly9jZG5qcy5jbG91ZGZsYXJlLmNvbS8=ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/vendor/js/node_modules/chart.js/dist/chart.js"></script>
+    <script src="../assets/vendor/js/node_modules/chart.js/dist/chart.js"></script>
 </head>
 <body>
 <div class='container'>

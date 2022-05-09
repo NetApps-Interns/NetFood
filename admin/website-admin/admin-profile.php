@@ -1,35 +1,35 @@
 <br><br>
 <div class="content-box">
-		<?php
-if($_GET['subcat']=='add-admin-profile'){
+	<?php
+        if($_GET['subcat']=='add-admin-profile'){
 
-	if(!empty($_GET['edit'])){
+	      if(!empty($_GET['edit'])){
 
-   $editId= $_GET['edit'];
-   $query="SELECT * FROM tbladmin WHERE id=$editId";
-   $res= $conn->query($query);
-   $editData=$res->fetch_assoc();
-   $fullName=$editData['admin_full_name'];
-   $email=$editData['email_address'];
-   $mobile=$editData['contact'];
-   $password=$editData['admin_password'];
+			$editId= $_GET['edit'];
+			$query="SELECT * FROM tbladmin WHERE id=$editId";
+			$res= $conn->query($query);
+			$editData=$res->fetch_assoc();
+			$fullName=$editData['admin_full_name'];
+			$email=$editData['email_address'];
+			$mobile=$editData['contact'];
+			$password=$editData['admin_password'];
 
    
-   $idAttr="updateForm";
-   
-}else{
-	$fullName="";
-   $email="";
-   $mobile="";
-   $address="";
-   $password="";
+			$idAttr="updateForm";
+			
+		  }else{
+				$fullName="";
+			$email="";
+			$mobile="";
+			$address="";
+			$password="";
 
-  
-   $editId='';
-    $idAttr="adminForm";
+			
+			$editId='';
+				$idAttr="adminForm";
 
-}
-?>
+			}
+    ?>
 
 	<div class="row">
 		<div class="col">
@@ -39,94 +39,94 @@ if($_GET['subcat']=='add-admin-profile'){
 			<a href="dashboard.php?cat=website-admin&subcat=admin-profile" class="btn btn-secondary content-link"> View</a>
 		</div>
 	</div>
-<br>
-<form id="<?php echo $idAttr; ?>" rel="<?php echo $editId; ?>" name="tbladmin">
-<div class="row">
-	<div class="col">
-		<div class="form-group">
-			<label>Full Name</label>
-			<input type="text" placeholder="Full Name" class="form-control" name="full_name" value="<?php echo $fullName; ?>">
-		</div>
-	</div>
-	<div class="col">
-		<div class="form-group">
-			<label>Email</label>
-			<input type="text" placeholder="Email" class="form-control" name="email" value="<?php echo $email; ?>">
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col">
-		<div class="form-group">
-			<label>Mobile Number</label>
-			<input type="text" placeholder="Mobile Number" class="form-control" name="mobile" value="<?php echo $mobile; ?>">
-		</div>
-	</div>
+      <br>
+ 		<form id="<?php echo $idAttr; ?>" rel="<?php echo $editId; ?>" name="tbladmin">
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label>Full Name</label>
+						<input type="text" placeholder="Full Name" class="form-control" name="full_name" value="<?php echo $fullName; ?>">
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label>Email</label>
+						<input type="text" placeholder="Email" class="form-control" name="email" value="<?php echo $email; ?>">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label>Mobile Number</label>
+						<input type="text" placeholder="Mobile Number" class="form-control" name="mobile" value="<?php echo $mobile; ?>">
+					</div>
+				</div>
 
-</div>
-<div class="row">
-	<div class="col">
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" placeholder="Password" class="form-control" name="password">
-		</div>
-	</div>
-	<div class="col">
-		<div class="form-group">
-			<label>Confirm Password</label>
-			<input type="password" placeholder="Password" class="form-control" name="cpassword">
-		</div>
-	</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label>Password</label>
+						<input type="password" placeholder="Password" class="form-control" name="password">
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label>Confirm Password</label>
+						<input type="password" placeholder="Password" class="form-control" name="cpassword">
+					</div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<button class="btn btn-secondary">Save</button>
+					</div>
+				</div>
+				<div class="col">
+					
+				</div>
+			</div>
+ 		</form>
+    <?php } elseif (!empty($_GET['view'])) {
 	
-</div>
-<div class="row">
-	<div class="col">
-		<div class="form-group">
-			<button class="btn btn-secondary">Save</button>
-		</div>
-	</div>
-	<div class="col">
 		
-	</div>
-</div>
-</form>
-<?php } elseif (!empty($_GET['view'])) {?>
-	
-	<?php 
 
-    $id= $_GET['view'];
-   $query="SELECT * FROM tbladmin WHERE id=$id";
-   $res= $conn->query($query);
-   $viewData=$res->fetch_assoc();
-   $backId=$viewData['id']-1;
-   $fullName=$viewData['admin_full_name'];
-   $email=$viewData['email_address'];
-   $mobile=$viewData['contact'];
+			$id= $_GET['view'];
+		$query="SELECT * FROM tbladmin WHERE id=$id";
+		$res= $conn->query($query);
+		$viewData=$res->fetch_assoc();
+		$backId=$viewData['id']-1;
+		$fullName=$viewData['admin_full_name'];
+		$email=$viewData['email_address'];
+		$mobile=$viewData['contact'];
 
-   ?>
-<div class="row">
+   	?>
+ <div class="row">
 	<div class="col">
 	</div>
 	<div class="col text-right">
 		<a href="dashboard.php?cat=website-admin&subcat=admin-profile" class="btn btn-secondary content-link">Back</a>
 	</div>
-</div>
+ </div>
 <br>
-<div class="table-responsive">
-	<table class="table">
-		<tr>
-			<th>Full Name -</th><td><?php echo $fullName; ?></td>
-		</tr>
-		<tr>
-			<th>Email -</th><td><?php echo $email; ?></td>
-		</tr>
-		<tr>
-			<th>Mobile Number -</th><td><?php echo $mobile; ?></td>
-		</tr>
-		
-	</table>
-</div>
-   <?php
+	<div class="table-responsive">
+		<table class="table">
+			<tr>
+				<th>Full Name -</th><td><?php echo $fullName; ?></td>
+			</tr>
+			<tr>
+				<th>Email -</th><td><?php echo $email; ?></td>
+			</tr>
+			<tr>
+				<th>Mobile Number -</th><td><?php echo $mobile; ?></td>
+			</tr>
+			
+		</table>
+	</div>
+<?php
    
 	
 

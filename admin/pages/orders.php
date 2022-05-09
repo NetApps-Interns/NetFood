@@ -48,7 +48,7 @@
 <br><br>
 
 <!-----=================table content start=================-->
-	
+<div class="content-box">
 	<div class="row">
 		<div class="col">
 			<h4>Orders</h4>
@@ -144,5 +144,6 @@ INNER JOIN customer ON order_details.customer_id=customer.id";
 	<!-----==================table content end===================-->
 
 
+</div>
 </div>
 <?php } ?>

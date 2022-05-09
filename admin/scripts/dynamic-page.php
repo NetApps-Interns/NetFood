@@ -35,7 +35,7 @@ if($sub[0]=='add')
 
           
         }else{
-            echo "<h1 class='text-success text-center'>Welcome To Admin Panel</h1>";
+            include('../chart.php');
         }
 
 

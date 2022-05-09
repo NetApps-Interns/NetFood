@@ -1,7 +1,7 @@
 <br><br>
 
 <!-----=================table content start=================-->
-	
+<div class="content-box">	
 	<div class="row">
 		<div class="col">
 			<h4>Riders</h4>
@@ -71,4 +71,5 @@
 	<!-----==================table content end===================-->
 
 
+</div>
 </div>

@@ -29,7 +29,7 @@ if(empty($email_address))
 
 
 </head>
-<body>
+<body class="background">
 <?php
 include('partials/header.php');
  ?>

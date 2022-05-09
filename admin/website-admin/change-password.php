@@ -7,7 +7,7 @@
     
   </div>
   <br>
-   <div class="form">
+   <div class="form content-box">
  
  
 <form id="adminForm" name="change_password" class="needs-validation" method="post">
