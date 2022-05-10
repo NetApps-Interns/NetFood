@@ -10,7 +10,7 @@ $cartObj = $cartObj->getCart();
     <span><h2 style="display: inline-block;">Cart</h2></span>
     <span class="cart-close-trigger" style="font-size: 200%;"><ion-icon name="close-circle-outline"></ion-icon></span>
   </div>
-	<ul class="cd-cart-items" id="cartBody">
+	<ul class="cd-cart-items cartBody">
     <?php
     foreach($cartObj['items'] as $item){
       $unitPrice = $item['price'];
@@ -35,7 +35,7 @@ $cartObj = $cartObj->getCart();
   </ul> <!-- cd-cart-items -->
 
 	<div class="cd-cart-total">
-		<p>Total <span id="cartTotal">&#8358; <?= $cartObj['total'] ?></span></p>
+		<p>Total <span class="cartTotal">&#8358; <?= $cartObj['total'] ?></span></p>
 	</div> <!-- cd-cart-total -->
 
 	<a href="index.php?page=checkout" class="checkout-btn">Checkout</a>
@@ -325,8 +325,8 @@ $cartObj = $cartObj->getCart();
       `
     }
 
-    $("#cartBody").html(cartBody)
-    $("#cartTotal").html("&#8358;&nbsp;"+ data.total)
+    $(".cartBody").html(cartBody)
+    $(".cartTotal").html("&#8358;&nbsp;"+ data.total)
   }
 
   addToCart = async function(itemId, alat = 1, qty = 1){

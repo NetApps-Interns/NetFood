@@ -14,10 +14,12 @@
 	<link rel="stylesheet" href="assets/vendor/css/grid.css" />
 	<link rel="stylesheet" href="assets/vendor/css/normalize.css" />
 	<link rel="stylesheet" href="assets/vendor/css/splide.min.css" />
+	<link rel="stylesheet" href="assets/vendor/css/loading-bar.css" />
 	
 	<script src="assets/vendor/js/jquery.min.js"></script>
 	<script src="assets/vendor/js/sweetalert2.min.js"></script>
 	<script src="assets/vendor/js/splide.min.js"></script>
+	<script src="assets/vendor/js/loading-bar.js"></script>
 	
 
 	<title>NETFood</title>

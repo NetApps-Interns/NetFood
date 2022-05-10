@@ -1,5 +1,5 @@
 <?php
-$userId = $_SESSION["userid"];
+    $userId = $_SESSION["userid"];
 
     $SQL= "SELECT c.id idCustomer, c.customer_name customerName, c.customer_address customerAddress, c.customer_email customerEmail , c.customer_phone_number customerPhone FROM customer c WHERE  c.id = $userId";
 
@@ -8,12 +8,6 @@ $userId = $_SESSION["userid"];
     $customer=$statement->fetchAll(PDO::FETCH_ASSOC);
     $customer=$customer[0];
 
-    $SQL= "SELECT c.id idCustomer, c.customer_name customerName, c.customer_address customerAddress, c.customer_email customerEmail , c.customer_phone_number customerPhone FROM customer c WHERE  c.id = $userId";
-
-    $statement = $pdo->prepare($SQL);
-    $statement->execute();
-    $customer=$statement->fetchAll(PDO::FETCH_ASSOC);
-    $customer=$customer[0];
 
     $SQL= "SELECT i.id itemId, i.photo pix, i.item_name itemName, i.description itemDescription, i.price itemPrice , v.vendor_name vendorName FROM ".TBL_ITEM." i JOIN ".TBL_VENDOR." v ON i.idvendor = v.id";
 
@@ -97,7 +91,7 @@ $userId = $_SESSION["userid"];
     $('input[type=text]').click(function () {
         $('input[type=text]').removeAttr('readonly');
     })
-//
+    //
     $('#update-btn').on('click', async function(){
         name = $('#name').val();
         number = $('#number').val();
@@ -131,7 +125,7 @@ $userId = $_SESSION["userid"];
         }
         else {
             Toast.fire({
-				icon: 'success',
+				icon: 'error',
 				title: res.msg[0]
 				})
         }
