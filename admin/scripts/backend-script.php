@@ -36,22 +36,25 @@ if(!empty($_GET['id']) && !empty($_GET['name']) && $_GET['name']=='color_setting
   
 }
 
-//================ admin Rol==================///
+//================  Roles==================///
 
 // update
-if( !empty($_GET['id']) && !empty($_GET['tableName']) && $_GET['role']=='admin'){
+if( !empty($_GET['id']) && !empty($_GET['tableName']) && $_GET['role']=='vendor'){
    $id=legal_input($_GET['id']);
    $tableName=legal_input($_GET['tableName']);
-   $query="SELECT status FROM tbladmin WHERE id=$id";
+   $query="SELECT status FROM vendor WHERE id=$id";
    $res= $db->query($query);
    $role=$res->fetch_assoc();
+   
+   var_dump($res);
+   var_dump($role);
    if($role['status']==1)
    {
       $data=[
         'status'=>0
       ];
       $return ="fas fa-user-alt-slash iconRole";
-   }else{
+   }elseif($role['status']==0){
 
     $data=[
         'status'=>1
@@ -68,7 +71,102 @@ if( !empty($_GET['id']) && !empty($_GET['tableName']) && $_GET['role']=='admin')
     }
 
 }
+if( !empty($_GET['id']) && !empty($_GET['tableName']) && $_GET['role']=='admin'){
+  $id=legal_input($_GET['id']);
+  $tableName=legal_input($_GET['tableName']);
+  $query="SELECT status FROM tbladmin WHERE id=$id";
+  $res= $db->query($query);
+  $role=$res->fetch_assoc();
+  
+  var_dump($res);
+  var_dump($role);
+  if($role['status']==1)
+  {
+     $data=[
+       'status'=>0
+     ];
+     $return ="fas fa-user-alt-slash iconRole";
+  }elseif($role['status']==0){
 
+   $data=[
+       'status'=>1
+     ];
+     $return="fas fa-user-alt iconRole";
+ }
+
+   $updateData=update_data($data,$tableName, $id);
+   if($updateData)
+   {
+    echo $return;
+   }else{
+     echo $db->error;
+   }
+
+}
+if( !empty($_GET['id']) && !empty($_GET['tableName']) && $_GET['role']=='rider'){
+  $id=legal_input($_GET['id']);
+  $tableName=legal_input($_GET['tableName']);
+  $query="SELECT status FROM logistics WHERE id=$id";
+  $res= $db->query($query);
+  $role=$res->fetch_assoc();
+  
+  var_dump($res);
+  var_dump($role);
+  if($role['status']==1)
+  {
+     $data=[
+       'status'=>0
+     ];
+     $return ="fas fa-user-alt-slash iconRole";
+  }elseif($role['status']==0){
+
+   $data=[
+       'status'=>1
+     ];
+     $return="fas fa-user-alt iconRole";
+ }
+
+   $updateData=update_data($data,$tableName, $id);
+   if($updateData)
+   {
+    echo $return;
+   }else{
+     echo $db->error;
+   }
+
+}
+if( !empty($_GET['id']) && !empty($_GET['tableName']) && $_GET['role']=='customer'){
+  $id=legal_input($_GET['id']);
+  $tableName=legal_input($_GET['tableName']);
+  $query="SELECT status FROM customer WHERE id=$id";
+  $res= $db->query($query);
+  $role=$res->fetch_assoc();
+  
+  var_dump($res);
+  var_dump($role);
+  if($role['status']==1)
+  {
+     $data=[
+       'status'=>0
+     ];
+     $return ="fas fa-user-alt-slash iconRole";
+  }elseif($role['status']==0){
+
+   $data=[
+       'status'=>1
+     ];
+     $return="fas fa-user-alt iconRole";
+ }
+
+   $updateData=update_data($data,$tableName, $id);
+   if($updateData)
+   {
+    echo $return;
+   }else{
+     echo $db->error;
+   }
+
+}
 //=========home content =================--//
 
 // insert
@@ -1006,14 +1104,3 @@ function check_unique_menu($tableName, $menuName){
 
 
 }
-
-header('Content-Type: application/json');
-$select = $db->prepare("SELECT `id`, `date_time` FROM `customer` ORDER BY `created_at`;");
-$select->execute();
-$data = array();
-while ($row = $select->fetch(PDO::FETCH_ASSOC)) {
-    $data[] = $row;
-}
-print json_encode($data);
-
-?>

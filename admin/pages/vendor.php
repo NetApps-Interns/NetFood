@@ -89,12 +89,12 @@
    			switch($data['status']){
 				   case 0:
    				?>
-   				<a href="javascript:void(0)" name="vendor" class=" text-secondary adminRole"  rel="<?php echo $data['id']; ?>">
+   				<a href="javascript:void(0)" name="vendor" class=" text-secondary vendorRole"  rel="<?php echo $data['id']; ?>">
    				<i class='fas fa-user-alt-slash iconRole' ></i>
    				<?php break;
 		   		case 1:
 		   ?>
-   			<a href="javascript:void(0)" name="vendor" class=" text-success adminRole"  rel="<?php echo $data['id']; ?>">
+   			<a href="javascript:void(0)" name="vendor" class=" text-success vendorRole"  rel="<?php echo $data['id']; ?>">
               <i class='fas fa-user-alt iconRole'></i>
    		<?php break; } ?>
    	

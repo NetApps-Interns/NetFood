@@ -43,10 +43,10 @@
    			<?php
    			if($data['status']==0){
    			?>
-   			<a href="javascript:void(0)" name="logistics" class=" text-secondary adminRole"  rel="<?php echo $data['id']; ?>">
+   			<a href="javascript:void(0)" name="logistics" class=" text-secondary riderRole"  rel="<?php echo $data['id']; ?>">
    			<i class='fas fa-user-alt-slash iconRole' ></i>
    		<?php } else{ ?>
-   			<a href="javascript:void(0)" name="logistics" class=" text-success adminRole"  rel="<?php echo $data['id']; ?>">
+   			<a href="javascript:void(0)" name="logistics" class=" text-success riderRole"  rel="<?php echo $data['id']; ?>">
               <i class='fas fa-user-alt iconRole'></i>
    		<?php } ?>
    	

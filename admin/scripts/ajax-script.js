@@ -1,8 +1,37 @@
 
 
-// ============= admin rol ==============//
+// =============  roles ==============//
 
 $(document).on('click', '.adminRole', function(e){
+       
+  var el=$(this);
+  var name=$(this).attr('name');
+  var id=$(this).attr('rel');
+   $.ajax({
+   method:"GET",
+   url: "scripts/backend-script.php",
+   data:{tableName:name,id:id,role:'admin'},
+
+   success: function(data){
+
+     switch(data)
+     {
+       case 'fas fa-user-alt-slash iconRole':
+       el.attr('class', 'text-secondary adminRole');
+       break;
+       case 'fas fa-user-alt iconRole':
+       el.attr('class', 'text-success adminRole');
+       break;
+     }
+  
+  el.find('.iconRole').attr('class', data);
+
+
+}});
+});
+
+
+$(document).on('click', '.vendorRole', function(e){
        
        var el=$(this);
        var name=$(this).attr('name');
@@ -10,17 +39,17 @@ $(document).on('click', '.adminRole', function(e){
         $.ajax({
         method:"GET",
         url: "scripts/backend-script.php",
-        data:{tableName:name,id:id,role:'admin'},
+        data:{tableName:name,id:id,role:'vendor'},
     
         success: function(data){
 
           switch(data)
           {
             case 'fas fa-user-alt-slash iconRole':
-            el.attr('class', 'text-secondary adminRole');
+            el.attr('class', 'text-secondary vendorRole');
             break;
             case 'fas fa-user-alt iconRole':
-            el.attr('class', 'text-success adminRole');
+            el.attr('class', 'text-success vendorRole');
             break;
           }
        
@@ -28,6 +57,62 @@ $(document).on('click', '.adminRole', function(e){
 
 
     }});
+});
+
+$(document).on('click', '.riderRole', function(e){
+       
+  var el=$(this);
+  var name=$(this).attr('name');
+  var id=$(this).attr('rel');
+   $.ajax({
+   method:"GET",
+   url: "scripts/backend-script.php",
+   data:{tableName:name,id:id,role:'rider'},
+
+   success: function(data){
+
+     switch(data)
+     {
+       case 'fas fa-user-alt-slash iconRole':
+       el.attr('class', 'text-secondary riderRole');
+       break;
+       case 'fas fa-user-alt iconRole':
+       el.attr('class', 'text-success riderRole');
+       break;
+     }
+  
+  el.find('.iconRole').attr('class', data);
+
+
+}});
+});
+
+$(document).on('click', '.customerRole', function(e){
+       
+  var el=$(this);
+  var name=$(this).attr('name');
+  var id=$(this).attr('rel');
+   $.ajax({
+   method:"GET",
+   url: "scripts/backend-script.php",
+   data:{tableName:name,id:id,role:'customer'},
+
+   success: function(data){
+
+     switch(data)
+     {
+       case 'fas fa-user-alt-slash iconRole':
+       el.attr('class', 'text-secondary customerRole');
+       break;
+       case 'fas fa-user-alt iconRole':
+       el.attr('class', 'text-success customerRole');
+       break;
+     }
+  
+  el.find('.iconRole').attr('class', data);
+
+
+}});
 });
 
 //======= Insert data through admin form==========// 
