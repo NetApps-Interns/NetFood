@@ -4,6 +4,12 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name= "theme-color" content="#e82d00">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#e82d00">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#e82d00">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="assets/res/style.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,6 +29,10 @@
 	
 
 	<title>NETFood</title>
+
+	<script>
+		baseUrl='http://192.168.0.101/dev/NetFoodr/';
+		</script>
 </head>
 
 <body class="">
@@ -53,8 +63,9 @@
 				</a>
 			</li>
 			<li>
-				<a href="" id="cd-cart-trigger">
+				<a href="" id="cd-cart-trigger" style="position: relative">
 					<ion-icon name="cart-outline"></ion-icon>
+					<span id="cartCounter" style="position: absolute;top: -8px;left: 9px;background: #e4a804;padding: .35rem;border-radius: 50%;height: .5rem;width: .5rem;font-size: .7rem;display: flex;align-items: center;justify-content: center;"><?= (CART_QTY) > 9 ? "9+" : CART_QTY ?></span>
 				</a>
 			</li>
 		</ul>

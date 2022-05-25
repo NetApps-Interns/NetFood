@@ -14,9 +14,15 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 	$query = $db->query($SQL);
 	
 	$row = $query->fetch_all(MYSQLI_ASSOC);
+
+	// print_r($row);
 	
 	if ($row) {
 		$row=$row[0];
+		// print_r($row);
+
+		// die(password_verify('$2y$10$ByHd.CY5pC6THOfiKCWwnu8rWwrum7FlWvyyKG2crJ/wgk6XZ5Ou.', $row['customerPassword']));
+		
 		if (password_verify($password, $row['customerPassword'])) {
 			$_SESSION["userid"] = $row["customerId"]; 
 			$_SESSION["user"] = $row;
@@ -32,7 +38,7 @@ die(output_json(['Email or Password incorrect','Try again!'], 0));
 
 // $query->close();
 // Close connection
-mysqli_close($db);
+// mysqli_close($db);
 
 
 ?>

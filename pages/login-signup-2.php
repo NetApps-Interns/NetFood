@@ -54,7 +54,7 @@ $_SESSION=[];
 			<form id="loginForm" action="" method="post" class="login-request">
 			
 				<div class="row">
-					<input type="text" name="username" id="username" placeholder="Email or Phone Number" required>
+					<input type="text" name="username" id="username" placeholder="Email" required>
 				</div>
 				
 				<div class="row">
@@ -73,6 +73,7 @@ $_SESSION=[];
     </section>
 
 	<script>
+
 		$(document).ready(
 			function(){
 				document.getElementById("defaultOpen").click();
@@ -80,15 +81,19 @@ $_SESSION=[];
 		)
 
 		$('#loginForm').on('submit', async function(e){
+			// alert("feusdijgbmkb");
+			// return false;
 			e.stopPropagation()
 			e.preventDefault();
 			username = $('#username').val();
 			password = $('#password').val();
 			res = await $.post(
-				'/api/user_login.php', 
+				// baseUrl +'api/user_login.php', 
+				'api/user_login.php', 
 				{ username: username, password: password }
 			)
-
+			console.log(res)
+			console.log(res.flag)
 			if (res.flag){
 				const Toast = Swal.mixin({
 				toast: true,
@@ -101,13 +106,14 @@ $_SESSION=[];
 					toast.addEventListener('mouseleave', Swal.resumeTimer)
 				}
 				})
-
+				
 				Toast.fire({
 				icon: 'success',
 				title: res.msg[0]
 				})
 
-				location.href = '/?page=menu';
+				location.href = 'index.php?page=menu';
+				// location.href = baseUrl +'?page=menu';
 
 			}else{
 				Swal.fire(
@@ -141,16 +147,16 @@ $_SESSION=[];
 			// if (!(/[^a-z0-9]/i).test(password)) {
 			// 	check.push("special character");
 			// }
-			if(!password.length < 6){
+			if(password.length < 6){
 				check.push(" length longer than 6");
 			}
 			
 			if (check.length > 1) {
 				check[check.length-1] = "and"+check[check.length-1];
 			}
-			// console.log(check);
+			console.log(check);
 
-			if (check){
+			if(check.length){
 				let msg = "Password must have at least a"+ check.join(", ");
 
 				Swal.fire(
@@ -170,7 +176,7 @@ $_SESSION=[];
 				}
 				console.log(data);
 			res = await $.post(
-				'/api/user_signup.php', 
+				'api/user_signup.php', 
 				data
 			)
 

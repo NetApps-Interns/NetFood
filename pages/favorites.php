@@ -54,7 +54,7 @@
     //
 //
 removeFromFav = async function(itemId, itemName){
-	let res = await $.post( "/api/removeFromFav.php",{
+	let res = await $.post( "api/removeFromFav.php",{
 		itemId: itemId,
 		itemName: itemName
 	})

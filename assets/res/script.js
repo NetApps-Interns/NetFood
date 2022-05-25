@@ -107,7 +107,7 @@ togglePassword.forEach(e=>{
 //
 //
 addToFav = async function(itemId, itemName){
-	let res = await $.post( "/api/addToFav.php",{
+	let res = await $.post( "api/addToFav.php",{
 		itemId: itemId,
 		itemName: itemName
 	})
@@ -155,7 +155,7 @@ function logout() {
 		if (result.isConfirmed) {
 
 			async function t(){
-				res = await $.post('/api/user_logout.php');
+				res = await $.post('api/user_logout.php');
 			
 				if (res.flag){
 					

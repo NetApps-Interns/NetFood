@@ -44,7 +44,7 @@
 
 <div id="result-con" style="<?= $divCtrlSearch ?>">
 	<?php	
-		if($searchItems){
+		if(isset($searchItems)){
 			foreach  ($searchItems as $item): 
 				include 'components/menu_item.php';
 			endforeach; 

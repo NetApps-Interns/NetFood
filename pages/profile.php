@@ -15,6 +15,14 @@
     $statement->execute();
     $items=$statement->fetchAll(PDO::FETCH_ASSOC);
 
+    $statement = $pdo->prepare('SELECT * FROM state');
+    $statement->execute();
+    $states=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+    $statement = $pdo->prepare('SELECT * FROM local_governments');
+    $statement->execute();
+    $cities=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 ?>  
 
@@ -50,7 +58,29 @@
 
                         <div class="profile_detail_tag">Address</div>
                         <input id="address" type="text" value="<?= $customer['customerAddress']?>" class="profile_details" readonly>
-                       
+                        <select id="city">
+                            <option value="" disabled selected>Select State</option>
+                            
+                            <?php foreach($states as $state): ?>
+                                <option value="<?= $state['id'] ?>" ><?= $state['name'] ?></option>
+                            <?php endforeach; ?>
+
+                        </select>
+
+                        <select id="city">
+                            <option value="" disabled selected>Select City</option>
+                            
+                            <?php 
+                            
+                            $statement = $pdo->prepare('SELECT * FROM local_governments where state_id=');
+                            $statement->execute();
+                            $cities=$statement->fetchAll(PDO::FETCH_ASSOC);
+                        
+                                foreach($cities as $city): ?>
+                                <option value="<?= $city['id'] ?>" ><?= $city['name'] ?></option>
+                            <?php endforeach; ?>
+
+                        </select>
 
                     </div>
 
@@ -88,19 +118,22 @@
 </div>
 
 <script>
+	$('#city').on('change', function(){
+		let selCityId = $(this).val()
+		
+	})
+    
     $('input[type=text]').click(function () {
         $('input[type=text]').removeAttr('readonly');
     })
-    //
+    
     $('#update-btn').on('click', async function(){
-        name = $('#name').val();
-        number = $('#number').val();
-        address = $('#address').val();
+        
         res = await $.post(
-            '/api/updateProfile.php', 
-            {   name :name ,
-                number:number,
-                address :address
+            'api/updateProfile.php', 
+            {   name : $('#name').val(),
+                number: $('#number').val(),
+                address : $('#address').val()
             }
         )
         const Toast = Swal.mixin({
@@ -184,16 +217,11 @@
         position: relative; 
 
     }
-
-    .editor{
-        font-size: 135%;
-    }
-
     .profile-page{
         display:flex;
 	    justify-content: space-around;
         flex-wrap: wrap;
-        }
+    }
 
     .p-hover-tab{
         background-color: #e82e009d;

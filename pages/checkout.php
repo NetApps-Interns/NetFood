@@ -1,12 +1,20 @@
-    <?php
-     $userId = $_SESSION["userid"];
+<?php
+     $userId = $_SESSION["userid"] ?? 0;
+
+    
     $SQL= "SELECT c.id idCustomer, c.customer_name customerName, c.customer_address customerAddress, c.customer_email customerEmail , c.customer_phone_number customerPhone FROM customer c WHERE  c.id = $userId";
 
     $statement = $pdo->prepare($SQL);
     $statement->execute();
     $customer=$statement->fetchAll(PDO::FETCH_ASSOC);
-    $customer=$customer[0];
-    ?>
+    if (!$userId) {
+      $customer=[];
+    }else {
+      $customer=$customer[0];
+    }
+?>
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+
 <div class="image-background">
     <div class="hover-tab">
         <div class="tabcontent" style="display: block;">
@@ -24,65 +32,79 @@
                 <!-- <form id="updateForm"> -->
                 <div class="profile_rows">
                     <div class="profile_detail_tag">Address to deliver to</div>
-                    <input id="address" type="text" value="<?= $customer['customerAddress']?>" class="profile_details" readonly>
+                    <input id="addressToDeliver" type="text" value="<?= $customer['customerAddress']?? ''?>" class="profile_details" readonly >
 
                 </div>
                 <div class="profile_rows">
 
                     <div class="profile_detail_tag">Name to deliver to</div>
-                    <input id="name" type="text" value="<?= $customer['customerName']?>" class="profile_details" readonly>
+                    <input id="nameToDeliver" type="text" value="<?= $customer['customerName']?? ''?>" class="profile_details" readonly >
                     
 
                 </div>
                 <div class="profile_rows">
 
                     <div class="profile_detail_tag">Phone Number</div>
-                    <input id="number" type="text" value="<?= $customer['customerPhone']?>" class="profile_details" readonly>
+                    <input id="numberToDeliver" type="text" value="<?= $customer['customerPhone']?? ''?>" class="profile_details" readonly >
                     
 
                 </div>
                 
 
-                <button id="update-btn" style="width: 40%; border-radius: 20px;">Update</button>
+                <button id="update-btn" style="width: fit-content; border-radius: 0.825rem; margin-bottom: 1rem;">Change</button>
                 <!-- </form> -->
                     
             </div>
             <div class="col span-1-of-3">
-                <div id="cartSumm">
+              <div id="cartSumm">
                 <div class="cart_header">
-                    <span><h2 style="display: inline-block; margin-top:1rem;">Cart Summary</h2></span>
+                    <span><h2 style="display: inline-block; margin-top:.5rem;">Cart Summary</h2></span>
                 </div>
+
                     <ul class="cartSumm-items cartBody">
                     <?php
-                    foreach($cartObj['items'] as $item){
+                    foreach(CART_COMP['items'] as $item){
                     $unitPrice = $item['price'];
                     ?>
-                <li>
-                            <div>
-                        <div class="cd-qty">
-                            <div class="number-input">
-                            <button onclick=" removeFromCart(<?= $item['itemID']?>, 0); this.parentNode.querySelector('input[type=number]').stepDown();" class="cd_quantity_btn minus"><ion-icon name="chevron-down-circle-outline"></ion-icon></button>
-                            <input id="cd_quantity" class="quantity" min="1" name="quantity" value="<?= $item['qty'] ?>" type="number">
-                            <button onclick="addToCart(<?= $item['itemID']?>, 0); this.parentNode.querySelector('input[type=number]').stepUp(); " class="cd_quantity_btn plus"><ion-icon name="chevron-up-circle-outline"></ion-icon></button>
-                            </div> 
-                        </div>
-                        <?= $item['extra']['name'] ?>
-                        <p class="cd-price">&#8358;<?= $unitPrice ?></p>
-                    </div>
-                            <a onclick="removeFromCart(<?= $item['itemID'] ?>, 1, <?= $item['qty'] ?>)" class="cd-item-remove cd-img-replace">Remove</a>
-                        </li>
+                      <li>
+                              <div>
+                                <div class="cd-qty">
+                                    <div class="number-input">
+
+                                      <button onclick=" removeFromCart(<?= $item['itemID']?>, 0); this.parentNode.querySelector('input[type=number]').stepDown();" class="cd_quantity_btn minus">
+                                        <ion-icon name="chevron-down-circle-outline"></ion-icon>
+                                      </button>
+
+                                      <input id="cd_quantity" class="quantity" min="1" name="quantity" value="<?= $item['qty'] ?>" type="number">
+
+                                      <button onclick="addToCart(<?= $item['itemID']?>, 0); this.parentNode.querySelector('input[type=number]').stepUp(); " class="cd_quantity_btn plus">
+                                        <ion-icon name="chevron-up-circle-outline"></ion-icon>
+                                      </button>
+                                    </div> 
+                                </div>
+
+                                <p><?= $item['extra']['name'] ?></p>
+                                <p class="cd-price">&#8358;<?= $unitPrice ?></p>
+
+                              </div>
+                              <div style="margin: 25px;">
+                                <a onclick="removeFromCart(<?= $item['itemID'] ?>, 1, <?= $item['qty'] ?>)" class="cd-item-remove cd-img-replace">Remove</a>
+                              </div>
+                      </li>
                     <?php
                     }
                     ?>
                 </ul> <!-- cartSumm-items -->
 
                     <div class="cartSumm-total">
-                        <p>Total <span class="cartTotal">&#8358; <?= $cartObj['total'] ?></span></p>
+                        <p>Total <span class="cartTotal">&#8358; <?= CART_COMP['total'] ?></span></p>
                     </div> <!-- cartSumm-total -->
 
-                    <a href="index.php?page=checkout" class="checkout-btn">Pay</a>
+                    <input id="orderRef" type="hidden" value="<?=uniqid("netfood-tx-ref-")?>?>">
+                    <button id="payBtn" class="checkout-btn" style="border-radius: .825rem;">Pay Now</button> 
+
                     
-                </div>
+              </div>
             </div>
         </div>           
             
@@ -90,11 +112,102 @@
         </div>
     </div>
 </div>
+<script>
+   $('input[type=text]').click(function () {
+        $('input[type=text]').removeAttr('readonly');
+    })
+  function getResultFromFlutter(result){
+      console.log(result)
+  }
+  $('#payBtn').on('click', function(e){
+
+    ref = $("#orderRef").val();
+    address = $('#addressToDeliver').val();
+    name = $('#nameToDeliver').val();
+    number = $('#numberToDeliver').val();
+
+    console.log(ref);
+    const res = FlutterwaveCheckout({
+      public_key: "FLWPUBK_TEST-cca74c56a0643b56b06e755f39b2a7b4-X",
+      tx_ref: ref,
+      amount: <?= CART_COMP['total'] ?>,
+      currency: "NGN",
+      redirect_url: "netfood.local/index.php?page=checkout",
+      customer: {
+        email: "<?= $customer['customerEmail']?>",
+        phone_number: "<?= $customer['customerPhone']?>",
+        name: "<?= $customer['customerName']?>",
+      },
+      customizations: {
+        title: "NETFood",
+        description: "Bringing your favorites to your doorstep!",
+        logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+      },
+      callback: function(payment) {
+        // Send AJAX verification request to backend
+         verifyTransactionOnBackend(payment.id);
+        
+      },
+      onclose: async function(incomplete) {
+        if (incomplete || window.verified === false) {
+          alert("Payment Failed");
+        } else {
+          if (window.verified == true) {
+            alert("Payment Success");
+            
+            res = await $.post(
+              '/api/placeOrder.php', 
+              { 
+                idCustomer: <?= $customer['idCustomer']?>,
+                address: address,
+                name: name,
+                phoneNumber: number,
+                orderedItem: '<?= json_encode(CART_COMP['items']) ?>',
+                totalAmount: <?= CART_COMP['total'] ?>
+              }
+            )
+
+          } else {
+            alert("Payment Pending");
+          }
+        }
+      }
+    })
+  })
+
+  function verifyTransactionOnBackend(transactionId) {
+    // Let's just pretend the request was successful
+    setTimeout(function() {
+      window.verified = true;
+    }, 500);
+  }
+
+//   function makePayment() {
+//   FlutterwaveCheckout({
+//     public_key: "FLWPUBK_TEST-SANDBOXDEMOKEY-X",
+//     tx_ref: "titanic-48981487343MDI0NzMx",
+//     amount: <?= CART_COMP['total'] ?>,
+//     currency: "NGN",
+//     redirect_url: "netfood.local/index.php?page=checkout",
+//     customer: {
+//       email: "<?= $customer['customerEmail']?>",
+//       phone_number: "<?= $customer['customerPhone']?>",
+//       name: "<?= $customer['customerName']?>",
+//     },
+//     customizations: {
+//       title: "NETFood",
+//       description: "Bringing your favorites to your doorstep!",
+//       logo: "/assets/res/img/logo.jpg",
+//     },
+//   });
+// }
+
+</script>
 
 <style>
      @media only screen and (max-width:425px){
         .profile_details{
-            max-width:192.5px;
+            max-width:185px;
         }
     }
     .profile_rows{
@@ -104,7 +217,7 @@
 
     .profile_details{
         height: 20px;
-        width: 20rem;
+        width: 100%;
         /* max-width: 200px; */
         padding: 0.875rem 1rem;
         margin-top: 10px;
@@ -133,8 +246,18 @@
 
     }
 
-    #cartSumm{
+    div#cartSumm {
+        padding: 1rem;
+        border-radius: 0.825rem;
+        border: 2px solid #e4a804;
     }
+
+    .cartBody{
+        min-height:8rem;
+        max-height:15rem;
+        overflow-y: overlay;
+    }
+
     .cart_header{
         font-size: 14px;
         font-size: 0.875rem;
@@ -149,23 +272,20 @@
         padding: 0 1em;
     }
 
-  #cartSumm .cart_header{
-    font-size: 14px;
-    font-size: 0.875rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 1em 0;
-    display: flex;
-    justify-content: center;
-  }
+    #cartSumm .cart_header{
+        font-size: 14px;
+        font-size: 0.875rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 1em 0;
+        display: flex;
+        justify-content: center;
+    }
 
     #cartSumm .cartSumm-items {
         padding: 0;
     }
-    #cartBody {
-        height: 20rem;
-        overflow-y: overlay;
-    }
+    
   #cartSumm .cartSumm-items li {
     position: relative;
     padding: 1em;
@@ -272,7 +392,6 @@
     display: block;
     /* width: 100%; */
     height: 60px;
-    line-height: 60px;
 	border-bottom: 2px solid #e4a804;
     background: #e4a804;
     color: #FFF;

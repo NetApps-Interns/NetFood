@@ -549,10 +549,6 @@ footer p {
 
 ::-webkit-scrollbar-thumb
 {
-	background-image: -webkit-linear-gradient(90deg,
-											  rgb(228, 168, 4) 25%,
-											  transparent 100%,
-											  rgb(228, 168, 4) 75%,
-											  transparent);
+	background-color: rgb(228, 168, 4);
 	border-radius: 10px;
 }

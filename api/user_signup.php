@@ -71,7 +71,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $insertQuery->bind_param("ssss", $fullname, $email, $phone_number, $password_hash);
             $result = $insertQuery->execute();
 
-
             if ($result) { 
                 die(output_json(["Your registration was successful!"], 1));
             } else {

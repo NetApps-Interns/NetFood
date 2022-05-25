@@ -1,8 +1,4 @@
-<?php
-$cartObj = new CartStore_Session();
-$cartObj = $cartObj->getCart();
-?>
-
+// Cart is called in the header
 <div id="cd-shadow-layer" class="cart-close-trigger"></div>
 
 <div id="cd-cart">
@@ -12,7 +8,7 @@ $cartObj = $cartObj->getCart();
   </div>
 	<ul class="cd-cart-items cartBody">
     <?php
-    foreach($cartObj['items'] as $item){
+    foreach(CART_COMP['items'] as $item){
       $unitPrice = $item['price'];
       ?>
  <li>
@@ -27,7 +23,9 @@ $cartObj = $cartObj->getCart();
         <?= $item['extra']['name'] ?>
         <p class="cd-price">&#8358;<?= $unitPrice ?></p>
       </div>
-			<a onclick="removeFromCart(<?= $item['itemID'] ?>, 1, <?= $item['qty'] ?>)" class="cd-item-remove cd-img-replace">Remove</a>
+      <div style="margin: 25px;">
+        <a onclick="removeFromCart(<?= $item['itemID'] ?>, 1, <?= $item['qty'] ?>)" class="cd-item-remove cd-img-replace">Remove</a>
+      </div>
 		</li>
       <?php
     }
@@ -35,7 +33,7 @@ $cartObj = $cartObj->getCart();
   </ul> <!-- cd-cart-items -->
 
 	<div class="cd-cart-total">
-		<p>Total <span class="cartTotal">&#8358; <?= $cartObj['total'] ?></span></p>
+		<p>Total <span class="cartTotal">&#8358; <?= CART_COMP['total'] ?></span></p>
 	</div> <!-- cd-cart-total -->
 
 	<a href="index.php?page=checkout" class="checkout-btn">Checkout</a>
@@ -57,7 +55,6 @@ $cartObj = $cartObj->getCart();
 
   #cd-cart {
     position: fixed;
-    /* max-height: 90vh; */
     width: 260px;
     padding-top: 10px;
     overflow-y: auto;
@@ -67,6 +64,11 @@ $cartObj = $cartObj->getCart();
     background: #2a2a2a;
     display: none;
     
+  }
+
+  .cartBody{
+    max-height: 65vh;
+    overflow-y: overlay;
   }
 
   #cd-cart {
@@ -320,17 +322,27 @@ $cartObj = $cartObj->getCart();
         ${item.extra.name}
         <p class="cd-price"><span>&#8358;</span>${unitPrice}</p>
       </div>
-			<a onclick="removeFromCart(${item.itemID}, 1, ${item.qty})" class="cd-item-remove cd-img-replace">Remove</a>
+      <div style="margin: 25px;">
+			  <a onclick="removeFromCart(${item.itemID}, 1, ${item.qty})" class="cd-item-remove cd-img-replace">Remove</a>
+      </div>
 	  	</li>
       `
     }
 
     $(".cartBody").html(cartBody)
     $(".cartTotal").html("&#8358;&nbsp;"+ data.total)
+
+     //update the cart counter
+     let res = await $.post("api/cart.php", {
+                action: "count"
+              })
+              
+      $("#cartCounter").html(res.msg[0])
+
   }
 
   addToCart = async function(itemId, alat = 1, qty = 1){
-    let res = await $.post("/api/cart.php", {
+    let res = await $.post("api/cart.php", {
       action: "add",
       item_id: itemId,
       qty: qty
@@ -353,7 +365,6 @@ $cartObj = $cartObj->getCart();
 				icon: 'success',
 				title: res.msg[0]
 				})
-
         
         
       }
@@ -361,7 +372,7 @@ $cartObj = $cartObj->getCart();
   }
 
   removeFromCart = async function(itemId, alat = 1, qty=1){
-    let res = await $.post("/api/cart.php", {
+    let res = await $.post("api/cart.php", {
       action: "remove",
       item_id: itemId,
       qty: qty
@@ -390,10 +401,10 @@ $cartObj = $cartObj->getCart();
   }
 
   clearCart = async function(itemId, qty){
-    let res = await $.post("/api/cart.php", {action: "clear"})
+    let res = await $.post("api/cart.php", {action: "clear"})
     if (res.flag){
-      $("#cartBody").html('');
-      $("#cartTotal").html('&#8358;0')
+      $(".cartBody").html('');
+      $(".cartTotal").html('&#8358;0')
     }
     
   }

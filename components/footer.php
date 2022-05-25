@@ -53,9 +53,9 @@ if(isset($_SESSION['error_msg'])){
             confirmButtonText: 'Yes, log in or sign up!'
         }).then((result) => {
             if (result.isConfirmed) {
-                location.href= '/?page=login-signup';
+                location.href= 'index.php?page=login-signup';
             }else{
-                location.href= '/?page=menu';
+                location.href= 'index.php?page=menu';
             }
         });
 
