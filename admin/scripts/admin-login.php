@@ -67,12 +67,15 @@ function login($db,$email,$password){
   if(mysqli_num_rows($run_email)>0)
   {
     // checking email and password
-    $check_user="SELECT email_address, admin_password FROM tbladmin WHERE email_address='$email' AND admin_password='$password'";
+    $check_user="SELECT id, email_address, admin_password FROM tbladmin WHERE email_address='$email' AND admin_password='$password'";
     $run_user= mysqli_query($db,$check_user);
+    // $idAdmin= $run_user["id"];
     if(mysqli_num_rows($run_user)>0)
      {
       session_start();
-      $_SESSION['email_address']=$email;
+  $_SESSION['email_address']=$email;
+  // $_SESSION['id']=$idAdmin;
+ 
       header("location:dashboard.php");
      }else
      {

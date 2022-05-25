@@ -226,4 +226,18 @@ border: 0px;
       background: #768cbb;
       color: #0d121b;
     }
-   
+    .welcome-text {     
+       font-style: normal;          
+       font-weight: normal;          
+       font-size: 35px;
+       line-height: 38px; 
+       color: gray;         
+       margin-bottom: 10px; }
+       .login-name {    
+        font-style: normal;          
+        font-weight: bold;          
+        font-size: 35px;
+        line-height: 38px; 
+        color: black;         
+        margin-bottom: 10px; }
+        

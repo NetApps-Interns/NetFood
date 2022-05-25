@@ -49,7 +49,7 @@ $(document).on('click', '.vendorRole', function(e){
             el.attr('class', 'text-secondary vendorRole');
             break;
             case 'fas fa-user-alt iconRole':
-            el.attr('class', 'text-success vendorRole');
+          el.attr('class', 'text-success vendorRole');
             break;
           }
        
