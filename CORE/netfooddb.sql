@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2022 at 02:05 PM
+-- Generation Time: May 27, 2022 at 10:21 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -44,7 +44,7 @@ CREATE TABLE `color_setting` (
 --
 
 INSERT INTO `color_setting` (`id`, `navbar_background`, `sidebar_background`, `text_color`, `save_button_color`, `edit_button_color`, `delete_button_color`, `view_button_color`, `label_text_color`) VALUES
-(1, '#2175ca', '#0f40b3', '#dad7d7', '#049a2a', '#202722', '#c60c0c', '#6c6a6a', '#434242');
+(1, '#252423', '#302c2f', '#dad7d7', '#049a2a', '#202722', '#c60c0c', '#6c6a6a', '#434242');
 
 -- --------------------------------------------------------
 
@@ -122,7 +122,6 @@ CREATE TABLE `customer` (
   `customer_password` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` date NOT NULL,
-  `last_login` date NOT NULL,
   `idcity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -130,8 +129,8 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `customer_name`, `customer_address`, `customer_email`, `customer_phone_number`, `customer_password`, `status`, `created_at`, `last_login`, `idcity`) VALUES
-(1, 'Emmanuel Imoh Gbinije', '', 'princeemmanuel05@gmail.com', '+2348091371709', '$2y$10$9ylUYwRmMBSjiiHuSjBYjeuOLxrCyIhd7ylkIabNnXYtkb7RdP.gC', 1, '0000-00-00', '0000-00-00', NULL);
+INSERT INTO `customer` (`id`, `customer_name`, `customer_address`, `customer_email`, `customer_phone_number`, `customer_password`, `status`, `created_at`, `idcity`) VALUES
+(1, 'Emmanuel Imoh Gbinije', '', 'princeemmanuel05@gmail.com', '+2348091371709', '$2y$10$9ylUYwRmMBSjiiHuSjBYjeuOLxrCyIhd7ylkIabNnXYtkb7RdP.gC', 0, '0000-00-00', NULL);
 
 -- --------------------------------------------------------
 
@@ -166,21 +165,23 @@ CREATE TABLE `item` (
   `price` decimal(10,0) NOT NULL,
   `photo` varchar(255) NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `idvendor` int(11) NOT NULL
+  `idvendor` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `item`
 --
 
-INSERT INTO `item` (`id`, `item_name`, `ingredients`, `description`, `price`, `photo`, `create_date`, `idvendor`) VALUES
-(1, 'Banana Fish', 'Banana, Fish and a lil bit of spice', 'Delicious', '2500', 'brownies.jpg', '2022-04-27 09:52:40', 1),
-(2, 'Feast', 'rice, steak, and a whole lot more', 'Meaty', '500', 'feast.jpg', '2022-04-27 09:52:40', 1),
-(3, 'Masa', 'rice cake', 'Delicious', '500', 'feast.jpg', '2022-04-27 09:52:40', 1),
-(4, 'Pizza', 'Perronoi', 'TAstys', '5000', 'pizza.jpg', '2022-04-27 09:52:40', 1),
-(5, 'Burger', 'Veggie', 'Nice', '1700', 'burger.jpg', '2022-04-27 09:52:40', 1),
-(6, 'Chicken', 'Chicken', 'Delicious, TAsty, everything', '7500', 'chicken.jpg', '2022-04-27 09:52:40', 1),
-(7, 'ChickWizz', 'Bread, Tomatos, Cheese, Chicken, Lettuces', 'Fire!!!', '1900', 'feast.jpg', '2022-04-27 09:52:40', 2);
+INSERT INTO `item` (`id`, `item_name`, `ingredients`, `description`, `price`, `photo`, `create_date`, `idvendor`, `status`) VALUES
+(1, 'Banana Fish', 'Banana, Fish and a lil bit of spice', 'Delicious', '2500', 'brownies.jpg', '2022-04-27 09:52:40', 1, 1),
+(2, 'Feast', 'rice, steak, and a whole lot more', 'Meaty', '500', 'feast.jpg', '2022-04-27 09:52:40', 1, 1),
+(3, 'Masa', 'rice cake', 'Delicious', '500', 'feast.jpg', '2022-04-27 09:52:40', 15, 1),
+(4, 'Pizza', 'Perronoi', 'TAstys', '5000', 'pizza.jpg', '2022-04-27 09:52:40', 1, 1),
+(5, 'Burger', 'Veggie', 'Nice', '1700', 'burger.jpg', '2022-04-27 09:52:40', 15, 1),
+(6, 'Chicken', 'Chicken', 'Delicious, TAsty, everything', '7500', 'chicken.jpg', '2022-04-27 09:52:40', 1, 1),
+(7, 'ChickWizz', 'Bread, Tomatos, Cheese, Chicken, Lettuces', 'Fire!!!', '1900', 'feast.jpg', '2022-04-27 09:52:40', 15, 1),
+(12, 'amala', 'salt and pepper', '123', '1233', '../uploads/img/item/P6cfGJtg/default.jpg', '2022-05-17 12:42:56', 15, 0);
 
 -- --------------------------------------------------------
 
@@ -1001,7 +1002,7 @@ CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
   `total_amount` decimal(10,0) NOT NULL,
   `status` enum('new','processing','pending','completed','cancelled') DEFAULT 'new',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` datetime NOT NULL,
   `customer_id` int(11) NOT NULL,
   `iditem` int(11) NOT NULL,
   `idvendor` int(11) NOT NULL
@@ -1012,7 +1013,7 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`id`, `total_amount`, `status`, `created_at`, `customer_id`, `iditem`, `idvendor`) VALUES
-(1, '54536', 'new', '2022-04-27 10:04:13', 1, 3, 0);
+(1, '54536', 'new', '2022-04-27 11:04:13', 1, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -1169,10 +1170,15 @@ CREATE TABLE `vendor` (
 --
 
 INSERT INTO `vendor` (`id`, `vendor_name`, `description`, `contact`, `email`, `vendor_address`, `vendor_password`, `status`, `last_updated`, `idcity`) VALUES
-(1, 'Foodie Hive', 'Making Delicacies that keep you wanting more', 2147483647, 'foodiehive@gmail.com', '4 Kenema Cl, Off Sakono Street, Wuse 2', '', 1, '2022-03-25 10:25:59', '0'),
-(2, 'Chicken Republic', 'Tasty chicken', 2147483, 'chickenrepublic@gmail.com', 'Aminu Kano Cres, Wuse 2', '', 1, '2022-04-21 16:21:17', '0'),
-(3, 'H-Medix', 'Everything you need in one place', 2147481, 'hmedix@yahoo.com', '155 Aminu Kano Cres, Wuse 2', '', 1, '2022-04-27 16:21:17', '0'),
-(7, '', '', 0, 'charles@gmail.com', '', '$2y$10$XtAoZDSoPH8cyVsnocRIT.yWYH6ObFbRkEJ.IuXS9f3gzxAw10SIa', 1, '0000-00-00 00:00:00', '0');
+(1, 'Foodie Hive', 'Making Delicacies that keep you wanting more', 2147483647, 'foodiehive@gmail.com', '4 Kenema Cl, Off Sakono Street, Wuse 2', '', 0, '2022-03-25 00:00:00', '0'),
+(2, 'Chicken Republic', 'Tasty chicken', 2147483, 'chickenrepublic@gmail.com', 'Aminu Kano Cres, Wuse 2', '', 0, '2022-04-21 00:00:00', '0'),
+(3, 'H-Medix', 'Everything you need in one place', 2147481, 'hmedix@yahoo.com', '155 Aminu Kano Cres, Wuse 2', '', 0, '2022-04-27 00:00:00', '0'),
+(7, 'FOOD INT', 'we sell traditiona meals', 808887, 'charles@gmail.com', 'wuse 2', '$2y$10$XtAoZDSoPH8cyVsnocRIT.yWYH6ObFbRkEJ.IuXS9f3gzxAw10SIa', 0, '0000-00-00 00:00:00', '0'),
+(8, '24_CHOW', 'sharwarma everywhere', 546987, 'ntf@food.com', 'gwagwalada, ajuja', '$2y$10$IQh0oUlNn.VcZZF6YhW5Oub2vQox9gDQe/Gehjsy0abX0PS/FlFJy', 0, '0000-00-00 00:00:00', ''),
+(12, 'muchie', 'tasty meals on deck', 243545767, 'osarhiemenjude@gmail.com', 'area 1', '$2y$10$Eq7hDOA471cadFN/ySToq.q100VDH8.BM6aV2xe4VN0ogcN2FeqJK', 0, '0000-00-00 00:00:00', ''),
+(13, '', '', 0, 'MAZZTHEGAMERr@gmail.com', '', '$2y$10$Csvnnm4T8dApMjaJ.EoX3.S8vpsuX1V9SJGFCjrPYIXv0zToTKzbe', 0, '0000-00-00 00:00:00', ''),
+(15, '', '', 0, 'imson.co@gmail.com', '', '$2y$10$7rFYkfP8BzSdkY2B1xbxJeb3cSgRzvMs3a4HCLLabgOBAT5MNQvUG', 0, '0000-00-00 00:00:00', ''),
+(23, '', '', 0, 'chcha@gmail.com', '', '$2y$10$iKnQ8CxEVBOQFSRFOdqTRudNsi/M8NAMkFrawutDtYexOM15bkmxC', 0, '0000-00-00 00:00:00', '');
 
 --
 -- Indexes for dumped tables
@@ -1245,7 +1251,10 @@ ALTER TABLE `tbladdress`
 -- Indexes for table `tbladmin`
 --
 ALTER TABLE `tbladmin`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_full_name` (`admin_full_name`),
+  ADD UNIQUE KEY `email_address` (`email_address`),
+  ADD UNIQUE KEY `contact` (`contact`);
 
 --
 -- Indexes for table `theme_setting`
@@ -1273,7 +1282,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `local_governments`
@@ -1321,7 +1330,7 @@ ALTER TABLE `theme_setting`
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables

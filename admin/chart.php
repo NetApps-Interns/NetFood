@@ -208,10 +208,10 @@ $sql1="SELECT admin_full_name FROM tbladmin WHERE email_address='$email'";
   
  var chart = new CanvasJS.Chart("chartContainer", {
      title: {
-         text: "Push-ups Over a Week"
+         text: "Users per Week"
      },
      axisY: {
-         title: "Number of Push-ups"
+         title: "Number of log-ins"
      },
      data: [{
          type: "line",
