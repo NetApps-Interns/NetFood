@@ -53,12 +53,16 @@
 		</div>
 		
 	</div>
+	
 	<br>
+	<script>$(document).ready( function () {
+    $('#vendor').DataTable();
+} );</script>
 	<div class="row">
 		<div class="col">
 	<div class="table-responsive">
-		<table class="table">
-			<tr>
+		<table class="display" id="vendor">
+			<thead><tr>
 				<th>S.N</th>
 				<th>Full Name</th>
 				
@@ -69,8 +73,10 @@
 				
 				
 			</tr>
+			</thead>
+			<tbody>
 			<?php
-  $sql1="SELECT * FROM vendor ORDER BY id DESC";
+  $sql1="SELECT * FROM vendor ORDER BY id DESC LIMIT 30";
   $res1= $conn->query($sql1);
   if($res1->num_rows>0)
   {$i=1;
@@ -111,7 +117,7 @@
 	<td colspan="6">No Vendor Profile Data</td>
 </tr>
 <?php } ?>
-			
+			</tbody>
 		</table>
 	</div>
 </div>

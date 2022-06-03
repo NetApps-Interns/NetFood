@@ -26,7 +26,8 @@ if(empty($email_address))
   <!--custom style-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/>
+ 
 
 </head>
 <body class="background">
@@ -84,9 +85,9 @@ if($sub[0]=='add')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-<script type="text/javascript" src="scripts/ajax-script.js">
-  
-</script>
+<script type="text/javascript" src="scripts/ajax-script.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
+
 <script type="text/javascript">
   var acontent = document.querySelectorAll('.accordion-content');
 var atitle = document.querySelectorAll('.accordion-content .title');

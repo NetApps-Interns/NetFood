@@ -33,7 +33,7 @@ $sql1="SELECT admin_full_name FROM tbladmin WHERE email_address='$email'";
     <div class="card-body">
         <div class="d-sm-flex justify-content-between align-items-start">
         <div>
-            <h4 class="card-title card-title-dash">Pending Orders</h4>
+            <h4 class="card-title card-title-dash">Recent Orders</h4>
         </div>
          </div>
         <div class="table-responsive  mt-1">
@@ -42,146 +42,78 @@ $sql1="SELECT admin_full_name FROM tbladmin WHERE email_address='$email'";
             <tr>
                
                 <th>Customer</th>
-                <th>Company</th>
-                <th>Progress</th>
+                <th>Ordered at</th>
+                <th>Customer Contact</th>
                 <th>Status</th>
+                <th>View</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                
-                <td>
-                <div class="d-flex ">
+            <?php
+  $sql1="SELECT order_details.id, customer.customer_name, order_details.created_at, customer.customer_phone_number, order_details.status 
+FROM order_details
+INNER JOIN customer ON order_details.customer_id=customer.id LIMIT 5";
+  $res1= $conn->query($sql1);
+  if($res1->num_rows>0)
+  {$i=1;
+   while($data=$res1->fetch_assoc()){
+   	?>
+   	<tr>
+   		<td><?php echo $data['customer_name']; ?></td>
+   		
+   		<td><?php echo $data['created_at']; ?></td>
+        <td><?php echo $data['customer_phone_number']; ?></td>
+   
+   		<td>
+   			
+   			<?php
+   			    switch($data['status']){
+				   case 'new':
+					?>
+						<div class="badge badge-opacity-primary">New</div>
+					<?php 
+					break; 
+					case 'processing'
+					?>	
+						<div class="badge badge-opacity-warning">In Progress</div>
+					<?php 
+					break;
+					case 'pending'
+					?>
+						<div class="badge badge-opacity-dark">Pending</div>
+					<?php 
+					break;
+					case 'completed'
+					?>
+						<div class="badge badge-opacity-success">Completed</div>
+					<?php 
+					break;
+					case 'cancelled'
+					?>
+						<div class="badge badge-opacity-danger">Cancelled</div>
+					<?php 
+					break;
+				   }?>
+						
 
-                    <div>
-                    <h6>Brandon Washington</h6>
-                    <p>Head admin</p>
-                    </div>
-                </div>
-                </td>
-                <td>
-                <h6>Company name 1</h6>
-                <p>company type</p>
-                </td>
-                <td>
-                <div>
-                    <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
-                    <p class="text-success">79%</p>
-                    <p>85/162</p>
-                    </div>
-                    <div class="progress progress-md">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                </td>
-                <td><div class="badge badge-opacity-warning">In progress</div></td>
-            </tr>
-            <tr>
-                <td>
-                <div class="d-flex">
-                    <div>
-                    <h6>Laura Brooks</h6>
-                    <p>Head admin</p>
-                    </div>
-                </div>
-                </td>
-                <td>
-                <h6>Company name 1</h6>
-                <p>company type</p>
-                </td>
-                <td>
-                <div>
-                    <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
-                    <p class="text-success">65%</p>
-                    <p>85/162</p>
-                    </div>
-                    <div class="progress progress-md">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                </td>
-                <td><div class="badge badge-opacity-warning">In progress</div></td>
-            </tr>
-            <tr>
-              
-                <td>
-                <div class="d-flex">
-                    <div>
-                    <h6>Wayne Murphy</h6>
-                    <p>Head admin</p>
-                    </div>
-                </div>
-                </td>
-                <td>
-                <h6>Company name 1</h6>
-                <p>company type</p>
-                </td>
-                <td>
-                <div>
-                    <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
-                    <p class="text-success">65%</p>
-                    <p>85/162</p>
-                    </div>
-                    <div class="progress progress-md">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 38%" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                </td>
-                <td><div class="badge badge-opacity-warning">In progress</div></td>
-            </tr>
-            <tr>
-                <td>
-                <div class="d-flex">
-                    <div>
-                    <h6>Matthew Bailey</h6>
-                    <p>Head admin</p>
-                    </div>
-                </div>
-                </td>
-                <td>
-                <h6>Company name 1</h6>
-                <p>company type</p>
-                </td>
-                <td>
-                <div>
-                    <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
-                    <p class="text-success">65%</p>
-                    <p>85/162</p>
-                    </div>
-                    <div class="progress progress-md">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                </td>
-                <td><div class="badge badge-opacity-danger">Pending</div></td>
-            </tr>
-            <tr>
-                <td>
-                <div class="d-flex">
-                    <img src="images/faces/face5.jpg" alt="">
-                    <div>
-                    <h6>Katherine Butler</h6>
-                    <p>Head admin</p>
-                    </div>
-                </div>
-                </td>
-                <td>
-                <h6>Company name 1</h6>
-                <p>company type</p>
-                </td>
-                <td>
-                <div>
-                    <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
-                    <p class="text-success">65%</p>
-                    <p>85/162</p>
-                    </div>
-                    <div class="progress progress-md">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                </td>
-                <td><div class="badge badge-opacity-success">Completed</div></td>
-            </tr>
+
+   		
+   		
+   	
+   		</td>
+   		<td><a href="dashboard.php?cat=pages&subcat=orders&view=<?php echo $data['id']; ?>" class="text-secondary content-link"><i class='far fa-eye'></i></a></td>
+       
+   	</tr>
+   	<?php
+   $i++;}
+}else{
+
+?>
+<tr>
+	<td colspan="6">No Recent Orders</td>
+</tr>
+<?php } ?>
+			
             </tbody>
         </table>
         </div>

@@ -4,16 +4,21 @@
 <div class="content-box">	
 	<div class="row">
 		<div class="col">
-			<h4>Riders</h4>
+			<h3>Riders</h3>
 		</div>
 		
 	</div>
+	
 	<br>
+	<script>$(document).ready( function () {
+    $('#rider').DataTable();
+} );</script>
 	<div class="row">
 		<div class="col">
-	<div class="table-responsive">
-		<table class="table">
-			<tr>
+		<div class="table-responsive">
+		<table class="display" id="rider">
+		<thead>	
+		<tr>
 				<th>S.N</th>
 				<th>Full Name</th>
 				
@@ -24,8 +29,10 @@
 				
 				
 			</tr>
+		</thead>
+		<tbody>
 			<?php
-  $sql1="SELECT * FROM logistics ORDER BY id DESC";
+  $sql1="SELECT * FROM logistics ORDER BY id DESC ";
   $res1= $conn->query($sql1);
   if($res1->num_rows>0)
   {$i=1;
@@ -63,7 +70,7 @@
 	<td colspan="6">No Rider Profile Data</td>
 </tr>
 <?php } ?>
-			
+		</tbody>
 		</table>
 	</div>
 </div>

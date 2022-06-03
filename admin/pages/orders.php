@@ -5,7 +5,7 @@
     $id= $_GET['view'];
    $query="SELECT order_details.id, customer.customer_name, order_details.created_at, customer.customer_phone_number, order_details.status, customer.customer_email
    FROM order_details
-   INNER JOIN customer ON order_details.customer_id=customer.id WHERE order_details.id=$id";
+   INNER JOIN customer ON order_details.customer_id=customer.id WHERE order_details.id=$id ";
    $res= $conn->query($query);
    $viewData=$res->fetch_assoc();
    $backId=$viewData['id']-1;
@@ -24,7 +24,8 @@
 <br>
 
 <div class="table-responsive">
-	<table class="table">
+	<table class="display" id="order">
+		
 	   	<tr>
 			<th>Order ID -</th><td><?php echo $id; ?></td>
 		</tr>
@@ -56,10 +57,14 @@
 		
 	</div>
 	<br>
+	<script>$(document).ready( function () {
+    $('#order').DataTable();
+} );</script>
 	<div class="row">
 		<div class="col">
 	<div class="table-responsive">
-		<table class="table">
+		<table class="display" id="order">
+			<thead>
 			<tr>
 				<th>Order ID</th>
 				<th>Customer Name</th>
@@ -71,6 +76,8 @@
 			
 				
 			</tr>
+			</thead>
+			<tbod
 			<?php
   $sql1="SELECT order_details.id, customer.customer_name, order_details.created_at, customer.customer_phone_number, order_details.status 
 FROM order_details

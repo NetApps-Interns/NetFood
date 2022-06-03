@@ -29,6 +29,16 @@
   margin: 1% 0 1% 1.6%;
 }
 
+.col input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+  justify-self: right;
+}
+
 .col:first-child {
   margin-left: 0;
 } /* all browsers except IE6 and lower */
